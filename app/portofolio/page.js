@@ -1,17 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const projects = [
-  { id: 1, name: "Toko Sejahtera", category: "Website", desc: "Website e-commerce untuk UMKM lokal", color: "from-primary to-blue-700", icon: "storefront" },
-  { id: 2, name: "Dina & Rian", category: "Undangan Digital", desc: "Undangan pernikahan tema rustic", color: "from-pink-500 to-rose-600", icon: "favorite" },
-  { id: 3, name: "CV Maju Bersama", category: "Website", desc: "Company profile perusahaan konstruksi", color: "from-emerald-500 to-teal-600", icon: "apartment" },
-  { id: 4, name: "Sari & Ahmad", category: "Undangan Digital", desc: "Undangan pernikahan tema modern minimalis", color: "from-violet-500 to-purple-600", icon: "spa" },
-  { id: 5, name: "Klinik Sehat", category: "Website", desc: "Landing page klinik kesehatan", color: "from-cyan-500 to-blue-600", icon: "local_hospital" },
-  { id: 6, name: "Aqiqah Khalif", category: "Undangan Digital", desc: "Undangan aqiqah tema ceria", color: "from-amber-500 to-orange-600", icon: "celebration" },
-  { id: 7, name: "Warung Digital", category: "Website", desc: "Website restoran dengan menu online", color: "from-red-500 to-orange-600", icon: "restaurant" },
-  { id: 8, name: "Lisa & Budi", category: "Undangan Digital", desc: "Undangan pernikahan tema garden", color: "from-green-500 to-emerald-600", icon: "park" },
-  { id: 9, name: "Studio Kreatif", category: "Website", desc: "Portfolio website studio desain", color: "from-indigo-500 to-violet-600", icon: "brush" },
+  { id: 1, name: "TechCorp Modernization", category: "Website", desc: "Redesign website perusahaan teknologi", image: "/assets/port-web-1.png" },
+  { id: 2, name: "Rina & Budi", category: "Undangan Digital", desc: "Undangan pernikahan tema rustic premium", image: "/assets/port-inv-1.png" },
+  { id: 3, name: "Global Finance", category: "Website", desc: "Company profile untuk firma konsultan", image: "/assets/port-web-2.png" },
+  { id: 4, name: "Sarah & Ahmad", category: "Undangan Digital", desc: "Undangan pernikahan minimalis elegan", image: "/assets/port-inv-2.png" }
 ];
 
 const filters = ["Semua", "Website", "Undangan Digital"];
@@ -57,11 +53,9 @@ export default function PortofolioPage() {
               key={project.id}
               className="glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500"
             >
-              <div className={`relative h-48 bg-gradient-to-br ${project.color} flex items-center justify-center`}>
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all"></div>
-                <span className="material-symbols-outlined text-6xl text-white/80 group-hover:scale-110 transition-transform duration-500">
-                  {project.icon}
-                </span>
+              <div className="relative h-60 flex items-center justify-center bg-[#0a0a1a] overflow-hidden border-b border-white/10">
+                <Image src={project.image} alt={project.name} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-500"></div>
               </div>
               <div className="p-6">
                 <span className={`text-xs font-semibold px-3 py-1 rounded-full ${

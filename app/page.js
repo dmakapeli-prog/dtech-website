@@ -121,8 +121,8 @@ export default function Home() {
             <div className="glass-card rounded-[2rem] p-8 lg:p-12 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10 transition-all duration-500">
               <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20 transition-all duration-500 group-hover:bg-primary/15"></div>
               <div className="relative z-10 flex-1">
-                <div className="w-16 h-16 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center mb-8 text-primary group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                  <span className="material-symbols-outlined text-3xl">web</span>
+                <div className="w-full h-48 md:h-56 mb-8 rounded-2xl overflow-hidden relative border border-white/10 group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
+                  <Image src="/assets/web-dev-service.png" alt="Web Development Service" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <h4 className="text-2xl font-bold text-white mb-4">Pengembangan Web</h4>
                 <p className="text-gray-400 mb-8 font-normal leading-relaxed">
@@ -146,8 +146,8 @@ export default function Home() {
             <div className="glass-card rounded-[2rem] p-8 lg:p-12 group relative overflow-hidden flex flex-col h-full hover:-translate-y-2 hover:shadow-xl hover:shadow-accent/10 transition-all duration-500">
               <div className="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full blur-3xl -mr-20 -mt-20 transition-all duration-500 group-hover:bg-accent/15"></div>
               <div className="relative z-10 flex-1">
-                <div className="w-16 h-16 bg-white/5 rounded-2xl border border-white/10 flex items-center justify-center mb-8 text-accent group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
-                  <span className="material-symbols-outlined text-3xl">favorite</span>
+                <div className="w-full h-48 md:h-56 mb-8 rounded-2xl overflow-hidden relative border border-white/10 group-hover:shadow-lg group-hover:shadow-accent/20 transition-all duration-300">
+                  <Image src="/assets/inv-service.png" alt="Undangan Digital Service" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <h4 className="text-2xl font-bold text-white mb-4">Undangan Digital</h4>
                 <p className="text-gray-400 mb-8 font-normal leading-relaxed">
