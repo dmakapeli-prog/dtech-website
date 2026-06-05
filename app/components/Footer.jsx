@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="flex gap-4">
               {/* Instagram */}
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/dtech.id"
                 target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 transition-all duration-500"
@@ -31,7 +31,7 @@ export default function Footer() {
               </a>
               {/* TikTok */}
               <a
-                href="https://tiktok.com"
+                href="https://tiktok.com/@dtech.id"
                 target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 transition-all duration-500"
