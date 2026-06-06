@@ -28,6 +28,10 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [pathname]);
 
+  if (pathname?.startsWith("/demo")) {
+    return null;
+  }
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${

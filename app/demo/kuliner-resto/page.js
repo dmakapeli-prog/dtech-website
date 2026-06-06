@@ -89,8 +89,8 @@ export default function KulinerRestoDemo() {
               🍽️
             </div>
             <div>
-              <span className="text-white font-extrabold text-lg leading-none tracking-tight">Warung</span>
-              <span className="text-[#E8820C] font-extrabold text-lg leading-none tracking-tight"> Nusantara</span>
+              <span className="text-white font-extrabold text-lg leading-none tracking-tight">D</span>
+              <span className="text-[#E8820C] font-extrabold text-lg leading-none tracking-tight">Tech</span>
             </div>
           </a>
           <div className="hidden md:flex items-center gap-1">
@@ -432,7 +432,7 @@ export default function KulinerRestoDemo() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/5">
             <div className="flex items-center gap-2.5">
               <div className="w-10 h-10 bg-gradient-to-br from-[#E8820C] to-[#D4740A] rounded-xl flex items-center justify-center text-white text-lg">🍽️</div>
-              <span className="text-white font-extrabold text-lg">Warung <span className="text-[#E8820C]">Nusantara</span></span>
+              <span className="text-white font-extrabold text-lg">D<span className="text-[#E8820C]">Tech</span></span>
             </div>
             <div className="flex gap-6">
               {["Beranda", "Menu", "Tentang", "Lokasi"].map((item) => (
@@ -443,10 +443,10 @@ export default function KulinerRestoDemo() {
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
-            <p className="text-white/20 text-sm">© 2026 Warung Nusantara. Seluruh hak cipta dilindungi.</p>
-            <p className="text-white/20 text-xs">
-              Website dibuat oleh{" "}
-              <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noreferrer" className="text-[#E8820C]/60 hover:text-[#E8820C] transition-colors font-medium">
+            <p className="text-white/20 text-sm">© 2026 DTech. Seluruh hak cipta dilindungi.</p>
+            <p className="text-white/30 text-xs">
+              Template Demo by{" "}
+              <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noreferrer" className="text-[#E8820C]/80 hover:text-[#E8820C] transition-colors font-semibold">
                 DTech
               </a>
             </p>
