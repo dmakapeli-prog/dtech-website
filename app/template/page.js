@@ -11,11 +11,13 @@ const hematTemplates = [
     title: "Jasa & Layanan",
     desc: "Desain profesional untuk menawarkan keahlian Anda. Cocok untuk berbagai bidang jasa seperti bengkel, klinik, kontraktor, salon, hingga agensi lokal.",
     image: "/assets/tpl-jasa.png",
+    demoLink: "/demo/jasa-layanan",
   },
   {
     title: "Kuliner & Resto",
     desc: "Tampilan visual yang menggugah selera untuk menu andalan Anda. Ideal untuk kafe, rumah makan, warung tenda, franchise minuman, hingga bisnis katering harian.",
     image: "/assets/tpl-kuliner.png",
+    demoLink: "/demo/kuliner-resto",
   },
 ];
 
@@ -24,31 +26,37 @@ const populerTemplates = [
     title: "Company Profile",
     desc: "Desain eksklusif multi-halaman untuk membangun citra profesional bisnis Anda. Dilengkapi halaman Tentang Kami, Galeri Fasilitas, Layanan, dan Klien. Sangat ideal untuk perusahaan manufaktur, pabrik, kontraktor besar, hingga firma hukum.",
     image: "/assets/tpl-company.png",
+    demoLink: "/demo/company-profile",
   },
   {
     title: "Instansi Publik & Edukasi",
     desc: "Portal informasi resmi yang terstruktur, transparan, dan mudah diakses publik. Dilengkapi fitur Berita, Pengumuman, Profil Institusi, hingga Layanan Masyarakat/PPDB. Pilihan utama untuk website Desa, Dinas Pemerintahan, Sekolah, dan Yayasan.",
     image: "/assets/tpl-edukasi.png",
+    demoLink: "/demo/instansi-edukasi",
   },
   {
     title: "E-Commerce & Retail",
     desc: "Toko online berskala besar dengan sistem navigasi belanja yang terintegrasi. Dilengkapi fitur keranjang belanja, filter produk, dan halaman detail barang. Cocok untuk distributor, toko grosir, brand fashion, dan bisnis retail.",
     image: "/assets/tpl-ecommerce.png",
+    demoLink: "/demo/ecommerce",
   },
   {
     title: "Properti & Pariwisata",
     desc: "Tampilan visual memukau dan elegan dengan dukungan galeri beresolusi tinggi. Sempurna untuk developer perumahan, penyewaan villa/hotel, agen perjalanan, atau promosi destinasi wisata lokal.",
     image: "/assets/tpl-properti.png",
+    demoLink: "/demo/properti",
   },
   {
     title: "Profil & Portofolio",
     desc: "Bangun kredibilitas digital yang elegan. Sangat pas digunakan sebagai kartu nama digital untuk sales, agen properti, freelancer, atau tokoh publik.",
     image: "/assets/tpl-portfolio.png",
+    demoLink: "/demo/profil-portofolio",
   },
   {
     title: "Katalog Produk",
     desc: "Fokus menonjolkan keunggulan barang jualan Anda. Didesain khusus untuk jualan produk fisik, mulai dari pakaian, kosmetik, hasil bumi, hingga penjualan hewan ternak.",
     image: "/assets/tpl-katalog.png",
+    demoLink: "/demo/katalog-produk",
   },
 ];
 
@@ -75,14 +83,12 @@ function TemplateCard({ item, color = "blue" }) {
         <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">
           {item.desc}
         </p>
-        <a
-          href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20template%20ini."
-          target="_blank"
-          rel="noreferrer"
+        <Link
+          href={item.demoLink || "#"}
           className={`inline-flex items-center justify-center gap-2 border-2 ${btnClass} font-bold px-5 py-2.5 rounded-xl text-sm transform hover:scale-105 transition-all duration-300`}
         >
           Lihat Demo
-        </a>
+        </Link>
       </div>
     </div>
   );
@@ -393,14 +399,12 @@ export default function TemplatePage() {
                       yang romantis.
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      <a
-                        href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20ingin%20lihat%20demo%20undangan%20Minimalist%20Elegance."
-                        target="_blank"
-                        rel="noreferrer"
+                      <Link
+                        href="/demo/minimalist-elegance"
                         className="inline-flex items-center gap-2 border-2 border-[#7C3AED] text-[#7C3AED] font-bold px-6 py-3 rounded-xl hover:bg-[#7C3AED]/10 transform hover:scale-105 transition-all duration-300 text-sm"
                       >
                         Lihat Demo
-                      </a>
+                      </Link>
                       <a
                         href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20ingin%20pesan%20undangan%20Minimalist%20Elegance."
                         target="_blank"
@@ -441,14 +445,12 @@ export default function TemplatePage() {
                       interaktif.
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      <a
-                        href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20ingin%20lihat%20demo%20undangan%20Royal%20Blossom."
-                        target="_blank"
-                        rel="noreferrer"
+                      <Link
+                        href="/demo/royal-blossom"
                         className="inline-flex items-center gap-2 border-2 border-[#7C3AED] text-[#7C3AED] font-bold px-6 py-3 rounded-xl hover:bg-[#7C3AED]/10 transform hover:scale-105 transition-all duration-300 text-sm"
                       >
                         Lihat Demo
-                      </a>
+                      </Link>
                       <a
                         href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20ingin%20pesan%20undangan%20Royal%20Blossom."
                         target="_blank"
