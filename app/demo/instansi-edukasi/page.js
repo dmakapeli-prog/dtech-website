@@ -185,7 +185,7 @@ export default function EdukasiDemoLight() {
         <h2 className={`${styles.sectionTitleCenter} ${styles.reveal}`}>Fasilitas Unggulan</h2>
         <div className={`${styles.masonryGrid} ${styles.reveal}`}>
           <div className={`${styles.masonryItem} ${styles.m1}`}>
-            <img src="https://images.unsplash.com/photo-1532094349884-543559c5f185?auto=format&fit=crop&w=800&q=80" alt="Lab"/>
+            <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800" alt="Lab"/>
             <div className={styles.masonryOverlay}>Laboratorium IPA Modern</div>
           </div>
           <div className={`${styles.masonryItem} ${styles.m2}`}>
