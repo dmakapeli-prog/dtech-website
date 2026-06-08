@@ -41,7 +41,7 @@ export default function CompanyProfileDemo() {
       <nav className={styles.navbar}>
         <div className={styles.logo}>
           <span className="material-symbols-outlined" style={{color: '#0066FF', fontSize: '28px', marginRight: '8px'}}>domain</span>
-          PT. Maju Bersama
+          PT. GlobalTech
         </div>
         <div className={styles.navMenu}>
           <a href="#beranda">Beranda</a>
@@ -79,24 +79,51 @@ export default function CompanyProfileDemo() {
             </div>
           </div>
 
-          <div className={styles.heroAbstractWrapper}>
-            {/* Abstract Background Elements */}
-            <div className={styles.glowCircleLarge}></div>
-            <div className={styles.glowCircleSmall}></div>
-            <div className={styles.abstractBuilding}></div>
+          <div className={styles.heroDashboardWrapper}>
+            <div className={styles.dashboardGlow}></div>
+            <div className={styles.particleDots}></div>
             
+            <div className={styles.dashboardCard}>
+              <div className={styles.dashboardHeader}>
+                <div className={styles.dashboardDots}>
+                  <span></span><span></span><span></span>
+                </div>
+                <div className={styles.dashboardTitle}>Revenue Overview</div>
+              </div>
+              <div className={styles.dashboardBody}>
+                <div className={styles.chartBarWrapper}>
+                  <div className={styles.chartBar} style={{ height: '40%' }}></div>
+                  <div className={styles.chartBar} style={{ height: '70%' }}></div>
+                  <div className={styles.chartBar} style={{ height: '50%' }}></div>
+                  <div className={styles.chartBar} style={{ height: '90%' }}></div>
+                  <div className={styles.chartBar} style={{ height: '60%' }}></div>
+                  <div className={styles.chartBar} style={{ height: '100%', background: '#0066FF', boxShadow: '0 0 15px rgba(0,102,255,0.6)' }}></div>
+                </div>
+                <div className={styles.dashboardStatsRow}>
+                  <div>
+                    <div className={styles.statLabelSm}>Active Clients</div>
+                    <div className={styles.statValueSm}>342</div>
+                  </div>
+                  <div>
+                    <div className={styles.statLabelSm}>Growth</div>
+                    <div className={styles.statValueSm} style={{color: '#00E5FF'}}>+28%</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Floating Badges */}
             <div className={`${styles.floatingBadge} ${styles.badgeTopRight}`}>
-              <div className={styles.badgeIconBlue}><span className="material-symbols-outlined">workspace_premium</span></div>
+              <div className={styles.badgeIconBlue}><span className="material-symbols-outlined">groups</span></div>
               <div className={styles.badgeText}>
-                <strong>15+ Tahun</strong> Pengalaman
+                <strong>300+</strong> Klien
               </div>
             </div>
 
             <div className={`${styles.floatingBadge} ${styles.badgeBottomLeft}`}>
-              <div className={styles.badgeIconGold}><span className="material-symbols-outlined">task_alt</span></div>
+              <div className={styles.badgeIconGold}><span className="material-symbols-outlined">verified</span></div>
               <div className={styles.badgeText}>
-                <strong>500+</strong> Proyek Selesai
+                <strong>98%</strong> Satisfied
               </div>
             </div>
           </div>
@@ -134,6 +161,7 @@ export default function CompanyProfileDemo() {
               alt="Office Professional" 
               className={styles.aboutImage}
             />
+            <div className={styles.aboutImageOverlay}></div>
             <div className={styles.aboutImageAccent}></div>
           </div>
           <div className={`${styles.aboutContent} ${styles.reveal}`} style={{ transitionDelay: '200ms' }}>
@@ -157,6 +185,27 @@ export default function CompanyProfileDemo() {
               </li>
             </ul>
           </div>
+        </div>
+      </section>
+
+      {/* 5.5 TIM SECTION */}
+      <section id="tim" className={`${styles.section} ${styles.bgDark}`}>
+        <h2 className={`${styles.sectionTitle} ${styles.sectionTitleWhite} ${styles.reveal}`}>Tim Profesional Kami</h2>
+        <div className={styles.teamGrid}>
+          {[
+            { name: "Andi Saputra", role: "Chief Executive Officer", img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" },
+            { name: "Siti Rahma", role: "Head of Operations", img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" },
+            { name: "Budi Santoso", role: "Lead Consultant", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" },
+            { name: "Maya Indah", role: "Client Relations Manager", img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" },
+          ].map((member, i) => (
+            <div key={i} className={`${styles.teamCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className={styles.teamImgWrapper}>
+                <img src={member.img} alt={member.name} className={styles.teamImg} />
+              </div>
+              <h3 className={styles.teamName}>{member.name}</h3>
+              <p className={styles.teamRole}>{member.role}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -265,7 +314,7 @@ export default function CompanyProfileDemo() {
           <div className={styles.footerCol}>
             <div className={styles.footerLogo}>
               <span className="material-symbols-outlined" style={{color: '#0066FF', fontSize: '32px'}}>domain</span>
-              PT. Maju Bersama
+              PT. GlobalTech
             </div>
             <p className={styles.footerDesc}>Mitra strategis terpercaya untuk pertumbuhan dan inovasi bisnis Anda.</p>
           </div>
@@ -287,7 +336,7 @@ export default function CompanyProfileDemo() {
           </div>
         </div>
         <div className={styles.footerBottom}>
-          <p>Copyright 2026 PT. Maju Bersama. All rights reserved.</p>
+          <p>Copyright 2026 PT. GlobalTech. All rights reserved.</p>
           <p>
             Website dibuat oleh{" "}
             <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDtechLink}>

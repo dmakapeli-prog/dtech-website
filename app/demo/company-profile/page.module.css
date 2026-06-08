@@ -33,6 +33,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   font-size: 0.9rem;
   position: relative;
   z-index: 100;
@@ -75,6 +77,7 @@
   color: #fff;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 .navMenu {
   display: flex;
@@ -219,8 +222,8 @@
   color: #0A0F1E;
 }
 
-/* HERO ABSTRACT RIGHT */
-.heroAbstractWrapper {
+/* HERO DASHBOARD RIGHT */
+.heroDashboardWrapper {
   position: relative;
   width: 100%;
   height: 500px;
@@ -229,38 +232,108 @@
   align-items: center;
 }
 
-.glowCircleLarge {
+.dashboardGlow {
   position: absolute;
-  width: 400px;
-  height: 400px;
-  background: #0066FF;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 102, 255, 0.2) 0%, transparent 70%);
   border-radius: 50%;
-  opacity: 0.15;
-  filter: blur(80px);
-  top: 0;
-  right: 0;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
 }
-.glowCircleSmall {
+
+.particleDots {
   position: absolute;
-  width: 300px;
-  height: 300px;
-  background: #F59E0B;
-  border-radius: 50%;
-  opacity: 0.1;
-  filter: blur(60px);
-  bottom: 0;
-  left: 10%;
+  inset: -50px;
+  background-image: radial-gradient(rgba(0, 212, 255, 0.3) 2px, transparent 2px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  opacity: 0.3;
+  z-index: 2;
+  animation: float 10s ease-in-out infinite;
 }
-.abstractBuilding {
-  position: absolute;
-  width: 250px;
-  height: 350px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.1);
+
+.dashboardCard {
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 102, 255, 0.4);
+  box-shadow: 0 0 40px rgba(0, 102, 255, 0.2), inset 0 0 20px rgba(0, 102, 255, 0.1);
   border-radius: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  transform: perspective(1000px) rotateY(-15deg);
+  width: 420px;
+  padding: 24px;
+  position: relative;
+  z-index: 3;
+  animation: float 6s ease-in-out infinite;
+}
+
+.dashboardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 16px;
+}
+
+.dashboardDots {
+  display: flex;
+  gap: 6px;
+  margin-right: 16px;
+}
+.dashboardDots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+}
+.dashboardDots span:nth-child(1) { background: #FF3366; }
+.dashboardDots span:nth-child(2) { background: #F59E0B; }
+.dashboardDots span:nth-child(3) { background: #00E5FF; }
+
+.dashboardTitle {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.dashboardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chartBarWrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 120px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.chartBar {
+  flex: 1;
+  background: rgba(0, 102, 255, 0.3);
+  border-radius: 4px 4px 0 0;
+  transition: all 0.5s;
+}
+
+.dashboardStatsRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.statLabelSm {
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.statValueSm {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 
 .floatingBadge {
@@ -362,7 +435,25 @@
   padding: 100px 5%;
 }
 .bgWhite { background: #fff; }
-.bgDark { background: #0A0F1E; }
+.bgDark { 
+  background: #0A0F1E; 
+  position: relative;
+}
+.bgDark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+.bgDark > * {
+  position: relative;
+  z-index: 1;
+}
 .bgGray { background: #f8fafc; }
 
 .sectionTitle {
@@ -405,6 +496,13 @@
   position: relative;
   z-index: 2;
 }
+.aboutImageOverlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.4), transparent);
+  border-radius: 20px;
+  z-index: 3;
+}
 .aboutImageAccent {
   position: absolute;
   top: 20px;
@@ -437,6 +535,59 @@
 }
 .aboutList li span {
   color: #0066FF;
+}
+
+/* TIM SECTION */
+.teamGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  text-align: center;
+}
+.teamCard {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 30px 20px;
+  border-radius: 20px;
+  transition: all 0.4s;
+  backdrop-filter: blur(10px);
+}
+.teamCard:hover {
+  transform: translateY(-10px);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(0, 102, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 102, 255, 0.15);
+}
+.teamImgWrapper {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  padding: 4px;
+  background: linear-gradient(135deg, #0066FF, #00E5FF);
+  transition: all 0.4s;
+}
+.teamCard:hover .teamImgWrapper {
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.6);
+  transform: scale(1.05);
+}
+.teamImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #0A0F1E;
+}
+.teamName {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.teamRole {
+  color: #00E5FF;
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
 /* LAYANAN */
@@ -525,7 +676,7 @@
   gap: 30px;
 }
 .clientBox {
-  background: #f8fafc;
+  background: #fff;
   border: 1px solid #e2e8f0;
   padding: 40px;
   border-radius: 16px;
@@ -533,17 +684,30 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
+  transition: all 0.4s;
   text-align: center;
+  color: #0066FF;
+}
+.clientBox span {
+  font-size: 48px;
+  color: #0066FF;
+  margin-bottom: 12px;
+  transition: all 0.4s;
 }
 .clientBox:hover {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 102, 255, 0.15);
+  transform: translateY(-5px);
+  border-color: #0066FF;
+  background: #f8fafc;
 }
 .clientName {
-  font-weight: 700;
-  color: #64748b;
-  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0A0F1E;
+  font-size: 1.2rem;
+  transition: all 0.4s;
+}
+.clientBox:hover .clientName {
+  color: #0066FF;
 }
 
 /* TESTIMONI */
