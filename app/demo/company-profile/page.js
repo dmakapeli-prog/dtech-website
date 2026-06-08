@@ -1,197 +1,306 @@
 "use client";
+
+import React, { useEffect } from "react";
 import Link from "next/link";
-
-const layanan = [
-  { icon: "🌐", title: "Transformasi Digital", desc: "Membantu perusahaan Anda bertransisi ke era digital dengan solusi teknologi terdepan." },
-  { icon: "📊", title: "Konsultasi Bisnis", desc: "Strategi bisnis berbasis data untuk meningkatkan efisiensi dan profitabilitas perusahaan." },
-  { icon: "🏗️", title: "Manajemen Proyek", desc: "Pengelolaan proyek profesional dari perencanaan hingga implementasi sukses." },
-  { icon: "📈", title: "Riset & Analisis Pasar", desc: "Analisis mendalam tentang tren pasar dan peluang bisnis di industri Anda." },
-  { icon: "🤝", title: "Kemitraan Strategis", desc: "Membangun jaringan kemitraan yang kuat untuk pertumbuhan bisnis berkelanjutan." },
-  { icon: "🔒", title: "Keamanan Siber", desc: "Proteksi data dan sistem digital perusahaan dari ancaman keamanan terkini." },
-];
-
-const tim = [
-  { name: "Drs. Hendra Wijaya, M.M.", role: "CEO & Founder", desc: "20+ tahun pengalaman di bidang konsultasi bisnis." },
-  { name: "Ir. Ratna Permata, S.T.", role: "CTO", desc: "Pakar transformasi digital dan arsitektur sistem." },
-  { name: "Ahmad Rizki, S.E., M.B.A.", role: "CFO", desc: "Spesialis perencanaan keuangan dan investasi." },
-  { name: "Dr. Maya Sari, M.Sc.", role: "Head of R&D", desc: "Peneliti senior di bidang teknologi informasi." },
-];
-
-const klien = ["PT. Maju Bersama", "CV. Karya Mandiri", "PT. Sejahtera Group", "Koperasi Bumi Makmur", "PT. Global Teknik", "CV. Cipta Kreasi"];
+import styles from "./page.module.css";
 
 export default function CompanyProfileDemo() {
+  const waOrderLink = "https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20template%20Company%20Profile";
+  const waConsultLink = "https://wa.me/6281996522114";
+
+  useEffect(() => {
+    const reveals = document.querySelectorAll(`.${styles.reveal}`);
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      const elementVisible = 100;
+      reveals.forEach((reveal) => {
+        const elementTop = reveal.getBoundingClientRect().top;
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add(styles.active);
+        }
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // Trigger initially
+    return () => window.removeEventListener("scroll", revealOnScroll);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-[#0A0F1E] text-white">
-      {/* Floating Buttons */}
-      <div className="fixed top-4 left-4 z-50 flex gap-2">
-        <Link href="/template" className="bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg hover:bg-white/20 transition-all border border-white/20">
-          ← Kembali ke Template
+    <div className={styles.container}>
+      {/* 1. TOP BAR */}
+      <div className={styles.topBar}>
+        <Link href="/template" className={styles.topBarLink}>
+          &larr; Kembali ke Template
         </Link>
-      </div>
-      <div className="fixed top-4 right-4 z-50">
-        <a href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20template%20Company%20Profile." target="_blank" rel="noreferrer" className="bg-[#0066FF] text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg hover:bg-blue-700 transition-all">
-          Pesan Template Ini
+        <a href={waOrderLink} target="_blank" rel="noreferrer" className={styles.topBarOrder}>
+          Pesan Template Ini &rarr;
         </a>
       </div>
 
-      {/* Navbar */}
-      <nav className="bg-[#0A0F1E]/80 backdrop-blur-xl border-b border-white/5 sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <span className="text-xl font-extrabold text-white">PT. <span className="text-[#0066FF]">GlobalTech</span></span>
-          <div className="hidden md:flex gap-8 text-sm font-medium text-gray-400">
-            <a href="#tentang" className="hover:text-white transition">Tentang</a>
-            <a href="#layanan" className="hover:text-white transition">Layanan</a>
-            <a href="#tim" className="hover:text-white transition">Tim</a>
-            <a href="#klien" className="hover:text-white transition">Klien</a>
-          </div>
-          <a href="#kontak" className="bg-[#0066FF] text-white px-5 py-2 rounded-lg text-sm font-bold hover:bg-blue-700 transition">Konsultasi Gratis</a>
+      {/* 2. NAVBAR */}
+      <nav className={styles.navbar}>
+        <div className={styles.logo}>
+          <span className="material-symbols-outlined" style={{color: '#0066FF', fontSize: '28px', marginRight: '8px'}}>domain</span>
+          PT. Maju Bersama
         </div>
+        <div className={styles.navMenu}>
+          <a href="#beranda">Beranda</a>
+          <a href="#tentang">Tentang</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#klien">Klien</a>
+          <a href="#kontak">Kontak</a>
+        </div>
+        <a href={waConsultLink} target="_blank" rel="noreferrer" className={styles.btnPrimary}>
+          Hubungi Kami
+        </a>
       </nav>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0066FF]/20 to-transparent"></div>
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-[#0066FF]/10 rounded-full blur-[120px]"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 md:py-36 relative z-10">
-          <div className="max-w-3xl">
-            <span className="inline-block bg-[#0066FF]/20 text-[#0066FF] text-xs font-bold px-4 py-1.5 rounded-full mb-6 border border-[#0066FF]/30">🏢 Didirikan Sejak 2005</span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-              Membangun Bisnis Digital yang <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0066FF] to-cyan-400">Profesional</span>
-            </h1>
-            <p className="text-lg text-gray-400 leading-relaxed mb-8 max-w-xl">
-              PT. GlobalTech adalah perusahaan konsultasi dan teknologi yang membantu bisnis Anda berkembang melalui transformasi digital dan strategi inovatif.
+      {/* 3. HERO */}
+      <section id="beranda" className={styles.hero}>
+        <div className={styles.heroGridOverlay}></div>
+        <div className={styles.heroOverlay}></div>
+        <div className={`${styles.heroContainer} ${styles.reveal}`}>
+          
+          <div className={styles.heroContent}>
+            <div className={styles.pulseBadge}>
+              🏢 Perusahaan Terpercaya Sejak 2010
+            </div>
+            <h1 className={styles.heroTitle}>Membangun Bisnis yang Profesional &amp; Terpercaya</h1>
+            <p className={styles.heroSub}>
+              PT. Maju Bersama hadir sebagai mitra strategis bisnis Anda. Kami menyediakan solusi komprehensif untuk pertumbuhan bisnis yang berkelanjutan.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#kontak" className="bg-[#0066FF] text-white font-bold px-8 py-3.5 rounded-xl hover:bg-blue-700 transition-all transform hover:scale-105 shadow-xl shadow-[#0066FF]/25">
-                Konsultasi Gratis
+            <div className={styles.heroBtns}>
+              <a href="#tentang" className={styles.btnPrimaryAnimated}>
+                Tentang Kami
               </a>
-              <a href="#tentang" className="border-2 border-white/20 text-white font-bold px-8 py-3.5 rounded-xl hover:bg-white/5 transition-all">
-                Pelajari Selengkapnya
+              <a href="#layanan" className={styles.btnSecondary}>
+                Lihat Layanan
               </a>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Tentang Kami */}
-      <section id="tentang" className="py-20 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-[#0066FF] font-bold text-sm uppercase tracking-widest">Tentang Kami</span>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3 mb-6">Lebih dari 18 Tahun Pengalaman</h2>
-              <p className="text-gray-400 leading-relaxed mb-6">
-                PT. GlobalTech didirikan pada tahun 2005 dengan visi menjadi mitra terpercaya dalam transformasi digital untuk bisnis di Indonesia. Dengan lebih dari 18 tahun pengalaman, kami telah melayani ratusan perusahaan dari berbagai sektor industri.
-              </p>
-              <p className="text-gray-400 leading-relaxed mb-8">
-                Tim profesional kami terdiri dari konsultan bisnis berpengalaman, insinyur teknologi, dan analis data yang siap membantu perusahaan Anda mencapai tujuan bisnis dengan solusi berbasis teknologi.
-              </p>
-              <div className="grid grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-extrabold text-[#0066FF]">300+</div>
-                  <div className="text-sm text-gray-500">Proyek Selesai</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-extrabold text-[#0066FF]">150+</div>
-                  <div className="text-sm text-gray-500">Klien Aktif</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-extrabold text-[#0066FF]">50+</div>
-                  <div className="text-sm text-gray-500">Tim Ahli</div>
-                </div>
+          <div className={styles.heroAbstractWrapper}>
+            {/* Abstract Background Elements */}
+            <div className={styles.glowCircleLarge}></div>
+            <div className={styles.glowCircleSmall}></div>
+            <div className={styles.abstractBuilding}></div>
+            
+            {/* Floating Badges */}
+            <div className={`${styles.floatingBadge} ${styles.badgeTopRight}`}>
+              <div className={styles.badgeIconBlue}><span className="material-symbols-outlined">workspace_premium</span></div>
+              <div className={styles.badgeText}>
+                <strong>15+ Tahun</strong> Pengalaman
               </div>
             </div>
-            <div className="bg-gradient-to-br from-[#0066FF]/10 to-[#0A0F1E] rounded-3xl p-8 border border-white/10 aspect-square flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-8xl mb-4">🏢</div>
-                <p className="text-[#0066FF] font-bold text-2xl">PT. GlobalTech</p>
-                <p className="text-gray-500">Membangun Masa Depan Digital</p>
+
+            <div className={`${styles.floatingBadge} ${styles.badgeBottomLeft}`}>
+              <div className={styles.badgeIconGold}><span className="material-symbols-outlined">task_alt</span></div>
+              <div className={styles.badgeText}>
+                <strong>500+</strong> Proyek Selesai
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Layanan */}
-      <section id="layanan" className="py-20 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-[#0066FF] font-bold text-sm uppercase tracking-widest">Layanan</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3">Layanan Unggulan Kami</h2>
-            <p className="text-gray-400 mt-4 max-w-2xl mx-auto">Solusi komprehensif untuk mendukung pertumbuhan bisnis Anda di era digital.</p>
+      {/* 4. STATS BAR */}
+      <div className={styles.statsWrapper}>
+        <div className={`${styles.statsContainer} ${styles.reveal}`}>
+          <div className={styles.statBox}>
+            <div className={styles.statValue}>15+</div>
+            <div className={styles.statLabel}>Tahun Pengalaman</div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {layanan.map((item, i) => (
-              <div key={i} className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:bg-white/10 hover:-translate-y-1 transition-all duration-300 group">
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#0066FF] transition">{item.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
+          <div className={styles.statBox}>
+            <div className={styles.statValue}>500+</div>
+            <div className={styles.statLabel}>Proyek Selesai</div>
+          </div>
+          <div className={styles.statBox}>
+            <div className={styles.statValue}>50+</div>
+            <div className={styles.statLabel}>Klien Aktif</div>
+          </div>
+          <div className={styles.statBox}>
+            <div className={styles.statValue}>98%</div>
+            <div className={styles.statLabel}>Tingkat Kepuasan</div>
+          </div>
+        </div>
+      </div>
+
+      {/* 5. TENTANG KAMI */}
+      <section id="tentang" className={styles.section}>
+        <div className={styles.aboutContainer}>
+          <div className={`${styles.aboutImageWrapper} ${styles.reveal}`}>
+            <img 
+              src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" 
+              alt="Office Professional" 
+              className={styles.aboutImage}
+            />
+            <div className={styles.aboutImageAccent}></div>
+          </div>
+          <div className={`${styles.aboutContent} ${styles.reveal}`} style={{ transitionDelay: '200ms' }}>
+            <div className={styles.sectionBadge}>Tentang Kami</div>
+            <h2 className={styles.sectionTitleLeft}>Mitra Strategis untuk Pertumbuhan Bisnis Anda</h2>
+            <p className={styles.aboutText}>
+              Didirikan pada tahun 2010, PT. Maju Bersama telah berkembang menjadi salah satu perusahaan konsultan bisnis terkemuka di Jawa Barat. Dengan tim profesional berpengalaman, kami berkomitmen memberikan solusi terbaik.
+            </p>
+            <ul className={styles.aboutList}>
+              <li>
+                <span className="material-symbols-outlined">check_circle</span>
+                Tim profesional bersertifikat
+              </li>
+              <li>
+                <span className="material-symbols-outlined">check_circle</span>
+                Solusi berbasis data &amp; teknologi
+              </li>
+              <li>
+                <span className="material-symbols-outlined">check_circle</span>
+                Dukungan purna jual 24/7
+              </li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Tim */}
-      <section id="tim" className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-[#0066FF] font-bold text-sm uppercase tracking-widest">Tim Kami</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3">Profesional Berpengalaman</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {tim.map((t, i) => (
-              <div key={i} className="text-center bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#0066FF] to-cyan-500 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-white">
-                  {t.name.charAt(0)}
+      {/* 6. LAYANAN */}
+      <section id="layanan" className={`${styles.section} ${styles.bgWhite}`}>
+        <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Layanan Unggulan Kami</h2>
+        <div className={styles.servicesGrid}>
+          {[
+            { title: "Konsultasi Bisnis", desc: "Analisis mendalam untuk strategi bisnis yang tepat sasaran", icon: "lightbulb" },
+            { title: "Manajemen Proyek", desc: "Pengelolaan proyek profesional dari awal hingga selesai", icon: "account_tree" },
+            { title: "Pengembangan SDM", desc: "Pelatihan dan pengembangan sumber daya manusia berkualitas", icon: "school" },
+            { title: "Riset & Analisis", desc: "Data-driven insights untuk keputusan bisnis yang tepat", icon: "analytics" },
+            { title: "Teknologi Informasi", desc: "Solusi IT modern untuk efisiensi operasional bisnis", icon: "computer" },
+            { title: "Audit & Compliance", desc: "Memastikan bisnis berjalan sesuai regulasi yang berlaku", icon: "fact_check" },
+          ].map((srv, i) => (
+            <div key={i} className={`${styles.serviceCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className={styles.serviceIcon}>
+                <span className="material-symbols-outlined">{srv.icon}</span>
+              </div>
+              <h3 className={styles.serviceTitle}>{srv.title}</h3>
+              <p className={styles.serviceDesc}>{srv.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 7. KEUNGGULAN */}
+      <section className={`${styles.section} ${styles.bgDark}`}>
+        <h2 className={`${styles.sectionTitle} ${styles.sectionTitleWhite} ${styles.reveal}`}>Mengapa Memilih Kami?</h2>
+        <div className={styles.featuresGrid}>
+          {[
+            { title: "Berpengalaman 15+ Tahun", icon: "history", color: "#0066FF" },
+            { title: "Tim Bersertifikat Internasional", icon: "verified", color: "#F59E0B" },
+            { title: "Solusi Berbasis Teknologi", icon: "memory", color: "#00E5FF" },
+            { title: "Garansi Kepuasan Klien", icon: "thumb_up", color: "#FF3366" },
+          ].map((ft, i) => (
+            <div key={i} className={`${styles.featureCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className={styles.featureIconWrapper} style={{ background: `linear-gradient(135deg, ${ft.color}22, ${ft.color}11)` }}>
+                <span className="material-symbols-outlined" style={{ color: ft.color }}>{ft.icon}</span>
+              </div>
+              <h3 className={styles.featureTitle}>{ft.title}</h3>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 8. KLIEN SECTION */}
+      <section id="klien" className={`${styles.section} ${styles.bgWhite}`}>
+        <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Klien yang Mempercayai Kami</h2>
+        <div className={styles.clientsGrid}>
+          {[
+            "PT. Sukabumi Maju",
+            "CV. Karya Nusantara",
+            "PT. Digital Indonesia",
+            "Yayasan Pendidikan Baru",
+            "PT. Konstruksi Jaya",
+            "CV. Teknologi Mandiri"
+          ].map((client, i) => (
+            <div key={i} className={`${styles.clientBox} ${styles.reveal}`} style={{ transitionDelay: `${i * 50}ms` }}>
+              <span className="material-symbols-outlined" style={{fontSize: '36px', color: '#cbd5e1', marginBottom: '8px'}}>business</span>
+              <div className={styles.clientName}>{client}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 9. TESTIMONI */}
+      <section className={`${styles.section} ${styles.bgGray}`}>
+        <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Kata Klien Kami</h2>
+        <div className={styles.testimonialGrid}>
+          {[
+            { name: "Bapak Hendra S.", role: "Direktur PT. Sukabumi Maju", text: "PT. Maju Bersama sangat profesional. Solusi yang diberikan benar-benar membantu bisnis kami berkembang pesat!", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d" },
+            { name: "Ibu Dewi R.", role: "CEO CV. Karya Nusantara", text: "Tim yang responsif dan hasil kerja yang memuaskan. Sangat recommended untuk perusahaan yang ingin maju!", avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d" },
+            { name: "Bapak Rizky A.", role: "Manager PT. Digital Indonesia", text: "Konsultasi yang diberikan sangat tepat sasaran. ROI bisnis kami meningkat 40% dalam 6 bulan!", avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d" },
+          ].map((testi, i) => (
+            <div key={i} className={`${styles.testiCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className={styles.stars}>★★★★★</div>
+              <p className={styles.testiText}>&quot;{testi.text}&quot;</p>
+              <div className={styles.testiAuthorBox}>
+                <img src={testi.avatar} alt={testi.name} className={styles.testiAvatar} />
+                <div>
+                  <div className={styles.testiAuthor}>{testi.name}</div>
+                  <div className={styles.testiRole}>{testi.role}</div>
                 </div>
-                <h3 className="font-bold text-white text-sm">{t.name}</h3>
-                <p className="text-[#0066FF] text-xs font-bold mt-1 mb-3">{t.role}</p>
-                <p className="text-gray-500 text-xs">{t.desc}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Klien */}
-      <section id="klien" className="py-20 bg-white/[0.02]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-[#0066FF] font-bold text-sm uppercase tracking-widest">Klien Kami</span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white mt-3">Dipercaya Oleh Banyak Perusahaan</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {klien.map((k, i) => (
-              <div key={i} className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 transition-all">
-                <p className="text-white font-bold text-sm">{k}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section id="kontak" className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0066FF]/20 to-cyan-500/20"></div>
-        <div className="max-w-3xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-6">Siap Bertransformasi?</h2>
-          <p className="text-gray-400 text-lg mb-10">Jadwalkan sesi konsultasi gratis bersama tim ahli kami untuk membahas kebutuhan bisnis Anda.</p>
-          <a href="https://wa.me/6281996522114?text=Halo,%20saya%20tertarik%20konsultasi%20gratis." target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 bg-[#0066FF] text-white font-bold px-10 py-4 rounded-xl text-lg hover:bg-blue-700 transition-all transform hover:scale-105 shadow-2xl shadow-[#0066FF]/25">
-            Konsultasi Gratis
+      {/* 10. CTA SECTION */}
+      <section id="kontak" className={`${styles.ctaSection} ${styles.reveal}`}>
+        <div className={styles.ctaOverlay}></div>
+        <div className={styles.ctaContent}>
+          <h2 className={styles.ctaTitle}>Siap Membawa Bisnis Anda ke Level Berikutnya?</h2>
+          <p className={styles.ctaSub}>Konsultasikan kebutuhan bisnis Anda bersama tim ahli kami sekarang juga.</p>
+          <a href={waConsultLink} target="_blank" rel="noreferrer" className={styles.btnWhiteAnimated}>
+            Konsultasi Gratis Sekarang
           </a>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-white/5 text-gray-500 py-10">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="font-bold text-white text-lg mb-2">PT. GlobalTech</p>
-          <p className="text-sm">© 2025 PT. GlobalTech. Seluruh hak cipta dilindungi.</p>
-          <p className="text-xs mt-3 text-gray-700">Demo template oleh <span className="text-[#0066FF]">DTech</span></p>
+      {/* 11. FOOTER */}
+      <footer className={styles.footer}>
+        <div className={styles.footerContainer}>
+          <div className={styles.footerCol}>
+            <div className={styles.footerLogo}>
+              <span className="material-symbols-outlined" style={{color: '#0066FF', fontSize: '32px'}}>domain</span>
+              PT. Maju Bersama
+            </div>
+            <p className={styles.footerDesc}>Mitra strategis terpercaya untuk pertumbuhan dan inovasi bisnis Anda.</p>
+          </div>
+          <div className={styles.footerCol}>
+            <h4 className={styles.footerHeading}>Layanan</h4>
+            <ul className={styles.footerLinks}>
+              <li><a href="#layanan">Konsultasi Bisnis</a></li>
+              <li><a href="#layanan">Manajemen Proyek</a></li>
+              <li><a href="#layanan">Riset & Analisis</a></li>
+            </ul>
+          </div>
+          <div className={styles.footerCol}>
+            <h4 className={styles.footerHeading}>Perusahaan</h4>
+            <ul className={styles.footerLinks}>
+              <li><a href="#tentang">Tentang Kami</a></li>
+              <li><a href="#klien">Klien</a></li>
+              <li><a href="#kontak">Kontak</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className={styles.footerBottom}>
+          <p>Copyright 2026 PT. Maju Bersama. All rights reserved.</p>
+          <p>
+            Website dibuat oleh{" "}
+            <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDtechLink}>
+              DTech
+            </a>
+          </p>
         </div>
       </footer>
+
+      {/* 12. FLOATING WA BUTTON */}
+      <a href={waConsultLink} target="_blank" rel="noreferrer" className={styles.floatingWA}>
+        <span className="material-symbols-outlined" style={{fontSize: '32px'}}>chat</span>
+      </a>
     </div>
   );
 }
