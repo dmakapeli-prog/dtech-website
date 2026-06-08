@@ -1,203 +1,308 @@
 "use client";
+
+import React, { useEffect } from "react";
 import Link from "next/link";
+import styles from "./page.module.css";
 
-const berita = [
-  { judul: "Peluncuran Program Beasiswa 2025", tgl: "5 Juni 2025", kat: "Pendidikan", desc: "Pemerintah daerah meluncurkan program beasiswa untuk 500 siswa berprestasi dari keluarga kurang mampu." },
-  { judul: "Pembangunan Infrastruktur Jalan Desa", tgl: "2 Juni 2025", kat: "Pembangunan", desc: "Proyek pembangunan jalan desa sepanjang 15 km di wilayah selatan telah memasuki tahap akhir." },
-  { judul: "Pelatihan UMKM Digital", tgl: "28 Mei 2025", kat: "Ekonomi", desc: "Sebanyak 200 pelaku UMKM mengikuti pelatihan pemasaran digital yang diselenggarakan dinas terkait." },
-];
+export default function EdukasiDemo() {
+  const waOrderLink = "https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20template%20Instansi%20Publik%20&%20Edukasi";
+  const contactPhone = "(0266) 123-456";
 
-const pengumuman = [
-  { judul: "Jadwal PPDB Tahun Ajaran 2025/2026", tgl: "10 Juni 2025", penting: true },
-  { judul: "Penerimaan CPNS Formasi 2025", tgl: "8 Juni 2025", penting: true },
-  { judul: "Jadwal Pelayanan Administrasi Kependudukan", tgl: "5 Juni 2025", penting: false },
-  { judul: "Pengumuman Hasil Seleksi Bantuan Sosial", tgl: "1 Juni 2025", penting: false },
-];
+  useEffect(() => {
+    const reveals = document.querySelectorAll(`.${styles.reveal}`);
+    const revealOnScroll = () => {
+      const windowHeight = window.innerHeight;
+      const elementVisible = 100;
+      reveals.forEach((reveal) => {
+        const elementTop = reveal.getBoundingClientRect().top;
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add(styles.active);
+        }
+      });
+    };
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+    return () => window.removeEventListener("scroll", revealOnScroll);
+  }, []);
 
-const layananPublik = [
-  { icon: "📋", title: "Administrasi Kependudukan", desc: "Pengurusan KTP, KK, akta kelahiran, dan dokumen lainnya." },
-  { icon: "🏫", title: "PPDB Online", desc: "Pendaftaran Peserta Didik Baru secara daring untuk semua jenjang." },
-  { icon: "💰", title: "Bantuan Sosial", desc: "Informasi dan pendaftaran program bantuan sosial pemerintah." },
-  { icon: "📊", title: "Transparansi Anggaran", desc: "Data realisasi anggaran daerah yang terbuka untuk publik." },
-  { icon: "🏥", title: "Layanan Kesehatan", desc: "Informasi fasilitas kesehatan dan program kesehatan masyarakat." },
-  { icon: "📝", title: "Pengaduan Masyarakat", desc: "Sampaikan aspirasi dan keluhan Anda melalui kanal resmi." },
-];
-
-export default function InstansiEdukasiDemo() {
   return (
-    <div className="min-h-screen bg-white text-gray-800">
-      {/* Floating Buttons */}
-      <div className="fixed top-4 left-4 z-50 flex gap-2">
-        <Link href="/template" className="bg-white/90 backdrop-blur-md text-gray-700 px-4 py-2 rounded-full text-sm font-semibold shadow-lg hover:bg-gray-100 transition-all border border-gray-200">
-          ← Kembali ke Template
+    <div className={styles.container}>
+      {/* 1. TOP BAR */}
+      <div className={styles.topBar}>
+        <Link href="/template" className={styles.topBarLink}>
+          &larr; Kembali ke Template
         </Link>
-      </div>
-      <div className="fixed top-4 right-4 z-50">
-        <a href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20template%20Instansi%20Publik." target="_blank" rel="noreferrer" className="bg-[#1E40AF] text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg hover:bg-blue-800 transition-all">
-          Pesan Template Ini
+        <a href={waOrderLink} target="_blank" rel="noreferrer" className={styles.topBarOrder}>
+          Pesan Template Ini &rarr;
         </a>
       </div>
 
-      {/* Navbar */}
-      <nav className="bg-[#1E40AF] text-white sticky top-0 z-40 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-sm">🏛️</div>
-            <span className="font-bold text-sm">PORTAL RESMI INSTANSI</span>
+      {/* 2. TOP INFO BAR */}
+      <div className={styles.infoBar}>
+        <div className={styles.infoContainer}>
+          <div className={styles.infoLeft}>Selamat Datang di Website Resmi SMAN 1 Sukabumi</div>
+          <div className={styles.infoRight}>
+            <span className="material-symbols-outlined">call</span>
+            {contactPhone}
           </div>
-          <div className="hidden md:flex gap-6 text-sm">
-            <a href="#berita" className="hover:text-blue-200 transition">Berita</a>
-            <a href="#pengumuman" className="hover:text-blue-200 transition">Pengumuman</a>
-            <a href="#profil" className="hover:text-blue-200 transition">Profil</a>
-            <a href="#layanan" className="hover:text-blue-200 transition">Layanan</a>
-          </div>
-          <a href="#layanan" className="bg-white text-[#1E40AF] px-4 py-1.5 rounded-lg text-sm font-bold hover:bg-blue-50 transition">Lihat Informasi</a>
-        </div>
-      </nav>
-
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-[#1E40AF] to-blue-900 text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 right-20 w-80 h-80 bg-blue-300 rounded-full blur-[120px]"></div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 relative z-10">
-          <div className="max-w-2xl">
-            <span className="inline-block bg-white/20 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-6">🏛️ Portal Informasi Resmi</span>
-            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6">
-              Portal Informasi Resmi Instansi
-            </h1>
-            <p className="text-lg text-blue-200 leading-relaxed mb-8 max-w-xl">
-              Menyediakan informasi terkini, layanan publik, dan transparansi pengelolaan untuk masyarakat.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <a href="#layanan" className="bg-white text-[#1E40AF] font-bold px-8 py-3 rounded-xl hover:bg-blue-50 transition-all transform hover:scale-105">
-                Lihat Informasi
-              </a>
-              <a href="#pengumuman" className="border-2 border-white/30 text-white font-bold px-8 py-3 rounded-xl hover:bg-white/10 transition-all">
-                Pengumuman Terbaru
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Running Text */}
-      <div className="bg-yellow-50 border-y border-yellow-200 py-3 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 flex items-center gap-3">
-          <span className="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded shrink-0">TERBARU</span>
-          <p className="text-sm text-gray-700 font-medium truncate">Pendaftaran PPDB 2025/2026 telah dibuka. Silakan kunjungi menu layanan untuk informasi lebih lanjut.</p>
         </div>
       </div>
 
-      {/* Berita */}
-      <section id="berita" className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <span className="text-[#1E40AF] font-bold text-sm uppercase tracking-widest">Berita Terbaru</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">Kabar & Informasi</h2>
-            </div>
+      {/* 3. NAVBAR */}
+      <nav className={styles.navbar}>
+        <div className={styles.navContainer}>
+          <div className={styles.logo}>
+            <span className="material-symbols-outlined" style={{color: '#0066FF', fontSize: '32px'}}>local_police</span>
+            <span className={styles.logoText}>SMAN 1 Sukabumi</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {berita.map((item, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-lg transition-all group">
-                <div className="h-48 bg-gradient-to-br from-[#1E40AF]/10 to-blue-50 flex items-center justify-center">
-                  <span className="text-6xl">📰</span>
+          <div className={styles.navMenu}>
+            <a href="#beranda">Beranda</a>
+            <a href="#profil">Profil</a>
+            <a href="#berita">Berita</a>
+            <a href="#pengumuman">Pengumuman</a>
+            <a href="#ppdb">PPDB</a>
+            <a href="#kontak">Kontak</a>
+          </div>
+          <a href="#ppdb" className={styles.btnGreen}>
+            PPDB 2025
+          </a>
+        </div>
+      </nav>
+
+      {/* 4. HERO */}
+      <section id="beranda" className={styles.hero}>
+        <div className={styles.heroOverlay}></div>
+        <div className={`${styles.heroContent} ${styles.reveal}`}>
+          <div className={styles.heroBadge}>
+            🏫 Sekolah Unggulan Kota Sukabumi
+          </div>
+          <h1 className={styles.heroTitle}>Mencetak Generasi Unggul &amp; Berkarakter</h1>
+          <p className={styles.heroSub}>
+            SMAN 1 Sukabumi berkomitmen memberikan pendidikan berkualitas tinggi dengan fasilitas modern dan tenaga pengajar berpengalaman.
+          </p>
+          <div className={styles.heroBtns}>
+            <a href="#ppdb" className={styles.btnGreenLg}>
+              Daftar PPDB 2025
+            </a>
+            <a href="#profil" className={styles.btnOutlineWhite}>
+              Profil Sekolah
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. STATS BAR */}
+      <div className={styles.statsWrapper}>
+        <div className={`${styles.statsContainer} ${styles.reveal}`}>
+          {[
+            { value: "1.200+", label: "Siswa Aktif", icon: "school" },
+            { value: "80+", label: "Tenaga Pengajar", icon: "group" },
+            { value: "45+", label: "Tahun Berdiri", icon: "history_edu" },
+            { value: "98%", label: "Tingkat Kelulusan", icon: "workspace_premium" },
+          ].map((stat, i) => (
+            <div key={i} className={styles.statBox}>
+              <span className="material-symbols-outlined" style={{color: '#0066FF', fontSize: '40px', marginBottom: '16px'}}>{stat.icon}</span>
+              <div className={styles.statValue}>{stat.value}</div>
+              <div className={styles.statLabel}>{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 6. BERITA TERBARU */}
+      <section id="berita" className={`${styles.section} ${styles.bgWhite}`}>
+        <div className={styles.sectionHeader}>
+          <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Berita &amp; Pengumuman Terbaru</h2>
+        </div>
+        <div className={styles.newsGrid}>
+          {[
+            {
+              badge: "Prestasi", badgeColor: "#10B981", date: "5 Juni 2026",
+              title: "SMAN 1 Sukabumi Raih Juara 1 OSN Tingkat Provinsi",
+              desc: "Siswa kami berhasil meraih juara pertama dalam Olimpiade Sains Nasional...",
+              img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+              badge: "Pengumuman", badgeColor: "#0066FF", date: "1 Juni 2026",
+              title: "Jadwal PPDB Tahun Ajaran 2026/2027 Telah Dibuka",
+              desc: "Pendaftaran Peserta Didik Baru resmi dibuka mulai tanggal 1 Juni 2026...",
+              img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
+            },
+            {
+              badge: "Kegiatan", badgeColor: "#F59E0B", date: "2 Mei 2026",
+              title: "Peringatan Hari Pendidikan Nasional 2026",
+              desc: "Seluruh civitas akademika SMAN 1 Sukabumi mengikuti upacara Hardiknas...",
+              img: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=600&q=80"
+            }
+          ].map((news, i) => (
+            <div key={i} className={`${styles.newsCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className={styles.newsImgWrapper}>
+                <img src={news.img} alt={news.title} className={styles.newsImg} />
+                <div className={styles.newsBadge} style={{backgroundColor: news.badgeColor}}>{news.badge}</div>
+              </div>
+              <div className={styles.newsContent}>
+                <div className={styles.newsDate}>
+                  <span className="material-symbols-outlined" style={{fontSize: '16px'}}>calendar_today</span>
+                  {news.date}
                 </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-bold text-[#1E40AF] bg-blue-50 px-3 py-1 rounded-full">{item.kat}</span>
-                    <span className="text-xs text-gray-400">{item.tgl}</span>
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-2 group-hover:text-[#1E40AF] transition">{item.judul}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                <h3 className={styles.newsTitle}>{news.title}</h3>
+                <p className={styles.newsDesc}>{news.desc}</p>
+                <a href="#berita" className={styles.newsLink}>Baca Selengkapnya &rarr;</a>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className={`${styles.centerBtn} ${styles.reveal}`}>
+          <a href="#berita" className={styles.btnOutlineBlue}>Lihat Semua Berita</a>
+        </div>
+      </section>
+
+      {/* 7. PPDB SECTION */}
+      <section id="ppdb" className={`${styles.ppdbSection} ${styles.reveal}`}>
+        <div className={styles.ppdbContainer}>
+          <div className={styles.ppdbHeader}>
+            <h2 className={styles.ppdbTitle}>Penerimaan Peserta Didik Baru 2026/2027</h2>
+            <p className={styles.ppdbSub}>Daftarkan putra-putri Anda sekarang!</p>
+          </div>
+          <div className={styles.ppdbGrid}>
+            {[
+              { step: "Step 1", title: "Pendaftaran Online", date: "1-30 Juni 2026", icon: "how_to_reg" },
+              { step: "Step 2", title: "Seleksi & Verifikasi", date: "1-10 Juli 2026", icon: "fact_check" },
+              { step: "Step 3", title: "Pengumuman Hasil", date: "15 Juli 2026", icon: "campaign" },
+            ].map((step, i) => (
+              <div key={i} className={styles.ppdbCard}>
+                <div className={styles.ppdbIcon}>
+                  <span className="material-symbols-outlined">{step.icon}</span>
                 </div>
+                <div className={styles.ppdbStepLabel}>{step.step}</div>
+                <h3 className={styles.ppdbCardTitle}>{step.title}</h3>
+                <p className={styles.ppdbCardDate}>{step.date}</p>
               </div>
             ))}
           </div>
+          <div className={styles.centerBtn} style={{marginTop: '40px'}}>
+            <a href="#ppdb" className={styles.btnWhiteBlue}>Daftar Sekarang</a>
+          </div>
         </div>
       </section>
 
-      {/* Pengumuman */}
-      <section id="pengumuman" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-10">
-            <span className="text-[#1E40AF] font-bold text-sm uppercase tracking-widest">Pengumuman</span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">Pengumuman Resmi</h2>
-          </div>
-          <div className="space-y-4">
-            {pengumuman.map((item, i) => (
-              <div key={i} className="flex items-center justify-between bg-gray-50 rounded-xl p-5 border border-gray-100 hover:bg-blue-50 hover:border-blue-200 transition-all cursor-pointer">
-                <div className="flex items-center gap-4">
-                  {item.penting && <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">PENTING</span>}
-                  <h4 className="font-semibold text-gray-900 text-sm">{item.judul}</h4>
+      {/* 8. FASILITAS */}
+      <section id="fasilitas" className={`${styles.section} ${styles.bgWhite}`}>
+        <div className={styles.sectionHeader}>
+          <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Fasilitas Unggulan Kami</h2>
+        </div>
+        <div className={styles.facilityGrid}>
+          {[
+            { title: "Laboratorium IPA", desc: "Peralatan modern & lengkap", icon: "science" },
+            { title: "Perpustakaan Digital", desc: "10.000+ koleksi buku", icon: "local_library" },
+            { title: "Lapangan Olahraga", desc: "Standar nasional", icon: "sports_basketball" },
+            { title: "Studio Seni & Musik", desc: "Ruang kreatif siswa", icon: "palette" },
+            { title: "Lab Komputer", desc: "60 unit PC terbaru", icon: "computer" },
+            { title: "Kantin Sehat", desc: "Makanan bergizi & terjangkau", icon: "restaurant" },
+          ].map((fac, i) => (
+            <div key={i} className={`${styles.facilityCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 50}ms` }}>
+              <div className={styles.facilityIcon}>
+                <span className="material-symbols-outlined">{fac.icon}</span>
+              </div>
+              <div className={styles.facilityInfo}>
+                <h3 className={styles.facilityTitle}>{fac.title}</h3>
+                <p className={styles.facilityDesc}>{fac.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 9. TESTIMONI */}
+      <section className={`${styles.section} ${styles.bgLightGray}`}>
+        <div className={styles.sectionHeader}>
+          <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Kata Alumni &amp; Orang Tua Siswa</h2>
+        </div>
+        <div className={styles.testimonialGrid}>
+          {[
+            {
+              name: "Budi Santoso", role: "Alumni 2020",
+              text: "SMAN 1 Sukabumi membentuk karakter saya. Kini saya berhasil masuk UI berkat bimbingan guru-guru terbaik di sini!"
+            },
+            {
+              name: "Ibu Sari Dewi", role: "Orang Tua Siswa",
+              text: "Sekolah yang sangat baik. Anak saya berkembang pesat secara akademik maupun karakter selama belajar di sini."
+            },
+            {
+              name: "Ahmad Rizki", role: "Alumni 2022",
+              text: "Ekstrakurikuler yang beragam membantu saya menemukan passion di bidang sains. Terima kasih SMAN 1 Sukabumi!"
+            }
+          ].map((testi, i) => (
+            <div key={i} className={`${styles.testiCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 100}ms` }}>
+              <div className={styles.stars}>
+                <span className="material-symbols-outlined">star</span>
+                <span className="material-symbols-outlined">star</span>
+                <span className="material-symbols-outlined">star</span>
+                <span className="material-symbols-outlined">star</span>
+                <span className="material-symbols-outlined">star</span>
+              </div>
+              <p className={styles.testiText}>&quot;{testi.text}&quot;</p>
+              <div className={styles.testiAuthorInfo}>
+                <div className={styles.testiAvatarPlaceholder}>
+                  <span className="material-symbols-outlined">person</span>
                 </div>
-                <span className="text-xs text-gray-400 shrink-0 ml-4">{item.tgl}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Profil */}
-      <section id="profil" className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-[#1E40AF] font-bold text-sm uppercase tracking-widest">Profil Institusi</span>
-              <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2 mb-6">Visi & Misi</h2>
-              <div className="mb-6">
-                <h3 className="font-bold text-gray-900 mb-2">Visi</h3>
-                <p className="text-gray-600 leading-relaxed">Mewujudkan tata kelola pemerintahan yang transparan, akuntabel, dan berorientasi pada pelayanan masyarakat.</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-900 mb-2">Misi</h3>
-                <ul className="space-y-2 text-gray-600 text-sm">
-                  <li className="flex gap-2"><span className="text-[#1E40AF]">1.</span> Meningkatkan kualitas pelayanan publik berbasis teknologi.</li>
-                  <li className="flex gap-2"><span className="text-[#1E40AF]">2.</span> Mendorong partisipasi aktif masyarakat dalam pembangunan.</li>
-                  <li className="flex gap-2"><span className="text-[#1E40AF]">3.</span> Mewujudkan transparansi pengelolaan anggaran daerah.</li>
-                  <li className="flex gap-2"><span className="text-[#1E40AF]">4.</span> Meningkatkan akses pendidikan berkualitas untuk semua.</li>
-                </ul>
+                <div>
+                  <div className={styles.testiName}>{testi.name}</div>
+                  <div className={styles.testiRole}>{testi.role}</div>
+                </div>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-[#1E40AF]/10 to-blue-50 rounded-3xl p-8 aspect-square flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-8xl mb-4">🏛️</div>
-                <p className="text-[#1E40AF] font-bold text-xl">Portal Resmi</p>
-                <p className="text-gray-500 text-sm">Melayani Masyarakat Sejak 2010</p>
-              </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 10. FOOTER */}
+      <footer id="kontak" className={styles.footer}>
+        <div className={styles.footerGrid}>
+          <div className={styles.footerCol}>
+            <div className={styles.footerLogo}>
+              <span className="material-symbols-outlined" style={{fontSize: '32px'}}>local_police</span>
+              SMAN 1 Sukabumi
             </div>
+            <p className={styles.footerDesc}>Mencetak generasi unggul, berprestasi, dan berkarakter mulia untuk masa depan bangsa yang lebih baik.</p>
+          </div>
+          <div className={styles.footerCol}>
+            <h4 className={styles.footerHeading}>Tautan Cepat</h4>
+            <ul className={styles.footerLinks}>
+              <li><a href="#profil">Tentang Kami</a></li>
+              <li><a href="#layanan">Layanan Akademik</a></li>
+              <li><a href="#ppdb">Info PPDB</a></li>
+              <li><a href="#berita">Berita &amp; Artikel</a></li>
+            </ul>
+          </div>
+          <div className={styles.footerCol}>
+            <h4 className={styles.footerHeading}>Kontak Kami</h4>
+            <ul className={styles.footerContactInfo}>
+              <li>
+                <span className="material-symbols-outlined">location_on</span>
+                Jl. R.A. Kartini No. 1, Sukabumi
+              </li>
+              <li>
+                <span className="material-symbols-outlined">call</span>
+                (0266) 123-456
+              </li>
+              <li>
+                <span className="material-symbols-outlined">mail</span>
+                info@sman1sukabumi.sch.id
+              </li>
+            </ul>
           </div>
         </div>
-      </section>
-
-      {/* Layanan Publik */}
-      <section id="layanan" className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="text-[#1E40AF] font-bold text-sm uppercase tracking-widest">Layanan Publik</span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mt-2">Layanan Masyarakat</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {layananPublik.map((item, i) => (
-              <div key={i} className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:bg-blue-50 hover:border-blue-200 transition-all group cursor-pointer">
-                <div className="text-3xl mb-3">{item.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-2 text-sm group-hover:text-[#1E40AF] transition">{item.title}</h3>
-                <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-[#1E40AF] text-white py-10">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <p className="font-bold text-lg mb-2">🏛️ Portal Resmi Instansi</p>
-          <p className="text-blue-200 text-sm">© 2025 Portal Resmi Instansi. Seluruh informasi bersifat resmi.</p>
-          <p className="text-xs mt-3 text-blue-300/50">Demo template oleh <span className="text-white">DTech</span></p>
+        <div className={styles.footerBottom}>
+          <p>Copyright 2026 SMAN 1 Sukabumi. All rights reserved.</p>
+          <p>Website dibuat oleh <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDtech}>DTech</a></p>
         </div>
       </footer>
+
+      {/* 11. FLOATING WA BUTTON */}
+      <a href="https://wa.me/6281996522114" target="_blank" rel="noreferrer" className={styles.floatingWA}>
+        <span className="material-symbols-outlined" style={{fontSize: '32px'}}>chat</span>
+      </a>
     </div>
   );
 }
