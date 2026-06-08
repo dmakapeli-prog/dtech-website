@@ -4,10 +4,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
 
-export default function EdukasiDemo() {
-  const waOrderLink = "https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20template%20Instansi%20Publik%20&%20Edukasi";
-  const contactPhone = "(0266) 123-456";
-
+export default function EdukasiDemoLight() {
   useEffect(() => {
     const reveals = document.querySelectorAll(`.${styles.reveal}`);
     const revealOnScroll = () => {
@@ -29,223 +26,229 @@ export default function EdukasiDemo() {
     <div className={styles.container}>
       {/* 1. TOP BAR */}
       <div className={styles.topBar}>
-        <Link href="/template" className={styles.topBarLink}>
-          &larr; Kembali ke Template
-        </Link>
-        <a href={waOrderLink} target="_blank" rel="noreferrer" className={styles.topBarOrder}>
-          Pesan Template Ini &rarr;
-        </a>
-      </div>
-
-      {/* 2. TOP INFO BAR */}
-      <div className={styles.infoBar}>
-        <div className={styles.infoContainer}>
-          <div className={styles.infoLeft}>Selamat Datang di Website Resmi SMAN 1 Sukabumi</div>
-          <div className={styles.infoRight}>
-            <span className="material-symbols-outlined">call</span>
-            {contactPhone}
-          </div>
+        <div className={styles.topBarLeft}>
+          <span>📞 (0266) 123-456</span>
+          <span className={styles.topBarDivider}>|</span>
+          <span>✉ info@sman1sukabumi.sch.id</span>
+        </div>
+        <div className={styles.topBarRight}>
+          <Link href="/template" className={styles.topBarLink}>&larr; Kembali ke Template</Link>
+          <span className={styles.topBarDivider}>|</span>
+          <a href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20template%20Instansi%20Publik%20&%20Edukasi" target="_blank" rel="noreferrer" className={styles.topBarLink}>
+            Pesan Template Ini &rarr;
+          </a>
         </div>
       </div>
 
-      {/* 3. NAVBAR */}
+      {/* 2. NAVBAR */}
       <nav className={styles.navbar}>
         <div className={styles.navContainer}>
-          <div className={styles.logo}>
-            <span className="material-symbols-outlined" style={{color: '#0066FF', fontSize: '32px'}}>local_police</span>
-            <span className={styles.logoText}>SMAN 1 Sukabumi</span>
+          <div className={styles.logoWrapper}>
+            <div className={styles.logoCircle}>
+              <span className="material-symbols-outlined">school</span>
+            </div>
+            <div className={styles.logoTextWrapper}>
+              <div className={styles.logoTitle}>SMAN 1 Sukabumi</div>
+              <div className={styles.logoSub}>Sekolah Unggulan Kota Sukabumi</div>
+            </div>
           </div>
           <div className={styles.navMenu}>
             <a href="#beranda">Beranda</a>
             <a href="#profil">Profil</a>
-            <a href="#berita">Berita</a>
-            <a href="#pengumuman">Pengumuman</a>
+            <a href="#akademik">Akademik</a>
+            <a href="#kesiswaan">Kesiswaan</a>
             <a href="#ppdb">PPDB</a>
+            <a href="#galeri">Galeri</a>
             <a href="#kontak">Kontak</a>
           </div>
-          <a href="#ppdb" className={styles.btnGreen}>
-            PPDB 2025
-          </a>
+          <a href="#ppdb" className={styles.btnNav}>PPDB 2026</a>
         </div>
       </nav>
 
-      {/* 4. HERO */}
+      {/* 3. HERO - SLIDER STYLE */}
       <section id="beranda" className={styles.hero}>
         <div className={styles.heroOverlay}></div>
-        <div className={`${styles.heroContent} ${styles.reveal}`}>
-          <div className={styles.heroBadge}>
-            🏫 Sekolah Unggulan Kota Sukabumi
+        <div className={`${styles.heroContainer} ${styles.reveal}`}>
+          <div className={styles.heroContent}>
+            <div className={styles.heroBadge}>🏆 Akreditasi A</div>
+            <h1 className={styles.heroTitle}>Mencetak Generasi<br/>Unggul &amp; Berkarakter</h1>
+            <p className={styles.heroSub}>
+              Bersama SMAN 1 Sukabumi, kami membangun fondasi pendidikan terbaik untuk masa depan cerah putra-putri Anda.
+            </p>
+            <div className={styles.heroBtns}>
+              <a href="#ppdb" className={styles.btnGreenLg}>Daftar PPDB 2026</a>
+              <a href="#profil" className={styles.btnOutlineWhite}>Lihat Profil Sekolah</a>
+            </div>
           </div>
-          <h1 className={styles.heroTitle}>Mencetak Generasi Unggul &amp; Berkarakter</h1>
-          <p className={styles.heroSub}>
-            SMAN 1 Sukabumi berkomitmen memberikan pendidikan berkualitas tinggi dengan fasilitas modern dan tenaga pengajar berpengalaman.
-          </p>
-          <div className={styles.heroBtns}>
-            <a href="#ppdb" className={styles.btnGreenLg}>
-              Daftar PPDB 2025
-            </a>
-            <a href="#profil" className={styles.btnOutlineWhite}>
-              Profil Sekolah
-            </a>
+          <div className={styles.heroFloatingCard}>
+            <h3 className={styles.fcTitle}>Tahun Ajaran 2026/2027</h3>
+            <p className={styles.fcSub}>PPDB Dibuka: 1 Juni - 30 Juni 2026</p>
+            <a href="#ppdb" className={styles.btnGreenFull}>Daftar Sekarang</a>
+            <div className={styles.fcCountdown}>
+              ⏳ Sisa waktu: 14 Hari Lagi
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 5. STATS BAR */}
-      <div className={styles.statsWrapper}>
-        <div className={`${styles.statsContainer} ${styles.reveal}`}>
-          {[
-            { value: "1.200+", label: "Siswa Aktif", icon: "school" },
-            { value: "80+", label: "Tenaga Pengajar", icon: "group" },
-            { value: "45+", label: "Tahun Berdiri", icon: "history_edu" },
-            { value: "98%", label: "Tingkat Kelulusan", icon: "workspace_premium" },
-          ].map((stat, i) => (
-            <div key={i} className={styles.statBox}>
-              <span className="material-symbols-outlined" style={{color: '#0066FF', fontSize: '40px', marginBottom: '16px'}}>{stat.icon}</span>
-              <div className={styles.statValue}>{stat.value}</div>
-              <div className={styles.statLabel}>{stat.label}</div>
-            </div>
-          ))}
+      {/* 4. STATS - COLORFUL BOXES */}
+      <section className={styles.statsSection}>
+        <div className={`${styles.statsGrid} ${styles.reveal}`}>
+          <div className={`${styles.statBox} ${styles.statBlue}`}>
+            <span className="material-symbols-outlined">groups</span>
+            <div className={styles.statValue}>1.200+</div>
+            <div className={styles.statLabel}>Siswa Aktif</div>
+          </div>
+          <div className={`${styles.statBox} ${styles.statGreen}`}>
+            <span className="material-symbols-outlined">local_library</span>
+            <div className={styles.statValue}>80+</div>
+            <div className={styles.statLabel}>Tenaga Pengajar</div>
+          </div>
+          <div className={`${styles.statBox} ${styles.statGold}`}>
+            <span className="material-symbols-outlined">history_edu</span>
+            <div className={styles.statValue}>45+</div>
+            <div className={styles.statLabel}>Tahun Berdiri</div>
+          </div>
+          <div className={`${styles.statBox} ${styles.statPurple}`}>
+            <span className="material-symbols-outlined">workspace_premium</span>
+            <div className={styles.statValue}>98%</div>
+            <div className={styles.statLabel}>Tingkat Kelulusan</div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* 6. BERITA TERBARU */}
+      {/* 5. PENGUMUMAN & BERITA - MAGAZINE LAYOUT */}
       <section id="berita" className={`${styles.section} ${styles.bgWhite}`}>
-        <div className={styles.sectionHeader}>
-          <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Berita &amp; Pengumuman Terbaru</h2>
+        <div className={styles.sectionHeaderFlex}>
+          <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Berita &amp; Pengumuman</h2>
+          <a href="#berita" className={`${styles.linkAll} ${styles.reveal}`}>Lihat Semua &rarr;</a>
         </div>
-        <div className={styles.newsGrid}>
-          {[
-            {
-              badge: "Prestasi", badgeColor: "#10B981", date: "5 Juni 2026",
-              title: "SMAN 1 Sukabumi Raih Juara 1 OSN Tingkat Provinsi",
-              desc: "Siswa kami berhasil meraih juara pertama dalam Olimpiade Sains Nasional...",
-              img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-              badge: "Pengumuman", badgeColor: "#0066FF", date: "1 Juni 2026",
-              title: "Jadwal PPDB Tahun Ajaran 2026/2027 Telah Dibuka",
-              desc: "Pendaftaran Peserta Didik Baru resmi dibuka mulai tanggal 1 Juni 2026...",
-              img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
-            },
-            {
-              badge: "Kegiatan", badgeColor: "#F59E0B", date: "2 Mei 2026",
-              title: "Peringatan Hari Pendidikan Nasional 2026",
-              desc: "Seluruh civitas akademika SMAN 1 Sukabumi mengikuti upacara Hardiknas...",
-              img: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=600&q=80"
-            }
-          ].map((news, i) => (
-            <div key={i} className={`${styles.newsCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 100}ms` }}>
-              <div className={styles.newsImgWrapper}>
-                <img src={news.img} alt={news.title} className={styles.newsImg} />
-                <div className={styles.newsBadge} style={{backgroundColor: news.badgeColor}}>{news.badge}</div>
-              </div>
-              <div className={styles.newsContent}>
-                <div className={styles.newsDate}>
-                  <span className="material-symbols-outlined" style={{fontSize: '16px'}}>calendar_today</span>
-                  {news.date}
-                </div>
-                <h3 className={styles.newsTitle}>{news.title}</h3>
-                <p className={styles.newsDesc}>{news.desc}</p>
-                <a href="#berita" className={styles.newsLink}>Baca Selengkapnya &rarr;</a>
-              </div>
+        <div className={styles.magazineGrid}>
+          {/* LEFT LARGE */}
+          <div className={`${styles.magLarge} ${styles.reveal}`}>
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="News" className={styles.magImgLarge}/>
+            <div className={styles.magLargeContent}>
+              <div className={`${styles.badge} ${styles.badgeGreen}`}>Prestasi</div>
+              <h3 className={styles.magLargeTitle}>SMAN 1 Sukabumi Raih Juara 1 OSN Tingkat Provinsi Jawa Barat 2026</h3>
+              <div className={styles.magDate}>5 Juni 2026</div>
+              <p className={styles.magDesc}>Siswa kami berhasil meraih juara pertama dalam Olimpiade Sains Nasional bidang Matematika setelah bersaing dengan ratusan peserta lainnya.</p>
+              <a href="#berita" className={styles.readMore}>Baca Selengkapnya &rarr;</a>
             </div>
-          ))}
-        </div>
-        <div className={`${styles.centerBtn} ${styles.reveal}`}>
-          <a href="#berita" className={styles.btnOutlineBlue}>Lihat Semua Berita</a>
-        </div>
-      </section>
-
-      {/* 7. PPDB SECTION */}
-      <section id="ppdb" className={`${styles.ppdbSection} ${styles.reveal}`}>
-        <div className={styles.ppdbContainer}>
-          <div className={styles.ppdbHeader}>
-            <h2 className={styles.ppdbTitle}>Penerimaan Peserta Didik Baru 2026/2027</h2>
-            <p className={styles.ppdbSub}>Daftarkan putra-putri Anda sekarang!</p>
           </div>
-          <div className={styles.ppdbGrid}>
+          {/* RIGHT SMALL STACKED */}
+          <div className={`${styles.magSmallList} ${styles.reveal}`} style={{transitionDelay: '100ms'}}>
             {[
-              { step: "Step 1", title: "Pendaftaran Online", date: "1-30 Juni 2026", icon: "how_to_reg" },
-              { step: "Step 2", title: "Seleksi & Verifikasi", date: "1-10 Juli 2026", icon: "fact_check" },
-              { step: "Step 3", title: "Pengumuman Hasil", date: "15 Juli 2026", icon: "campaign" },
-            ].map((step, i) => (
-              <div key={i} className={styles.ppdbCard}>
-                <div className={styles.ppdbIcon}>
-                  <span className="material-symbols-outlined">{step.icon}</span>
-                </div>
-                <div className={styles.ppdbStepLabel}>{step.step}</div>
-                <h3 className={styles.ppdbCardTitle}>{step.title}</h3>
-                <p className={styles.ppdbCardDate}>{step.date}</p>
+              { badge: "Pengumuman", color: "Blue", title: "Jadwal PPDB 2026/2027 Resmi Dibuka", date: "1 Juni 2026" },
+              { badge: "Kegiatan", color: "Orange", title: "Peringatan Hardiknas 2026", date: "2 Mei 2026" },
+              { badge: "Prestasi", color: "Purple", title: "Tim Robotik Juara 2 Tingkat Nasional", date: "15 April 2026" },
+            ].map((news, i) => (
+              <div key={i} className={styles.magSmallCard}>
+                <div className={`${styles.badgeSm} ${styles[`badge${news.color}`]}`}>{news.badge}</div>
+                <h4 className={styles.magSmallTitle}>{news.title}</h4>
+                <div className={styles.magDate}>{news.date}</div>
               </div>
             ))}
           </div>
-          <div className={styles.centerBtn} style={{marginTop: '40px'}}>
-            <a href="#ppdb" className={styles.btnWhiteBlue}>Daftar Sekarang</a>
+        </div>
+      </section>
+
+      {/* 6. PPDB BANNER - FULL WIDTH */}
+      <section id="ppdb" className={`${styles.ppdbBanner} ${styles.reveal}`}>
+        <div className={styles.ppdbContainer}>
+          <div className={styles.ppdbLeft}>
+            <div className={styles.ppdbYear}>PPDB 2026/2027</div>
+            <h2 className={styles.ppdbBannerTitle}>Penerimaan Peserta Didik Baru</h2>
+            <p className={styles.ppdbDeadline}>Ditutup: 30 Juni 2026</p>
+            <a href="#ppdb" className={styles.btnGreenLg}>Daftar Online Sekarang</a>
+          </div>
+          <div className={styles.ppdbRight}>
+            <div className={styles.stepBox}>
+              <div className={styles.stepIcon}><span className="material-symbols-outlined">how_to_reg</span></div>
+              <div className={styles.stepText}>Registrasi Online</div>
+            </div>
+            <div className={styles.stepLine}></div>
+            <div className={styles.stepBox}>
+              <div className={styles.stepIcon}><span className="material-symbols-outlined">fact_check</span></div>
+              <div className={styles.stepText}>Verifikasi Berkas</div>
+            </div>
+            <div className={styles.stepLine}></div>
+            <div className={styles.stepBox}>
+              <div className={styles.stepIcon}><span className="material-symbols-outlined">campaign</span></div>
+              <div className={styles.stepText}>Pengumuman</div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 8. FASILITAS */}
-      <section id="fasilitas" className={`${styles.section} ${styles.bgWhite}`}>
-        <div className={styles.sectionHeader}>
-          <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Fasilitas Unggulan Kami</h2>
+      {/* 7. FASILITAS - PHOTO GRID */}
+      <section className={`${styles.section} ${styles.bgLightGray}`}>
+        <h2 className={`${styles.sectionTitleCenter} ${styles.reveal}`}>Fasilitas Unggulan</h2>
+        <div className={`${styles.masonryGrid} ${styles.reveal}`}>
+          <div className={`${styles.masonryItem} ${styles.m1}`}>
+            <img src="https://images.unsplash.com/photo-1532094349884-543559c5f185?auto=format&fit=crop&w=800&q=80" alt="Lab"/>
+            <div className={styles.masonryOverlay}>Laboratorium IPA Modern</div>
+          </div>
+          <div className={`${styles.masonryItem} ${styles.m2}`}>
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=600&q=80" alt="Lib"/>
+            <div className={styles.masonryOverlay}>Perpustakaan Digital</div>
+          </div>
+          <div className={`${styles.masonryItem} ${styles.m3}`}>
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=400&q=80" alt="Sports"/>
+            <div className={styles.masonryOverlay}>Lapangan Olahraga</div>
+          </div>
+          <div className={`${styles.masonryItem} ${styles.m4}`}>
+            <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=400&q=80" alt="Comp"/>
+            <div className={styles.masonryOverlay}>Lab Komputer</div>
+          </div>
         </div>
-        <div className={styles.facilityGrid}>
+      </section>
+
+      {/* 8. GALERI PRESTASI */}
+      <section id="akademik" className={`${styles.section} ${styles.bgWhite}`}>
+        <h2 className={`${styles.sectionTitleCenter} ${styles.reveal}`}>Prestasi Membanggakan</h2>
+        <div className={styles.achieveGrid}>
           {[
-            { title: "Laboratorium IPA", desc: "Peralatan modern & lengkap", icon: "science" },
-            { title: "Perpustakaan Digital", desc: "10.000+ koleksi buku", icon: "local_library" },
-            { title: "Lapangan Olahraga", desc: "Standar nasional", icon: "sports_basketball" },
-            { title: "Studio Seni & Musik", desc: "Ruang kreatif siswa", icon: "palette" },
-            { title: "Lab Komputer", desc: "60 unit PC terbaru", icon: "computer" },
-            { title: "Kantin Sehat", desc: "Makanan bergizi & terjangkau", icon: "restaurant" },
-          ].map((fac, i) => (
-            <div key={i} className={`${styles.facilityCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 50}ms` }}>
-              <div className={styles.facilityIcon}>
-                <span className="material-symbols-outlined">{fac.icon}</span>
-              </div>
-              <div className={styles.facilityInfo}>
-                <h3 className={styles.facilityTitle}>{fac.title}</h3>
-                <p className={styles.facilityDesc}>{fac.desc}</p>
+            { icon: "🥇", title: "Juara 1 OSN Matematika", sub: "Tingkat Provinsi 2025" },
+            { icon: "🥇", title: "Juara 1 LCC", sub: "Tingkat Kabupaten 2025" },
+            { icon: "🥈", title: "Juara 2 Robotik", sub: "Tingkat Nasional 2025" },
+            { icon: "🥇", title: "Juara 1 Debat Bhs Inggris", sub: "Tingkat Provinsi 2024" },
+            { icon: "🥇", title: "Sekolah Adiwiyata", sub: "Tingkat Nasional 2024" },
+            { icon: "🥈", title: "Juara 2 Paskibraka", sub: "Tingkat Provinsi 2024" },
+          ].map((achieve, i) => (
+            <div key={i} className={`${styles.achieveCard} ${styles.reveal}`} style={{transitionDelay: `${i*50}ms`}}>
+              <div className={styles.achieveIcon}>{achieve.icon}</div>
+              <div>
+                <h4 className={styles.achieveTitle}>{achieve.title}</h4>
+                <p className={styles.achieveSub}>{achieve.sub}</p>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 9. TESTIMONI */}
-      <section className={`${styles.section} ${styles.bgLightGray}`}>
-        <div className={styles.sectionHeader}>
-          <h2 className={`${styles.sectionTitle} ${styles.reveal}`}>Kata Alumni &amp; Orang Tua Siswa</h2>
-        </div>
-        <div className={styles.testimonialGrid}>
+      {/* 9. TESTIMONI - CAROUSEL STYLE */}
+      <section className={`${styles.section} ${styles.bgLightBlue}`}>
+        <h2 className={`${styles.sectionTitleCenter} ${styles.reveal}`}>Kata Mereka Tentang Kami</h2>
+        <div className={styles.testiGrid}>
           {[
             {
-              name: "Budi Santoso", role: "Alumni 2020",
-              text: "SMAN 1 Sukabumi membentuk karakter saya. Kini saya berhasil masuk UI berkat bimbingan guru-guru terbaik di sini!"
+              quote: "Bersekolah di SMAN 1 Sukabumi adalah keputusan terbaik. Saya berhasil masuk Fakultas Kedokteran UI berkat bimbingan luar biasa dari para guru!",
+              name: "Budi Santoso", role: "Alumni 2022, Mahasiswa FK UI", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
             },
             {
-              name: "Ibu Sari Dewi", role: "Orang Tua Siswa",
-              text: "Sekolah yang sangat baik. Anak saya berkembang pesat secara akademik maupun karakter selama belajar di sini."
+              quote: "Anak saya berkembang sangat pesat di sini. Tidak hanya akademik, tapi juga karakter dan kepemimpinannya.",
+              name: "Ibu Sari Rahayu", role: "Orang Tua Siswa Kelas XII", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
             },
             {
-              name: "Ahmad Rizki", role: "Alumni 2022",
-              text: "Ekstrakurikuler yang beragam membantu saya menemukan passion di bidang sains. Terima kasih SMAN 1 Sukabumi!"
+              quote: "Fasilitas lengkap, guru profesional, dan lingkungan belajar yang kondusif. SMAN 1 Sukabumi layak jadi pilihan utama!",
+              name: "Ahmad Fauzi", role: "Alumni 2023, Mahasiswa ITB", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
             }
           ].map((testi, i) => (
-            <div key={i} className={`${styles.testiCard} ${styles.reveal}`} style={{ transitionDelay: `${i * 100}ms` }}>
-              <div className={styles.stars}>
-                <span className="material-symbols-outlined">star</span>
-                <span className="material-symbols-outlined">star</span>
-                <span className="material-symbols-outlined">star</span>
-                <span className="material-symbols-outlined">star</span>
-                <span className="material-symbols-outlined">star</span>
-              </div>
-              <p className={styles.testiText}>&quot;{testi.text}&quot;</p>
-              <div className={styles.testiAuthorInfo}>
-                <div className={styles.testiAvatarPlaceholder}>
-                  <span className="material-symbols-outlined">person</span>
-                </div>
+            <div key={i} className={`${styles.testiCard} ${styles.reveal}`} style={{transitionDelay: `${i*100}ms`}}>
+              <span className="material-symbols-outlined" style={{color: '#1E40AF', fontSize: '48px', opacity: 0.2, marginBottom: '16px', display: 'block'}}>format_quote</span>
+              <p className={styles.testiQuote}>&quot;{testi.quote}&quot;</p>
+              <div className={styles.testiAuthorBox}>
+                <img src={testi.img} alt={testi.name} className={styles.testiAvatar}/>
                 <div>
                   <div className={styles.testiName}>{testi.name}</div>
                   <div className={styles.testiRole}>{testi.role}</div>
@@ -256,53 +259,54 @@ export default function EdukasiDemo() {
         </div>
       </section>
 
-      {/* 10. FOOTER */}
+      {/* 10. FOOTER - MULTI COLUMN */}
       <footer id="kontak" className={styles.footer}>
-        <div className={styles.footerGrid}>
-          <div className={styles.footerCol}>
-            <div className={styles.footerLogo}>
-              <span className="material-symbols-outlined" style={{fontSize: '32px'}}>local_police</span>
-              SMAN 1 Sukabumi
+        <div className={styles.footerContainer}>
+          <div className={styles.footerRow1}>
+            <div className={styles.footerCol}>
+              <div className={styles.footerLogoWrap}>
+                <span className="material-symbols-outlined" style={{fontSize: '32px', color: '#F59E0B'}}>school</span>
+                <span style={{fontSize: '1.5rem', fontWeight: 800, color: '#fff'}}>SMAN 1 Sukabumi</span>
+              </div>
+              <p className={styles.footerDesc}>Mencetak generasi unggul & berkarakter untuk masa depan cerah bangsa Indonesia.</p>
+              <div className={styles.socialBox}>
+                <span className="material-symbols-outlined">thumb_up</span>
+                <span className="material-symbols-outlined">photo_camera</span>
+                <span className="material-symbols-outlined">smart_display</span>
+              </div>
             </div>
-            <p className={styles.footerDesc}>Mencetak generasi unggul, berprestasi, dan berkarakter mulia untuk masa depan bangsa yang lebih baik.</p>
+            <div className={styles.footerCol}>
+              <h4 className={styles.footerHeading}>Quick Links</h4>
+              <ul className={styles.footerLinks}>
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#profil">Profil Sekolah</a></li>
+                <li><a href="#berita">Berita</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+              </ul>
+            </div>
+            <div className={styles.footerCol}>
+              <h4 className={styles.footerHeading}>Akademik</h4>
+              <ul className={styles.footerLinks}>
+                <li><a href="#akademik">Kurikulum</a></li>
+                <li><a href="#kesiswaan">Ekstrakurikuler</a></li>
+                <li><a href="#akademik">Prestasi Siswa</a></li>
+              </ul>
+            </div>
+            <div className={styles.footerCol}>
+              <h4 className={styles.footerHeading}>Kontak Kami</h4>
+              <ul className={styles.footerContact}>
+                <li><span className="material-symbols-outlined">location_on</span> Jl. R.A. Kartini No. 1, Sukabumi</li>
+                <li><span className="material-symbols-outlined">call</span> (0266) 123-456</li>
+                <li><span className="material-symbols-outlined">mail</span> info@sman1sukabumi.sch.id</li>
+              </ul>
+            </div>
           </div>
-          <div className={styles.footerCol}>
-            <h4 className={styles.footerHeading}>Tautan Cepat</h4>
-            <ul className={styles.footerLinks}>
-              <li><a href="#profil">Tentang Kami</a></li>
-              <li><a href="#layanan">Layanan Akademik</a></li>
-              <li><a href="#ppdb">Info PPDB</a></li>
-              <li><a href="#berita">Berita &amp; Artikel</a></li>
-            </ul>
+          <div className={styles.footerRow2}>
+            <p>&copy; 2026 SMAN 1 Sukabumi. All rights reserved.</p>
+            <p>Website dibuat oleh <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDtechLink}>DTech</a></p>
           </div>
-          <div className={styles.footerCol}>
-            <h4 className={styles.footerHeading}>Kontak Kami</h4>
-            <ul className={styles.footerContactInfo}>
-              <li>
-                <span className="material-symbols-outlined">location_on</span>
-                Jl. R.A. Kartini No. 1, Sukabumi
-              </li>
-              <li>
-                <span className="material-symbols-outlined">call</span>
-                (0266) 123-456
-              </li>
-              <li>
-                <span className="material-symbols-outlined">mail</span>
-                info@sman1sukabumi.sch.id
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className={styles.footerBottom}>
-          <p>Copyright 2026 SMAN 1 Sukabumi. All rights reserved.</p>
-          <p>Website dibuat oleh <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDtech}>DTech</a></p>
         </div>
       </footer>
-
-      {/* 11. FLOATING WA BUTTON */}
-      <a href="https://wa.me/6281996522114" target="_blank" rel="noreferrer" className={styles.floatingWA}>
-        <span className="material-symbols-outlined" style={{fontSize: '32px'}}>chat</span>
-      </a>
     </div>
   );
 }
