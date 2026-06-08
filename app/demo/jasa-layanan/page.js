@@ -56,6 +56,7 @@ export default function JasaLayananDemo() {
 
       {/* 3. HERO */}
       <section id="beranda" className={styles.hero}>
+        <div className={styles.heroGridOverlay}></div>
         <div className={styles.heroOverlay}></div>
         <div className={`${styles.heroContainer} ${styles.reveal}`}>
           <div className={styles.heroContent}>
@@ -75,13 +76,33 @@ export default function JasaLayananDemo() {
               </a>
             </div>
           </div>
-          <div className={styles.heroImageWrapper}>
-            <img 
-              src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" 
-              alt="Professional Team" 
-              className={styles.heroImage}
-            />
-            <div className={styles.heroImageGlow}></div>
+          <div className={styles.heroAbstractWrapper}>
+            <div className={styles.glowCircleLarge}></div>
+            <div className={styles.glowCircleSmall}></div>
+            <div className={styles.particleDots}></div>
+
+            <div className={styles.floatingCard}>
+              <div className={styles.floatingCardTitle}>Layanan Profesional</div>
+              <ul className={styles.floatingCardList}>
+                <li>Berpengalaman <span className="material-symbols-outlined">check_circle</span></li>
+                <li>Bergaransi <span className="material-symbols-outlined">check_circle</span></li>
+                <li>Respon Cepat <span className="material-symbols-outlined">check_circle</span></li>
+              </ul>
+            </div>
+
+            <div className={`${styles.floatingBadge} ${styles.badgeTopRight}`}>
+              <div className={styles.badgeIconBlue}><span className="material-symbols-outlined">groups</span></div>
+              <div className={styles.badgeText}>
+                <strong>500+</strong> Klien Puas
+              </div>
+            </div>
+
+            <div className={`${styles.floatingBadge} ${styles.badgeBottomLeft}`}>
+              <div className={styles.badgeIconYellow}><span className="material-symbols-outlined">star</span></div>
+              <div className={styles.badgeText}>
+                <strong>4.9★</strong> Rating
+              </div>
+            </div>
           </div>
         </div>
       </section>

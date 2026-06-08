@@ -120,11 +120,21 @@
   background: #0A0F1E;
   overflow: hidden;
 }
+.heroGridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 1;
+}
 .heroOverlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, rgba(10, 15, 30, 0.95) 0%, rgba(10, 15, 30, 0.8) 40%, rgba(10, 15, 30, 0.2) 100%);
-  z-index: 1;
+  z-index: 2;
 }
 
 .heroContainer {
@@ -252,33 +262,157 @@
   transform: translateY(-3px);
 }
 
-.heroImageWrapper {
+/* HERO GEOMETRIC ABSTRACT elements */
+.heroAbstractWrapper {
   position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: flex-end;
-}
-.heroImage {
-  width: 90%;
-  max-width: 600px;
-  border-radius: 20px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-  transform: perspective(1000px) rotateY(-5deg);
-  transition: transform 0.5s;
-}
-.heroImageWrapper:hover .heroImage {
-  transform: perspective(1000px) rotateY(0deg) scale(1.02);
-}
-.heroImageGlow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(0,102,255,0.4) 0%, transparent 70%);
-  z-index: -1;
+  min-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.glowCircleLarge {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  background: #0066FF;
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(60px);
+  top: 10%;
+  right: 10%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.glowCircleSmall {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: #00D4FF;
+  border-radius: 50%;
+  opacity: 0.15;
   filter: blur(50px);
+  bottom: 5%;
+  left: 20%;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.particleDots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(0, 212, 255, 0.4) 2px, transparent 2px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+  opacity: 0.2;
+}
+
+.floatingCard {
+  background: #111827;
+  border: 1px solid rgba(0, 102, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 102, 255, 0.2);
+  border-radius: 16px;
+  padding: 30px;
+  width: 280px;
+  position: relative;
+  z-index: 3;
+  animation: float 5s ease-in-out infinite;
+}
+
+.floatingCardTitle {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+}
+
+.floatingCardList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.floatingCardList li {
+  color: #a0aec0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.floatingCardList li span {
+  color: #00E5FF;
+  font-size: 20px;
+}
+
+.floatingBadge {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  position: absolute;
+  z-index: 4;
+}
+
+.badgeTopRight {
+  top: 15%;
+  right: 5%;
+  animation: float 7s ease-in-out infinite 1s;
+}
+
+.badgeBottomLeft {
+  bottom: 15%;
+  left: 10%;
+  animation: float 6s ease-in-out infinite 2s;
+}
+
+.badgeIconBlue {
+  background: rgba(0, 102, 255, 0.1);
+  color: #0066FF;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badgeIconYellow {
+  background: rgba(255, 184, 0, 0.1);
+  color: #FFB800;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badgeText {
+  color: #333;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.badgeText strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0A0F1E;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
 }
 
 /* SECTION COMMON */
