@@ -244,7 +244,7 @@ export default function KatalogProdukDemo() {
           {/* 3 Equal Cards Below */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
             <div className="relative h-[300px] rounded-xl overflow-hidden image-zoom-hover group cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Kecantikan" className="absolute inset-0 w-full h-full object-cover"/>
+              <img src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=600&q=80" alt="Kecantikan" className="absolute inset-0 w-full h-full object-cover"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-8 left-8">
                 <h3 className="text-white text-xl font-editorial font-bold mb-2">Kecantikan</h3>
@@ -253,7 +253,7 @@ export default function KatalogProdukDemo() {
             </div>
             
             <div className="relative h-[300px] rounded-xl overflow-hidden image-zoom-hover group cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" alt="Sepatu" className="absolute inset-0 w-full h-full object-cover object-bottom"/>
+              <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&q=80" alt="Sepatu" className="absolute inset-0 w-full h-full object-cover object-bottom"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-8 left-8">
                 <h3 className="text-white text-xl font-editorial font-bold mb-2">Sepatu</h3>
@@ -262,7 +262,7 @@ export default function KatalogProdukDemo() {
             </div>
 
             <div className="relative h-[300px] rounded-xl overflow-hidden image-zoom-hover group cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Parfum & Wewangian" className="absolute inset-0 w-full h-full object-cover"/>
+              <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=600&q=80" alt="Parfum & Wewangian" className="absolute inset-0 w-full h-full object-cover"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-8 left-8">
                 <h3 className="text-white text-xl font-editorial font-bold mb-2">Parfum & Wewangian</h3>
@@ -354,7 +354,7 @@ export default function KatalogProdukDemo() {
             {/* Card 4 */}
             <div className="product-card group cursor-pointer bg-white">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&q=80" alt="Shoes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+                <img src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&q=80" alt="Shoes" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
                 <div className="absolute top-4 left-4 bg-[#1A1A1A] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1">SALE 30%</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -413,7 +413,7 @@ export default function KatalogProdukDemo() {
             {/* Card 5 */}
             <div className="product-card group cursor-pointer bg-white min-w-[280px] md:min-w-0 snap-center">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
-                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" alt="Skincare" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+                <img src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=600&q=80" alt="Skincare" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
                 <div className="absolute top-4 left-4 bg-white text-[#1A1A1A] text-[10px] font-bold tracking-wider uppercase px-3 py-1 shadow-sm">NEW</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -461,7 +461,7 @@ export default function KatalogProdukDemo() {
             {/* Card 8 */}
             <div className="product-card group cursor-pointer bg-white min-w-[280px] md:min-w-0 snap-center">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
-                <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Perfume" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
+                <img src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=600&q=80" alt="Perfume" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
                 <div className="absolute top-4 left-4 bg-white text-[#1A1A1A] text-[10px] font-bold tracking-wider uppercase px-3 py-1 shadow-sm">NEW</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
