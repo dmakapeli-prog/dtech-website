@@ -1,53 +1,97 @@
-import React from 'react';
+"use client";
 
-export const metadata = {
-  title: 'Arif Pratama - UI/UX Designer & Frontend Developer',
-  description: 'Portfolio personal Arif Pratama. Spesialis desain web modern dan pengembangan frontend.',
-};
+import React, { useEffect, useState, useRef } from 'react';
 
 export default function ProfilPortofolioDemo() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Intersection Observer for fade-in animations
+  useEffect(() => {
+    if (!isMounted) return;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [isMounted]);
+
   return (
-    <div className="min-h-screen bg-[#0D0D0D] text-white font-sans overflow-x-hidden selection:bg-[#00D4FF] selection:text-[#0D0D0D]">
+    <div className="min-h-screen bg-[#050510] text-white font-sans overflow-x-hidden selection:bg-[#00D4FF] selection:text-[#050510]">
       {/* CSS Animations & Custom Styles */}
       <style dangerouslySetInnerHTML={{__html: `
+        :root {
+          --bg-dark: #050510;
+          --cyan: #00D4FF;
+          --purple: #8B5CF6;
+          --glass: rgba(255, 255, 255, 0.05);
+        }
+        
+        body {
+          background-color: var(--bg-dark);
+          color: white;
+        }
+
         .glass-card {
-          background: rgba(26, 26, 46, 0.6);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border: 1px solid rgba(255, 255, 255, 0.05);
+          background: var(--glass);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .gradient-border-card {
-          position: relative;
-          background: #1A1A2E;
-          border-radius: 1rem;
-          z-index: 1;
+
+        .dot-pattern {
+          background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+          background-size: 24px 24px;
         }
-        .gradient-border-card::before {
-          content: "";
-          position: absolute;
-          inset: -2px;
-          border-radius: 1.1rem;
-          background: linear-gradient(45deg, #00D4FF, #8B5CF6);
-          z-index: -1;
+
+        /* Fade Up Animation */
+        .fade-up {
           opacity: 0;
-          transition: opacity 0.3s ease;
+          transform: translateY(30px);
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .gradient-border-card:hover::before {
+        .fade-up.animate-in {
           opacity: 1;
+          transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Typewriter Animation */
+        .typewriter-text {
+          display: inline-block;
+          overflow: hidden;
+          white-space: nowrap;
+          border-right: 3px solid var(--cyan);
+          animation: typing 4s steps(30, end) infinite, blink .75s step-end infinite;
         }
         
-        @keyframes float {
-          0% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-          100% { transform: translateY(0px); }
-        }
-        .animate-float {
-          animation: float 5s ease-in-out infinite;
-        }
-        .animate-float-delayed {
-          animation: float 6s ease-in-out 2s infinite;
+        @keyframes typing {
+          0%, 100% { width: 0 }
+          50%, 80% { width: 100% }
         }
         
+        @keyframes blink {
+          from, to { border-color: transparent }
+          50% { border-color: var(--cyan) }
+        }
+
+        /* Blobs */
         @keyframes blob {
           0% { transform: translate(0px, 0px) scale(1); }
           33% { transform: translate(30px, -50px) scale(1.1); }
@@ -55,58 +99,47 @@ export default function ProfilPortofolioDemo() {
           100% { transform: translate(0px, 0px) scale(1); }
         }
         .animate-blob {
-          animation: blob 7s infinite;
+          animation: blob 10s infinite alternate ease-in-out;
         }
-        .animation-delay-2000 {
-          animation-delay: 2s;
+
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
-        .animation-delay-4000 {
-          animation-delay: 4s;
+        .spin-slow {
+          animation: spin-slow 8s linear infinite;
         }
-        
-        .typewriter {
-          display: inline-block;
-          overflow: hidden;
-          white-space: nowrap;
-          border-right: 3px solid #00D4FF;
-          animation: typing 4s steps(40, end) infinite, blink .75s step-end infinite;
+          
+        /* Custom Progress Bars Animation */
+        .progress-bar-fill {
+          width: 0;
+          transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        @keyframes typing {
-          0%, 100% { width: 0 }
-          50%, 80% { width: 100% }
+        .animate-in .progress-bar-fill {
+          /* The width is set inline, transition will naturally animate it from 0 if we mount it, but using IntersectionObserver we just need to trigger a re-render or class change. For simplicity, we use width in style and transition will happen if it's rendered with 0 then updated. Actually, intersection observer just adds animate-in. We can use CSS variable. */
         }
-        @keyframes blink {
-          from, to { border-color: transparent }
-          50% { border-color: #00D4FF }
+        .fade-up.animate-in .progress-bar-fill {
+          /* Trick to animate progress: */
+          animation: fillProgress 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
-        
-        .masonry-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 1.5rem;
-          grid-auto-flow: dense;
-        }
-        @media (min-width: 768px) {
-          .masonry-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-          .col-span-2-md {
-            grid-column: span 2;
-          }
-          .row-span-2-md {
-            grid-row: span 2;
-          }
-        }
-        
-        .bg-grid-pattern {
-          background-size: 40px 40px;
-          background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        @keyframes fillProgress {
+          from { max-width: 0; }
+          to { max-width: 100%; }
         }
       `}} />
 
+      {/* Cursor Glow Effect */}
+      {isMounted && (
+        <div 
+          className="pointer-events-none fixed inset-0 z-50 transition-opacity duration-300"
+          style={{
+            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 212, 255, 0.05), transparent 40%)`
+          }}
+        />
+      )}
+
       {/* 1. TOP BAR */}
-      <div className="bg-[#0D0D0D] border-b border-white/5 border-l-4 border-l-[#00D4FF] px-4 py-2 flex justify-between items-center text-sm font-medium relative z-50">
+      <div className="bg-[rgba(0,212,255,0.05)] border-b border-[#00D4FF]/20 px-4 py-2 flex justify-between items-center text-sm font-medium relative z-50 backdrop-blur-md">
         <a href="/template" className="text-[#00D4FF] hover:text-white transition-colors flex items-center gap-2">
           <span>&larr;</span> Kembali ke Template
         </a>
@@ -121,617 +154,752 @@ export default function ProfilPortofolioDemo() {
       </div>
 
       {/* 2. NAVBAR */}
-      <nav className="sticky top-0 z-40 bg-[#0D0D0D]/60 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+      <nav className="sticky top-0 z-40 bg-[#050510]/50 backdrop-blur-xl border-b border-white/5 px-6 py-4 transition-all duration-300">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="text-2xl font-bold text-[#00D4FF] tracking-tighter">
-            &lt; Arif /&gt;
+            &lt;/Arif&gt;
           </div>
           
-          <div className="hidden md:flex items-center gap-1 bg-[#1A1A2E]/80 border border-white/10 rounded-full px-2 py-1.5 backdrop-blur-md">
-            {['Beranda', 'Tentang', 'Skill', 'Portofolio', 'Kontak'].map((item, idx) => (
+          <div className="hidden md:flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 backdrop-blur-md">
+            {['Beranda', 'Tentang', 'Keahlian', 'Karya', 'Kontak'].map((item, idx) => (
               <a 
                 key={item} 
-                href="#" 
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 hover:text-white ${idx === 0 ? 'bg-white/10 text-white' : 'text-gray-400'}`}
+                href={`#${item.toLowerCase()}`} 
+                className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-300 hover:text-white relative group ${idx === 0 ? 'text-white' : 'text-gray-400'}`}
               >
                 {item}
+                <span className="absolute -bottom-1 left-4 right-4 h-0.5 bg-[#00D4FF] scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
               </a>
             ))}
           </div>
           
           <a 
             href="#kontak"
-            className="bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white px-6 py-2.5 rounded-full font-bold text-sm hover:shadow-[0_0_20px_rgba(139,92,246,0.5)] transition-all hover:scale-105"
+            className="bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-[0_0_20px_rgba(0,212,255,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-all hover:scale-105"
           >
             Hire Me 🚀
           </a>
         </div>
       </nav>
 
-      {/* 3. HERO - CREATIVE SPLIT */}
-      <div className="relative min-h-[90vh] flex items-center pt-10 pb-20 overflow-hidden">
+      {/* 3. HERO SECTION - FULL CREATIVE */}
+      <div className="relative min-h-[90vh] flex flex-col justify-center pt-10 pb-20 overflow-hidden dot-pattern" id="beranda">
         {/* Background Blobs */}
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-[#00D4FF] rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-[#8B5CF6] rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-[#00D4FF] rounded-full mix-blend-screen filter blur-[100px] opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute top-10 right-10 w-[500px] h-[500px] bg-[#00D4FF] rounded-full mix-blend-screen filter blur-[150px] opacity-20 animate-blob"></div>
+        <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[#8B5CF6] rounded-full mix-blend-screen filter blur-[150px] opacity-20 animate-blob" style={{animationDelay: '2s'}}></div>
 
-        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-8">
+        <div className="max-w-7xl mx-auto px-6 w-full relative z-10 flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-8 mt-10">
           
-          {/* Left Side 55% */}
-          <div className="lg:w-[55%] flex flex-col items-start text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-white/10 text-sm font-medium mb-6 animate-float">
-              👋 <span className="text-gray-300">Halo, Saya</span>
+          {/* LEFT SIDE 55% */}
+          <div className="lg:w-[55%] flex flex-col items-start text-left z-10">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border border-white/10 text-sm font-bold mb-8 fade-up">
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.8)]"></span>
+              <span className="text-gray-200">Tersedia untuk Project Baru</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tight leading-[1.1]">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D4FF] via-[#8B5CF6] to-[#00D4FF] bg-[length:200%_auto] animate-[gradient_3s_linear_infinite]">
+            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-[1.1] fade-up delay-100">
+              <span className="text-white font-normal block mb-2">Halo, Saya</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] block mb-2">
                 Arif Pratama
+              </span>
+              <span className="text-transparent font-black" style={{WebkitTextStroke: '1px rgba(255,255,255,0.8)'}}>
+                Digital Creative
               </span>
             </h1>
             
-            <div className="h-12 mb-6">
-              <span className="text-2xl md:text-3xl font-semibold text-white typewriter">
-                UI/UX Designer & Developer
-              </span>
+            <div className="h-12 mb-6 text-2xl md:text-3xl font-semibold text-gray-300 fade-up delay-200">
+              <span className="typewriter-text">UI/UX Designer ✦</span>
             </div>
             
-            <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-lg leading-relaxed">
-              Saya membantu bisnis & personal brand tampil profesional di dunia digital. Spesialis dalam desain web modern dan pengembangan frontend yang memukau.
+            <p className="text-gray-400 text-lg md:text-xl mb-10 max-w-lg leading-relaxed fade-up delay-300">
+              Saya menciptakan pengalaman digital yang memukau dan fungsional. Spesialis desain UI/UX & pengembangan web modern untuk startup, UMKM, dan personal brand.
             </p>
             
-            <div className="flex flex-wrap items-center gap-4 mb-12">
-              <button className="bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white px-8 py-4 rounded-full font-bold hover:shadow-[0_0_30px_rgba(0,212,255,0.4)] transition-all hover:-translate-y-1">
-                Lihat Portofolio &darr;
-              </button>
-              <button className="border-2 border-[#00D4FF] text-[#00D4FF] px-8 py-4 rounded-full font-bold hover:bg-[#00D4FF]/10 transition-colors">
+            <div className="flex flex-wrap items-center gap-5 mb-12 fade-up delay-300">
+              <a href="#karya" className="bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_30px_rgba(0,212,255,0.4)] transition-all hover:-translate-y-1">
+                Lihat Karya Saya
+              </a>
+              <button className="bg-transparent border-2 border-[#00D4FF] text-[#00D4FF] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#00D4FF]/10 transition-all">
                 Download CV
               </button>
             </div>
             
-            <div className="flex items-center gap-8">
-              <div className="flex gap-4">
-                {['LinkedIn', 'GitHub', 'Instagram', 'Behance'].map(social => (
-                  <a key={social} href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[#00D4FF] hover:bg-[#00D4FF] hover:text-[#0D0D0D] transition-colors font-bold text-xs" title={social}>
-                    {social[0]}
-                  </a>
-                ))}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 fade-up delay-300">
+              <div className="flex -space-x-3">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80" className="w-12 h-12 rounded-full border-2 border-[#050510] object-cover" alt="Client"/>
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&q=80" className="w-12 h-12 rounded-full border-2 border-[#050510] object-cover" alt="Client"/>
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80" className="w-12 h-12 rounded-full border-2 border-[#050510] object-cover" alt="Client"/>
               </div>
-              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
-              <div className="hidden md:flex gap-6 text-sm font-medium text-gray-400">
-                <div className="flex flex-col"><span className="text-white font-bold text-lg">50+</span> Proyek</div>
-                <div className="flex flex-col"><span className="text-white font-bold text-lg">3 Thn</span> Pengalaman</div>
-                <div className="flex flex-col"><span className="text-white font-bold text-lg">98%</span> Puas</div>
+              <div>
+                <p className="text-white font-bold text-lg">50+ Klien Puas ⭐ 4.9</p>
               </div>
+            </div>
+            
+            <div className="mt-12 flex items-center gap-4 text-gray-500 font-medium text-sm fade-up delay-300">
+              {['Figma', 'React', 'Next.js', 'Tailwind', 'Node.js', 'Framer'].map((tech, i) => (
+                <React.Fragment key={tech}>
+                  <span>{tech}</span>
+                  {i < 5 && <span>·</span>}
+                </React.Fragment>
+              ))}
             </div>
           </div>
 
-          {/* Right Side 45% */}
-          <div className="lg:w-[45%] relative flex justify-center items-center">
+          {/* RIGHT SIDE 45% */}
+          <div className="lg:w-[45%] relative flex justify-center items-center fade-up delay-200">
             {/* Glowing effect behind photo */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#00D4FF] to-[#8B5CF6] rounded-full blur-[80px] opacity-30 animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#00D4FF] to-[#8B5CF6] rounded-full blur-[80px] opacity-40 animate-pulse"></div>
             
-            {/* Profile Photo */}
-            <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full p-2 bg-gradient-to-tr from-[#00D4FF] to-[#8B5CF6] shadow-[0_0_50px_rgba(139,92,246,0.3)] z-10">
-              <div className="w-full h-full rounded-full overflow-hidden bg-[#0D0D0D] p-2">
+            {/* Profile Photo with rotating border */}
+            <div className="relative w-80 h-80 md:w-[420px] md:h-[420px] z-10 flex items-center justify-center">
+              <div className="absolute inset-0 rounded-full border-4 border-dashed border-[#8B5CF6]/40 spin-slow"></div>
+              <div className="absolute inset-4 rounded-full border-2 border-[#00D4FF]/60 spin-slow" style={{animationDirection: 'reverse', animationDuration: '12s'}}></div>
+              
+              <div className="w-[85%] h-[85%] rounded-full overflow-hidden border-4 border-[#050510] shadow-[0_0_50px_rgba(0,212,255,0.2)]">
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" 
                   alt="Arif Pratama Profile" 
-                  className="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-500"
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
             </div>
 
             {/* Floating Badges */}
-            <div className="absolute top-10 left-0 md:-left-10 glass-card px-4 py-3 rounded-2xl animate-float z-20 flex items-center gap-3 border-t border-[#00D4FF]/30">
-              <div className="w-8 h-8 rounded-full bg-[#00D4FF]/20 flex items-center justify-center text-[#00D4FF]">🎨</div>
-              <span className="font-bold text-sm">UI/UX Design</span>
+            <div className="absolute top-10 left-0 md:-left-4 glass-card px-5 py-3 rounded-2xl animate-float z-20 flex items-center gap-3 border border-white/10 shadow-xl">
+              <span className="font-bold text-sm">🎨 UI/UX</span>
             </div>
             
-            <div className="absolute bottom-20 left-0 md:-left-4 glass-card px-4 py-3 rounded-2xl animate-float-delayed z-20 flex items-center gap-3 border-l border-[#8B5CF6]/30">
-              <div className="w-8 h-8 rounded-full bg-[#8B5CF6]/20 flex items-center justify-center text-[#8B5CF6]">💻</div>
-              <span className="font-bold text-sm">Web Dev</span>
+            <div className="absolute top-20 right-0 md:-right-8 glass-card px-5 py-3 rounded-2xl animate-float z-20 flex items-center gap-3 border border-white/10 shadow-xl" style={{animationDelay: '1s'}}>
+              <span className="font-bold text-sm">⚡ Fast</span>
             </div>
             
-            <div className="absolute top-1/2 right-0 md:-right-12 glass-card px-4 py-3 rounded-2xl animate-float z-20 flex items-center gap-3 border-r border-[#00D4FF]/30" style={{animationDelay: '1s'}}>
-              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white">📱</div>
-              <span className="font-bold text-sm">Mobile Ready</span>
+            <div className="absolute bottom-24 left-0 md:-left-8 glass-card px-5 py-3 rounded-2xl animate-float z-20 flex items-center gap-3 border border-white/10 shadow-xl" style={{animationDelay: '2s'}}>
+              <span className="font-bold text-sm">💻 Dev</span>
             </div>
 
-            <div className="absolute -bottom-6 right-10 glass-card px-4 py-3 rounded-2xl animate-float-delayed z-20 flex items-center gap-3 border-b border-[#8B5CF6]/30" style={{animationDelay: '2.5s'}}>
-              <div className="w-8 h-8 rounded-full bg-[#8B5CF6]/20 flex items-center justify-center text-[#8B5CF6]">⚡</div>
-              <span className="font-bold text-sm">Fast Delivery</span>
+            <div className="absolute bottom-10 right-0 md:-right-4 glass-card px-5 py-3 rounded-2xl animate-float z-20 flex items-center gap-3 border border-white/10 shadow-xl" style={{animationDelay: '3s'}}>
+              <span className="font-bold text-sm">🏆 50+ Project</span>
             </div>
           </div>
-          
+        </div>
+
+        {/* BOTTOM OF HERO - Stats */}
+        <div className="max-w-7xl mx-auto px-6 w-full mt-24 relative z-10 fade-up delay-300">
+          <div className="glass-card rounded-[2rem] p-8 md:p-12 border border-white/10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x-0 md:divide-x divide-white/10">
+              <div className="flex flex-col items-center md:items-start px-4 text-center md:text-left">
+                <span className="text-4xl font-black text-white mb-2">50<span className="text-[#00D4FF]">+</span></span>
+                <span className="text-gray-400 font-medium">Proyek Selesai</span>
+              </div>
+              <div className="flex flex-col items-center md:items-start px-4 text-center md:text-left">
+                <span className="text-4xl font-black text-white mb-2">3<span className="text-[#8B5CF6]">+</span></span>
+                <span className="text-gray-400 font-medium">Tahun Pengalaman</span>
+              </div>
+              <div className="flex flex-col items-center md:items-start px-4 text-center md:text-left">
+                <span className="text-4xl font-black text-white mb-2">98<span className="text-[#00D4FF]">%</span></span>
+                <span className="text-gray-400 font-medium">Tingkat Kepuasan</span>
+              </div>
+              <div className="flex flex-col items-center md:items-start px-4 text-center md:text-left">
+                <span className="text-4xl font-black text-white mb-2">24<span className="text-[#8B5CF6]">h</span></span>
+                <span className="text-gray-400 font-medium">Waktu Respon</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* 4. ABOUT ME - CREATIVE LAYOUT */}
-      <div className="py-24 bg-[#0A0A0A] relative border-y border-white/5" id="tentang">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16">
-          {/* Left Side */}
-          <div>
-            <h2 className="text-4xl font-bold mb-8 relative inline-block">
+      {/* 4. ABOUT SECTION */}
+      <div className="py-32 bg-[#080812] relative border-t border-white/5" id="tentang">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          
+          {/* LEFT - Photo & Decor */}
+          <div className="relative fade-up">
+            <div className="absolute -inset-4 border-2 border-[#00D4FF]/30 rounded-[2.5rem] transform -rotate-3 transition-transform hover:rotate-0 duration-500"></div>
+            <div className="absolute -inset-4 border-2 border-[#8B5CF6]/30 rounded-[2.5rem] transform rotate-3 transition-transform hover:rotate-0 duration-500"></div>
+            
+            <div className="relative rounded-[2rem] overflow-hidden bg-[#111] aspect-square">
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" 
+                alt="Arif Pratama" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* Decorative Brackets */}
+            <div className="absolute -top-6 -left-6 w-16 h-16 border-t-4 border-l-4 border-[#00D4FF] rounded-tl-2xl"></div>
+            <div className="absolute -bottom-6 -right-6 w-16 h-16 border-b-4 border-r-4 border-[#8B5CF6] rounded-br-2xl"></div>
+
+            {/* Floating Card */}
+            <div className="absolute -right-10 bottom-10 glass-card p-5 rounded-2xl border border-white/10 shadow-2xl animate-float">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#00D4FF] to-[#8B5CF6] flex items-center justify-center text-2xl shadow-inner">🏆</div>
+                <div>
+                  <p className="text-white font-bold text-lg">Best Designer 2024</p>
+                  <p className="text-gray-400 text-xs">Awarded by DesignComm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT - Content */}
+          <div className="fade-up delay-200">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#00D4FF]/10 text-[#00D4FF] text-xs font-bold tracking-widest uppercase mb-6 border border-[#00D4FF]/20">
               Tentang Saya
-              <div className="absolute -bottom-2 left-0 w-2/3 h-1.5 bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] rounded-full"></div>
+            </span>
+            
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+              Kreator Digital yang <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6]">Passionate</span>
             </h2>
-            <p className="text-gray-400 text-lg leading-relaxed mb-10">
-              Saya adalah seorang kreator digital dengan passion di bidang desain UI/UX dan pengembangan web. Dengan pengalaman 3+ tahun, saya telah membantu lebih dari 50 klien dari berbagai industri untuk membangun presence digital yang kuat.
-            </p>
             
-            <h3 className="text-2xl font-bold text-white mb-6">Apa yang membuat saya berbeda?</h3>
-            <ul className="space-y-4">
-              {[
-                'Desain yang berfokus pada konversi',
-                'Kode bersih & performa tinggi',
-                'Revisi unlimited hingga puas'
-              ].map(point => (
-                <li key={point} className="flex items-center gap-4 p-4 rounded-2xl bg-[#1A1A2E]/50 border border-white/5 hover:border-[#00D4FF]/30 transition-colors">
-                  <div className="w-8 h-8 rounded-full bg-[#00D4FF]/20 flex items-center justify-center text-[#00D4FF] shrink-0 font-bold">✓</div>
-                  <span className="text-gray-200 font-medium">{point}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Right Side */}
-          <div className="flex flex-col justify-center">
-            <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-              <span className="text-[#8B5CF6]">💼</span> Pengalaman
-            </h3>
-            <div className="relative border-l-2 border-white/10 ml-4 space-y-10">
-              <div className="relative pl-8">
-                <div className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-[#0D0D0D] border-4 border-[#00D4FF]"></div>
-                <div className="text-sm text-[#00D4FF] font-bold mb-1">2024 - Sekarang</div>
-                <h4 className="text-xl font-bold text-white mb-2">Senior UI/UX Designer</h4>
-                <p className="text-gray-400 text-sm">Freelance & Remote - Memimpin desain produk digital untuk startup.</p>
-              </div>
-              <div className="relative pl-8">
-                <div className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-[#0D0D0D] border-4 border-[#8B5CF6]"></div>
-                <div className="text-sm text-[#8B5CF6] font-bold mb-1">2022 - 2024</div>
-                <h4 className="text-xl font-bold text-white mb-2">Frontend Developer</h4>
-                <p className="text-gray-400 text-sm">Digital Agency - Membangun website responsif dengan React & Next.js.</p>
-              </div>
-              <div className="relative pl-8">
-                <div className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-[#0D0D0D] border-4 border-gray-600"></div>
-                <div className="text-sm text-gray-500 font-bold mb-1">2021 - 2022</div>
-                <h4 className="text-xl font-bold text-white mb-2">Web Designer Junior</h4>
-                <p className="text-gray-400 text-sm">Mendesain landing page dan aset visual company profile.</p>
-              </div>
+            <div className="space-y-6 text-gray-400 text-lg leading-relaxed mb-10">
+              <p>
+                Saya adalah seorang UI/UX Designer dan Frontend Developer dengan pengalaman 3+ tahun. Lahir dari passion mendalam terhadap estetika digital dan teknologi web modern.
+              </p>
+              <p>
+                Setiap project saya dekati dengan riset mendalam, desain iteratif, dan pengembangan yang teliti. Tujuan saya: menciptakan produk digital yang tidak hanya indah, tapi juga menghasilkan konversi nyata untuk bisnis Anda.
+              </p>
             </div>
             
-            <h3 className="text-2xl font-bold text-white mb-6 mt-12 flex items-center gap-3">
-              <span className="text-[#00D4FF]">🎓</span> Pendidikan
-            </h3>
-            <div className="p-6 rounded-2xl bg-gradient-to-r from-[#1A1A2E] to-transparent border-l-4 border-[#00D4FF]">
-              <h4 className="text-xl font-bold text-white mb-1">S1 Teknik Informatika</h4>
-              <p className="text-[#00D4FF] text-sm font-semibold mb-2">2017 - 2021</p>
-              <p className="text-gray-400">Universitas Nusa Putra Sukabumi</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+              <div className="flex items-start gap-4 glass-card p-4 rounded-2xl border border-white/5">
+                <span className="text-2xl mt-1">🎓</span>
+                <div>
+                  <p className="text-white font-bold">S1 Teknik Informatika</p>
+                  <p className="text-gray-500 text-sm">Universitas Nusa Putra, 2021</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 glass-card p-4 rounded-2xl border border-white/5">
+                <span className="text-2xl mt-1">📍</span>
+                <div>
+                  <p className="text-white font-bold">Sukabumi, Jawa Barat</p>
+                  <p className="text-gray-500 text-sm">Indonesia</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 glass-card p-4 rounded-2xl border border-white/5">
+                <span className="text-2xl mt-1">💼</span>
+                <div>
+                  <p className="text-white font-bold">Freelancer & Partner</p>
+                  <p className="text-gray-500 text-sm">Digital Agency</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4 glass-card p-4 rounded-2xl border border-white/5">
+                <span className="text-2xl mt-1">🌐</span>
+                <div>
+                  <p className="text-white font-bold">Open for Remote Work</p>
+                  <p className="text-gray-500 text-sm">Available Worldwide</p>
+                </div>
+              </div>
             </div>
+
+            <button className="bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] transition-all hover:-translate-y-1">
+              Download CV
+            </button>
           </div>
+
         </div>
       </div>
 
-      {/* 5. SKILL SECTION - VISUAL BARS */}
-      <div className="py-24 bg-[#0D0D0D]" id="skill">
+      {/* 5. SKILL SECTION */}
+      <div className="py-32 bg-[#050510] relative dot-pattern" id="keahlian">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Keahlian & Teknologi</h2>
-            <p className="text-gray-400">Tools dan bahasa yang saya gunakan sehari-hari</p>
+          <div className="text-center mb-20 fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Keahlian & Teknologi</h2>
+            <p className="text-gray-400 text-lg">Stack teknologi modern yang saya gunakan untuk menciptakan solusi digital.</p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
-            {/* Design Skills */}
-            <div className="space-y-8 p-8 rounded-3xl glass-card relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00D4FF]/10 blur-3xl rounded-full"></div>
-              <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                <span className="p-2 rounded-lg bg-[#00D4FF]/20 text-[#00D4FF]">🎨</span> Design Skills
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+            {/* Design & Creative */}
+            <div className="glass-card p-8 md:p-10 rounded-[2rem] border border-white/5 fade-up delay-100 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#00D4FF]/5 blur-3xl rounded-full"></div>
+              <h3 className="text-2xl font-bold text-white mb-10 flex items-center gap-3">
+                <span className="text-[#00D4FF]">🎨</span> Design & Creative
               </h3>
               
-              {[
-                { name: 'Figma / Adobe XD', val: '95%' },
-                { name: 'UI/UX Design', val: '90%' },
-                { name: 'Graphic Design', val: '85%' },
-                { name: 'Prototyping', val: '88%' }
-              ].map(skill => (
-                <div key={skill.name}>
-                  <div className="flex justify-between mb-2">
-                    <span className="font-medium text-gray-300">{skill.name}</span>
-                    <span className="text-[#00D4FF] font-bold">{skill.val}</span>
+              <div className="space-y-8 relative z-10">
+                {[
+                  { name: 'Figma / Adobe XD', val: '95%' },
+                  { name: 'UI/UX Design', val: '90%' },
+                  { name: 'Graphic Design', val: '85%' },
+                  { name: 'Motion Design', val: '80%' }
+                ].map(skill => (
+                  <div key={skill.name} className="fade-up delay-200">
+                    <div className="flex justify-between mb-2">
+                      <span className="font-semibold text-gray-200">{skill.name}</span>
+                      <span className="text-[#00D4FF] font-bold">{skill.val}</span>
+                    </div>
+                    <div className="w-full bg-white/5 rounded-full h-3 overflow-hidden border border-white/5">
+                      <div className="bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] h-full rounded-full progress-bar-fill relative" style={{width: skill.val}}>
+                        <div className="absolute inset-0 bg-white/20 w-full animate-pulse"></div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="w-full bg-[#1A1A2E] rounded-full h-2.5 overflow-hidden">
-                    <div className="bg-gradient-to-r from-[#00D4FF] to-[#0099FF] h-2.5 rounded-full" style={{width: skill.val}}></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
             
-            {/* Dev Skills */}
-            <div className="space-y-8 p-8 rounded-3xl glass-card relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#8B5CF6]/10 blur-3xl rounded-full"></div>
-              <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-                <span className="p-2 rounded-lg bg-[#8B5CF6]/20 text-[#8B5CF6]">💻</span> Dev Skills
+            {/* Development */}
+            <div className="glass-card p-8 md:p-10 rounded-[2rem] border border-white/5 fade-up delay-200 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#8B5CF6]/5 blur-3xl rounded-full"></div>
+              <h3 className="text-2xl font-bold text-white mb-10 flex items-center gap-3">
+                <span className="text-[#8B5CF6]">💻</span> Development
               </h3>
               
-              {[
-                { name: 'HTML/CSS', val: '95%' },
-                { name: 'JavaScript/React', val: '85%' },
-                { name: 'Next.js', val: '80%' },
-                { name: 'Tailwind CSS', val: '92%' }
-              ].map(skill => (
-                <div key={skill.name}>
-                  <div className="flex justify-between mb-2">
-                    <span className="font-medium text-gray-300">{skill.name}</span>
-                    <span className="text-[#8B5CF6] font-bold">{skill.val}</span>
+              <div className="space-y-8 relative z-10">
+                {[
+                  { name: 'HTML & CSS', val: '98%' },
+                  { name: 'JavaScript / React', val: '85%' },
+                  { name: 'Next.js', val: '82%' },
+                  { name: 'Tailwind CSS', val: '90%' }
+                ].map(skill => (
+                  <div key={skill.name} className="fade-up delay-300">
+                    <div className="flex justify-between mb-2">
+                      <span className="font-semibold text-gray-200">{skill.name}</span>
+                      <span className="text-[#8B5CF6] font-bold">{skill.val}</span>
+                    </div>
+                    <div className="w-full bg-white/5 rounded-full h-3 overflow-hidden border border-white/5">
+                      <div className="bg-gradient-to-r from-[#8B5CF6] to-pink-500 h-full rounded-full progress-bar-fill relative" style={{width: skill.val}}>
+                        <div className="absolute inset-0 bg-white/20 w-full animate-pulse"></div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="w-full bg-[#1A1A2E] rounded-full h-2.5 overflow-hidden">
-                    <div className="bg-gradient-to-r from-[#8B5CF6] to-[#6D28D9] h-2.5 rounded-full" style={{width: skill.val}}></div>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
           
-          {/* Tech stack icons row */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8 opacity-60">
-            {['Figma', 'React', 'Next.js', 'Tailwind', 'VS Code', 'GitHub', 'Vercel', 'Firebase'].map(tech => (
-              <div key={tech} className="px-6 py-3 rounded-full border border-white/10 bg-white/5 text-gray-300 font-medium hover:text-white hover:bg-white/10 hover:border-white/30 transition-all cursor-default">
-                {tech}
+          {/* Tools Grid */}
+          <div className="flex flex-wrap justify-center gap-4 fade-up delay-300">
+            {['Figma', 'VS Code', 'GitHub', 'Vercel', 'Notion', 'Framer', 'Webflow', 'ChatGPT'].map(tool => (
+              <div key={tool} className="px-6 py-3 rounded-2xl glass-card border border-white/10 text-gray-300 font-semibold hover:border-[#00D4FF]/50 hover:text-white transition-all cursor-default flex items-center gap-2">
+                <span className="text-[#00D4FF]">❖</span> {tool}
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* 6. PORTOFOLIO - MASONRY GRID */}
-      <div className="py-24 bg-[#0A0A0A] bg-grid-pattern relative" id="portofolio">
-        <div className="absolute inset-0 bg-[#0A0A0A]/80 backdrop-blur-[1px]"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <div>
-              <h2 className="text-4xl font-bold mb-4">Hasil Karya Terbaik</h2>
-              <p className="text-gray-400">Proyek-proyek pilihan yang pernah saya kerjakan</p>
-            </div>
-            <div className="flex flex-wrap gap-2">
+      {/* 6. PORTFOLIO SECTION - CREATIVE GRID */}
+      <div className="py-32 bg-[#080812] relative" id="karya">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16 fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Karya Terpilih</h2>
+            <p className="text-gray-400 text-lg mb-10">Beberapa project terbaik yang pernah saya kerjakan</p>
+            
+            <div className="flex flex-wrap justify-center gap-3">
               {['Semua', 'Website', 'UI/UX', 'Branding'].map((tab, i) => (
-                <button key={tab} className={`px-5 py-2 rounded-full text-sm font-bold transition-colors ${i === 0 ? 'bg-[#00D4FF] text-[#0D0D0D]' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}`}>
+                <button key={tab} className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${i === 0 ? 'bg-[#00D4FF] text-[#050510] shadow-[0_0_15px_rgba(0,212,255,0.4)]' : 'glass-card text-gray-400 hover:text-white border border-white/10'}`}>
                   {tab}
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="masonry-grid">
-            {/* Card 1 (LARGE) */}
-            <div className="group relative rounded-3xl overflow-hidden glass-card col-span-2-md row-span-2-md h-[400px] md:h-auto border border-white/10">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80" alt="Dashboard" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-              
-              <div className="absolute top-6 left-6 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-white uppercase tracking-wider">
-                Website
-              </div>
-              
-              <div className="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-3xl font-bold text-white mb-3">Dashboard Analytics App</h3>
-                <p className="text-[#00D4FF] font-medium mb-6">React · Tailwind · Chart.js</p>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                  <a href="#" className="inline-flex items-center gap-2 text-white font-bold hover:text-[#00D4FF] transition-colors">
+          {/* GRID LAYOUT */}
+          <div className="flex flex-col gap-6">
+            
+            {/* ROW 1: Large (60%) + Medium (40%) */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[450px]">
+              {/* Card 1 */}
+              <div className="md:w-[60%] group relative rounded-[2rem] overflow-hidden glass-card border border-white/10 fade-up h-[350px] md:h-full cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=700&q=80" alt="Work 1" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-90 group-hover:bg-[#050510]/80 transition-all duration-500"></div>
+                
+                <div className="absolute bottom-0 left-0 p-8 w-full z-10">
+                  <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold text-[#00D4FF] mb-3 border border-white/10">Website</span>
+                  <h3 className="text-3xl font-bold text-white mb-2">Analytics Dashboard System</h3>
+                  <p className="text-gray-400 font-medium">React · Chart.js · Tailwind</p>
+                </div>
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <div className="bg-[#00D4FF] text-[#050510] font-bold px-6 py-3 rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
                     Lihat Project <span>&rarr;</span>
-                  </a>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Card 2 (LARGE) */}
-            <div className="group relative rounded-3xl overflow-hidden glass-card col-span-2-md h-[300px] border border-white/10">
-              <img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?w=600&q=80" alt="E-Commerce" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] via-[#0D0D0D]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-              
-              <div className="absolute top-6 left-6 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-bold text-white uppercase tracking-wider">
-                UI/UX
-              </div>
-              
-              <div className="absolute bottom-0 left-0 p-6 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="text-2xl font-bold text-white mb-2">E-Commerce Mobile App Design</h3>
-                <p className="text-[#8B5CF6] font-medium mb-4">Figma · Prototyping</p>
-                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                  <a href="#" className="inline-flex items-center gap-2 text-white font-bold hover:text-[#8B5CF6] transition-colors">
+              {/* Card 2 */}
+              <div className="md:w-[40%] group relative rounded-[2rem] overflow-hidden glass-card border border-white/10 fade-up delay-100 h-[350px] md:h-full cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80" alt="Work 2" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-90 group-hover:bg-[#050510]/80 transition-all duration-500"></div>
+                
+                <div className="absolute bottom-0 left-0 p-8 w-full z-10">
+                  <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold text-[#8B5CF6] mb-3 border border-white/10">UI/UX</span>
+                  <h3 className="text-2xl font-bold text-white mb-2">E-Commerce Mobile Design</h3>
+                  <p className="text-gray-400 font-medium">Figma · Prototyping</p>
+                </div>
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <div className="bg-[#8B5CF6] text-white font-bold px-6 py-3 rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
                     Lihat Project <span>&rarr;</span>
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Card 3 (MEDIUM) */}
-            <div className="group relative rounded-3xl overflow-hidden glass-card h-[300px] border border-white/10">
-              <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" alt="Company Profile" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] to-transparent opacity-90"></div>
-              <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold uppercase">Website</div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-xl font-bold text-white mb-1">Company Profile Website</h3>
-                <p className="text-gray-400 text-sm">Next.js · Framer Motion</p>
-              </div>
-            </div>
-
-            {/* Card 4 (MEDIUM) */}
-            <div className="group relative rounded-3xl overflow-hidden glass-card h-[300px] border border-white/10">
-              <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=600&q=80" alt="UI Kit" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] to-transparent opacity-90"></div>
-              <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold uppercase">UI/UX</div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-xl font-bold text-white mb-1">SaaS Dashboard UI Kit</h3>
-                <p className="text-gray-400 text-sm">Figma · Auto Layout</p>
-              </div>
-            </div>
-
-            {/* Card 5 (MEDIUM) */}
-            <div className="group relative rounded-3xl overflow-hidden glass-card h-[300px] border border-white/10">
-              <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=600&q=80" alt="Landing Page" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] to-transparent opacity-90"></div>
-              <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold uppercase">Website</div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-xl font-bold text-white mb-1">Landing Page Startup</h3>
-                <p className="text-gray-400 text-sm">HTML · CSS · GSAP</p>
-              </div>
-            </div>
-
-            {/* Card 6 (MEDIUM) */}
-            <div className="group relative rounded-3xl overflow-hidden glass-card h-[300px] border border-white/10">
-              <img src="https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?w=600&q=80" alt="Personal Branding" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D0D0D] to-transparent opacity-90"></div>
-              <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] font-bold uppercase">Website</div>
-              <div className="absolute bottom-6 left-6 right-6">
-                <h3 className="text-xl font-bold text-white mb-1">Personal Branding Website</h3>
-                <p className="text-gray-400 text-sm">Next.js · Tailwind</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="mt-16 text-center">
-            <button className="px-8 py-4 rounded-full border border-white/20 hover:border-[#00D4FF] hover:bg-[#00D4FF]/10 transition-all font-bold text-white">
-              Lihat Lebih Banyak Karya di Dribbble / GitHub
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* 7. SERVICES */}
-      <div className="py-24 bg-[#0D0D0D] relative overflow-hidden">
-        {/* Glow blobs */}
-        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-[#8B5CF6]/10 blur-[120px] rounded-full -translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
-        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[#00D4FF]/10 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Layanan yang Saya Tawarkan</h2>
-            <p className="text-gray-400">Solusi digital end-to-end untuk kebutuhan Anda</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="glass-card p-8 rounded-3xl border-t border-[#00D4FF]/30 hover:-translate-y-2 transition-transform duration-300 relative group overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#00D4FF]/20 blur-3xl rounded-full group-hover:bg-[#00D4FF]/40 transition-colors"></div>
-              <div className="w-14 h-14 rounded-2xl bg-[#00D4FF]/10 flex items-center justify-center text-3xl mb-6 border border-[#00D4FF]/20 text-[#00D4FF]">🎨</div>
-              <h3 className="text-2xl font-bold mb-4 text-white">UI/UX Design</h3>
-              <p className="text-gray-400 mb-8 leading-relaxed min-h-[100px]">Desain antarmuka yang indah, intuitif, dan berfokus pada pengalaman pengguna terbaik untuk web & mobile.</p>
-              <div className="space-y-3 mb-8">
-                {['Wireframe', 'Prototype', 'User Research', 'Design System'].map(feat => (
-                  <div key={feat} className="flex items-center gap-3 text-sm text-gray-300">
-                    <span className="text-[#00D4FF]">✓</span> {feat}
-                  </div>
-                ))}
-              </div>
-              <div className="pt-6 border-t border-white/10">
-                <p className="text-sm text-gray-400 mb-1">Mulai dari</p>
-                <p className="text-2xl font-bold text-[#00D4FF]">Rp 500.000</p>
-              </div>
-            </div>
-
-            {/* Card 2 - MOST POPULAR */}
-            <div className="glass-card p-8 rounded-3xl border border-[#8B5CF6]/50 hover:-translate-y-2 transition-transform duration-300 relative group overflow-hidden shadow-[0_0_30px_rgba(139,92,246,0.15)]">
-              <div className="absolute top-4 right-4 bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white text-[10px] font-black px-3 py-1.5 rounded-full tracking-wider">MOST POPULAR</div>
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#8B5CF6]/20 blur-3xl rounded-full group-hover:bg-[#8B5CF6]/40 transition-colors"></div>
-              <div className="w-14 h-14 rounded-2xl bg-[#8B5CF6]/10 flex items-center justify-center text-3xl mb-6 border border-[#8B5CF6]/20 text-[#8B5CF6]">💻</div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Web Development</h3>
-              <p className="text-gray-400 mb-8 leading-relaxed min-h-[100px]">Pengembangan website responsif dengan teknologi modern. Clean code, fast loading, dan SEO-friendly.</p>
-              <div className="space-y-3 mb-8">
-                {['Landing Page', 'Company Profile', 'E-Commerce', 'Custom Web'].map(feat => (
-                  <div key={feat} className="flex items-center gap-3 text-sm text-gray-300">
-                    <span className="text-[#8B5CF6]">✓</span> {feat}
-                  </div>
-                ))}
-              </div>
-              <div className="pt-6 border-t border-white/10 flex justify-between items-end">
-                <div>
-                  <p className="text-sm text-gray-400 mb-1">Mulai dari</p>
-                  <p className="text-2xl font-bold text-[#8B5CF6]">Rp 300.000</p>
+            {/* ROW 2: Medium (40%) + Large (60%) */}
+            <div className="flex flex-col md:flex-row gap-6 h-auto md:h-[450px]">
+              {/* Card 3 */}
+              <div className="md:w-[40%] group relative rounded-[2rem] overflow-hidden glass-card border border-white/10 fade-up h-[350px] md:h-full cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=700&q=80" alt="Work 3" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-90 group-hover:bg-[#050510]/80 transition-all duration-500"></div>
+                
+                <div className="absolute bottom-0 left-0 p-8 w-full z-10">
+                  <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold text-[#00D4FF] mb-3 border border-white/10">Website</span>
+                  <h3 className="text-2xl font-bold text-white mb-2">Startup Landing Page</h3>
+                  <p className="text-gray-400 font-medium">Next.js · Framer Motion</p>
                 </div>
-                <button className="bg-[#8B5CF6] text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-[#7C3AED] transition-colors">Pilih</button>
-              </div>
-            </div>
 
-            {/* Card 3 */}
-            <div className="glass-card p-8 rounded-3xl border-t border-amber-500/30 hover:-translate-y-2 transition-transform duration-300 relative group overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/20 blur-3xl rounded-full group-hover:bg-amber-500/40 transition-colors"></div>
-              <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center text-3xl mb-6 border border-amber-500/20 text-amber-500">🚀</div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Full Package</h3>
-              <p className="text-gray-400 mb-8 leading-relaxed min-h-[100px]">Paket lengkap desain + development. Dari konsep hingga launch, semuanya saya tangani untuk Anda.</p>
-              <div className="space-y-3 mb-8">
-                {['Design + Dev', 'Revisi Unlimited', 'Domain & Hosting', 'Support 3 Bulan'].map(feat => (
-                  <div key={feat} className="flex items-center gap-3 text-sm text-gray-300">
-                    <span className="text-amber-500">✓</span> {feat}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <div className="bg-[#00D4FF] text-[#050510] font-bold px-6 py-3 rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                    Lihat Project <span>&rarr;</span>
                   </div>
-                ))}
+                </div>
               </div>
-              <div className="pt-6 border-t border-white/10">
-                <p className="text-sm text-gray-400 mb-1">Mulai dari</p>
-                <p className="text-2xl font-bold text-amber-500">Rp 750.000</p>
+
+              {/* Card 4 */}
+              <div className="md:w-[60%] group relative rounded-[2rem] overflow-hidden glass-card border border-white/10 fade-up delay-100 h-[350px] md:h-full cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=700&q=80" alt="Work 4" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-90 group-hover:bg-[#050510]/80 transition-all duration-500"></div>
+                
+                <div className="absolute bottom-0 left-0 p-8 w-full z-10">
+                  <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold text-amber-400 mb-3 border border-white/10">Branding</span>
+                  <h3 className="text-3xl font-bold text-white mb-2">Brand Identity & Visual System</h3>
+                  <p className="text-gray-400 font-medium">Illustrator · Figma</p>
+                </div>
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <div className="bg-amber-400 text-[#050510] font-bold px-6 py-3 rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                    Lihat Project <span>&rarr;</span>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* ROW 3: 2 Equal Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-auto md:h-[400px]">
+              {/* Card 5 */}
+              <div className="group relative rounded-[2rem] overflow-hidden glass-card border border-white/10 fade-up h-[350px] md:h-full cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=700&q=80" alt="Work 5" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-90 group-hover:bg-[#050510]/80 transition-all duration-500"></div>
+                
+                <div className="absolute bottom-0 left-0 p-8 w-full z-10">
+                  <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold text-[#00D4FF] mb-3 border border-white/10">Website</span>
+                  <h3 className="text-2xl font-bold text-white mb-2">Agency Portfolio Website</h3>
+                  <p className="text-gray-400 font-medium">React · GSAP · CSS</p>
+                </div>
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <div className="bg-[#00D4FF] text-[#050510] font-bold px-6 py-3 rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                    Lihat Project <span>&rarr;</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Card 6 */}
+              <div className="group relative rounded-[2rem] overflow-hidden glass-card border border-white/10 fade-up delay-100 h-[350px] md:h-full cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?w=700&q=80" alt="Work 6" className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"/>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#050510] via-transparent to-transparent opacity-90 group-hover:bg-[#050510]/80 transition-all duration-500"></div>
+                
+                <div className="absolute bottom-0 left-0 p-8 w-full z-10">
+                  <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold text-[#00D4FF] mb-3 border border-white/10">Website</span>
+                  <h3 className="text-2xl font-bold text-white mb-2">Corporate Profile Website</h3>
+                  <p className="text-gray-400 font-medium">Next.js · Tailwind · CMS</p>
+                </div>
+
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                  <div className="bg-[#00D4FF] text-[#050510] font-bold px-6 py-3 rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                    Lihat Project <span>&rarr;</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
 
-      {/* 8. TESTIMONI - CREATIVE CARDS */}
-      <div className="py-24 bg-[#0A0A0A] bg-grid-pattern relative">
-        <div className="absolute inset-0 bg-[#0A0A0A]/80 backdrop-blur-[1px]"></div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Klien Bicara 💬</h2>
-            <p className="text-gray-400">Feedback jujur dari mereka yang pernah bekerja sama</p>
+      {/* 7. SERVICES SECTION */}
+      <div className="py-32 bg-[#030308] relative">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20 fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Layanan Saya</h2>
+            <p className="text-gray-400 text-lg">Solusi digital berkualitas tinggi yang disesuaikan dengan kebutuhan Anda</p>
           </div>
 
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            {/* Card 1 - CYAN */}
+            <div className="glass-card p-10 rounded-[2.5rem] border border-[#00D4FF]/20 relative overflow-hidden group fade-up hover:-translate-y-3 transition-transform duration-500">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#00D4FF]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#00D4FF] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              
+              <div className="relative z-10">
+                <div className="text-5xl mb-6 drop-shadow-[0_0_15px_rgba(0,212,255,0.5)]">🎨</div>
+                <h3 className="text-2xl font-bold text-white mb-4">UI/UX Design</h3>
+                <p className="text-gray-400 mb-8 min-h-[80px] leading-relaxed">
+                  Desain yang intuitif dan memukau untuk web & mobile application.
+                </p>
+                
+                <ul className="space-y-4 mb-10 text-gray-300 font-medium">
+                  {['User Research & Wireframe', 'UI Design & Prototype', 'Design System', 'Usability Testing'].map(item => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="text-[#00D4FF] mt-1">✓</span> {item}
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="pt-8 border-t border-white/10 flex flex-col gap-6">
+                  <div>
+                    <span className="text-sm text-gray-500 block mb-1">Mulai dari</span>
+                    <span className="text-2xl font-black text-[#00D4FF]">Rp 500rb</span>
+                  </div>
+                  <button className="w-full bg-[#00D4FF]/10 text-[#00D4FF] border border-[#00D4FF]/30 px-6 py-4 rounded-xl font-bold hover:bg-[#00D4FF] hover:text-[#050510] transition-colors shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+                    Mulai Project
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2 - PURPLE (TERPOPULER) */}
+            <div className="glass-card p-10 rounded-[2.5rem] border border-[#8B5CF6]/50 relative overflow-hidden group fade-up delay-100 hover:-translate-y-3 transition-transform duration-500 transform scale-105 z-10 shadow-[0_0_50px_rgba(139,92,246,0.15)] bg-[#050510]/80">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6]"></div>
+              <div className="absolute top-6 right-6 bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white text-[10px] font-black tracking-widest px-4 py-1.5 rounded-full uppercase">
+                TERPOPULER
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-b from-[#8B5CF6]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#8B5CF6] rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              
+              <div className="relative z-10">
+                <div className="text-5xl mb-6 drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]">💻</div>
+                <h3 className="text-2xl font-bold text-white mb-4">Web Development</h3>
+                <p className="text-gray-400 mb-8 min-h-[80px] leading-relaxed">
+                  Website responsif, cepat, dan SEO-friendly dengan teknologi modern.
+                </p>
+                
+                <ul className="space-y-4 mb-10 text-gray-300 font-medium">
+                  {['Landing Page & Company Profile', 'E-Commerce & Katalog', 'Custom Web Application', 'Maintenance & Support'].map(item => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="text-[#8B5CF6] mt-1">✓</span> {item}
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="pt-8 border-t border-white/10 flex flex-col gap-6">
+                  <div>
+                    <span className="text-sm text-gray-500 block mb-1">Mulai dari</span>
+                    <span className="text-2xl font-black text-[#8B5CF6]">Rp 300rb</span>
+                  </div>
+                  <button className="w-full bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white border border-transparent px-6 py-4 rounded-xl font-bold hover:shadow-[0_0_30px_rgba(139,92,246,0.5)] transition-all">
+                    Mulai Project
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Card 3 - GOLD */}
+            <div className="glass-card p-10 rounded-[2.5rem] border border-amber-500/20 relative overflow-hidden group fade-up delay-200 hover:-translate-y-3 transition-transform duration-500">
+              <div className="absolute inset-0 bg-gradient-to-b from-amber-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-amber-500 rounded-full blur-[80px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              
+              <div className="relative z-10">
+                <div className="text-5xl mb-6 drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]">🚀</div>
+                <h3 className="text-2xl font-bold text-white mb-4">Full Package</h3>
+                <p className="text-gray-400 mb-8 min-h-[80px] leading-relaxed">
+                  Solusi lengkap desain + development dari konsep hingga go-live.
+                </p>
+                
+                <ul className="space-y-4 mb-10 text-gray-300 font-medium">
+                  {['Design + Development', 'Domain & Hosting Setup', 'Revisi Unlimited', 'Support 3 Bulan'].map(item => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="text-amber-500 mt-1">✓</span> {item}
+                    </li>
+                  ))}
+                </ul>
+                
+                <div className="pt-8 border-t border-white/10 flex flex-col gap-6">
+                  <div>
+                    <span className="text-sm text-gray-500 block mb-1">Mulai dari</span>
+                    <span className="text-2xl font-black text-amber-500">Rp 750rb</span>
+                  </div>
+                  <button className="w-full bg-amber-500/10 text-amber-500 border border-amber-500/30 px-6 py-4 rounded-xl font-bold hover:bg-amber-500 hover:text-[#050510] transition-colors shadow-[0_0_20px_rgba(245,158,11,0.1)]">
+                    Mulai Project
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* 8. TESTIMONIALS - CREATIVE LAYOUT */}
+      <div className="py-32 bg-[#050510] relative dot-pattern">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16 fade-up">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Klien Berkata 💬</h2>
+          </div>
+
+          {/* Featured Testimonial */}
+          <div className="glass-card rounded-[3rem] p-10 md:p-16 border border-white/10 mb-8 text-center relative overflow-hidden fade-up">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-[#00D4FF] to-transparent opacity-50"></div>
+            <div className="text-6xl mb-6 opacity-20">"</div>
+            <p className="text-2xl md:text-3xl font-medium italic leading-relaxed text-gray-200 mb-10 max-w-4xl mx-auto relative z-10">
+              "Arif adalah designer terbaik yang pernah saya hire. Website bisnis saya sekarang mendapat pujian dari semua pelanggan. Penjualan online naik 300% dalam 2 bulan!"
+            </p>
+            <div className="flex flex-col items-center justify-center">
+              <div className="text-xl mb-3 tracking-widest">⭐⭐⭐⭐⭐</div>
+              <h4 className="font-bold text-white text-lg">Ahmad Rizki</h4>
+              <p className="text-[#00D4FF]">CEO TechStart Indonesia</p>
+            </div>
+          </div>
+
+          {/* Smaller Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="glass-card p-8 rounded-3xl relative overflow-hidden group">
-              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#00D4FF] to-[#8B5CF6]"></div>
-              <div className="text-4xl text-[#00D4FF]/20 font-serif absolute top-6 right-6">"</div>
-              <div className="text-[#00D4FF] mb-6 tracking-widest text-sm">★★★★★</div>
-              <p className="text-gray-300 italic mb-8 relative z-10 min-h-[100px]">
-                "Arif benar-benar memahami visi saya. Hasil desainnya jauh melampaui ekspektasi. Website kami sekarang konversinya naik 200%!"
+            <div className="glass-card p-8 rounded-[2rem] border border-white/10 fade-up">
+              <div className="text-sm tracking-widest mb-4">⭐⭐⭐⭐⭐</div>
+              <p className="text-gray-300 italic mb-8 min-h-[80px]">
+                "Desain yang dibuat Arif sangat profesional dan sesuai brand kami. Proses cepat!"
               </p>
-              <div className="border-t border-white/10 pt-6">
-                <h4 className="font-bold text-white text-lg">Ahmad Rizki</h4>
-                <p className="text-[#00D4FF] text-sm">CEO Startup</p>
+              <div>
+                <h4 className="font-bold text-white">Siti Rahayu</h4>
+                <p className="text-gray-500 text-sm">UMKM Owner</p>
               </div>
-            </div>
-
-            <div className="glass-card p-8 rounded-3xl relative overflow-hidden group">
-              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#8B5CF6] to-[#00D4FF]"></div>
-              <div className="text-4xl text-[#8B5CF6]/20 font-serif absolute top-6 right-6">"</div>
-              <div className="text-[#8B5CF6] mb-6 tracking-widest text-sm">★★★★★</div>
-              <p className="text-gray-300 italic mb-8 relative z-10 min-h-[100px]">
-                "Proses pengerjaan cepat dan hasilnya profesional banget. Pelanggan saya sering memuji tampilan websitenya!"
-              </p>
-              <div className="border-t border-white/10 pt-6">
-                <h4 className="font-bold text-white text-lg">Siti Rahayu</h4>
-                <p className="text-[#8B5CF6] text-sm">UMKM Owner</p>
-              </div>
-            </div>
-
-            <div className="glass-card p-8 rounded-3xl relative overflow-hidden group">
-              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-[#00D4FF] to-amber-500"></div>
-              <div className="text-4xl text-amber-500/20 font-serif absolute top-6 right-6">"</div>
-              <div className="text-amber-500 mb-6 tracking-widest text-sm">★★★★★</div>
-              <p className="text-gray-300 italic mb-8 relative z-10 min-h-[100px]">
-                "Portfolio website yang dibuat Arif membuat saya dapat 5 klien baru dalam sebulan pertama!"
-              </p>
-              <div className="border-t border-white/10 pt-6">
-                <h4 className="font-bold text-white text-lg">Budi Santoso</h4>
-                <p className="text-amber-500 text-sm">Freelancer</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 9. CONTACT - CREATIVE SPLIT */}
-      <div className="py-24 bg-[#0D0D0D]" id="kontak">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Info */}
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/30 text-green-400 text-xs font-bold mb-8 bg-green-500/10">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Tersedia untuk project baru
             </div>
             
+            <div className="glass-card p-8 rounded-[2rem] border border-white/10 fade-up delay-100">
+              <div className="text-sm tracking-widest mb-4">⭐⭐⭐⭐⭐</div>
+              <p className="text-gray-300 italic mb-8 min-h-[80px]">
+                "Portfolio website-ku jadi magnet klien baru. Dalam sebulan, 5 klien baru masuk!"
+              </p>
+              <div>
+                <h4 className="font-bold text-white">Budi Santoso</h4>
+                <p className="text-gray-500 text-sm">Freelance Fotografer</p>
+              </div>
+            </div>
+
+            <div className="glass-card p-8 rounded-[2rem] border border-white/10 fade-up delay-200">
+              <div className="text-sm tracking-widest mb-4">⭐⭐⭐⭐⭐</div>
+              <p className="text-gray-300 italic mb-8 min-h-[80px]">
+                "Responsif, detail, dan hasilnya melebihi ekspektasi. Sangat recommended!"
+              </p>
+              <div>
+                <h4 className="font-bold text-white">Dewi Anggraini</h4>
+                <p className="text-gray-500 text-sm">Startup Founder</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 9. CONTACT SECTION */}
+      <div className="py-32 bg-[#050510] relative overflow-hidden" id="kontak">
+        {/* Glow from top */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-64 bg-[#00D4FF]/10 blur-[100px] rounded-full pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start relative z-10">
+          
+          {/* LEFT: Info */}
+          <div className="fade-up">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">Mari Berkolaborasi! 🤝</h2>
-            <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-12 max-w-md">
-              Punya project menarik? Saya selalu terbuka untuk peluang dan kolaborasi baru. Jangan ragu untuk menghubungi saya.
+            <p className="text-gray-400 text-lg leading-relaxed mb-10 max-w-md">
+              Punya project atau pertanyaan? Saya selalu terbuka untuk diskusi.
             </p>
             
-            <div className="space-y-6 mb-12">
-              <div className="flex items-center gap-6 group cursor-pointer">
-                <div className="w-14 h-14 rounded-2xl glass-card flex items-center justify-center text-xl border border-white/10 group-hover:border-[#00D4FF] group-hover:text-[#00D4FF] transition-all">📧</div>
-                <div>
-                  <p className="text-gray-500 text-sm font-medium">Email</p>
-                  <p className="text-white font-bold text-lg">arif.pratama@email.com</p>
-                </div>
+            <div className="space-y-4 mb-10">
+              <div className="glass-card p-5 rounded-2xl border border-white/5 flex items-center gap-5 hover:border-[#00D4FF]/30 transition-colors">
+                <span className="text-2xl">📧</span>
+                <span className="text-gray-300 font-medium">arif.pratama@gmail.com</span>
               </div>
-              <div className="flex items-center gap-6 group cursor-pointer">
-                <div className="w-14 h-14 rounded-2xl glass-card flex items-center justify-center text-xl border border-white/10 group-hover:border-[#8B5CF6] group-hover:text-[#8B5CF6] transition-all">📱</div>
-                <div>
-                  <p className="text-gray-500 text-sm font-medium">WhatsApp</p>
-                  <p className="text-white font-bold text-lg">+62 819 9652 2114</p>
-                </div>
+              <div className="glass-card p-5 rounded-2xl border border-white/5 flex items-center gap-5 hover:border-[#00D4FF]/30 transition-colors">
+                <span className="text-2xl">📱</span>
+                <span className="text-gray-300 font-medium">+62 819 9652 2114</span>
               </div>
-              <div className="flex items-center gap-6 group cursor-pointer">
-                <div className="w-14 h-14 rounded-2xl glass-card flex items-center justify-center text-xl border border-white/10 group-hover:border-amber-500 group-hover:text-amber-500 transition-all">📍</div>
-                <div>
-                  <p className="text-gray-500 text-sm font-medium">Lokasi</p>
-                  <p className="text-white font-bold text-lg">Sukabumi, Jawa Barat</p>
-                </div>
+              <div className="glass-card p-5 rounded-2xl border border-white/5 flex items-center gap-5 hover:border-[#00D4FF]/30 transition-colors">
+                <span className="text-2xl">📍</span>
+                <span className="text-gray-300 font-medium">Sukabumi, Jawa Barat, Indonesia</span>
               </div>
+              <div className="glass-card p-5 rounded-2xl border border-white/5 flex items-center gap-5 hover:border-[#00D4FF]/30 transition-colors">
+                <span className="text-2xl">🕐</span>
+                <span className="text-gray-300 font-medium">Senin-Sabtu, 09.00-21.00 WIB</span>
+              </div>
+            </div>
+            
+            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-green-500/10 border border-green-500/20 text-green-400 text-sm font-bold mb-10">
+              <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+              Tersedia untuk project baru
             </div>
             
             <div className="flex gap-4">
-              {['IN', 'GH', 'IG', 'BE'].map((social, i) => (
-                <a key={social} href="#" className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all hover:-translate-y-1 ${i % 2 === 0 ? 'bg-[#00D4FF]/10 text-[#00D4FF] hover:bg-[#00D4FF] hover:text-[#0D0D0D]' : 'bg-[#8B5CF6]/10 text-[#8B5CF6] hover:bg-[#8B5CF6] hover:text-white'}`}>
+              {['GitHub', 'LinkedIn', 'Instagram', 'Behance', 'Dribbble'].map(social => (
+                <a key={social} href="#" className="glass-card px-4 py-2 rounded-xl text-sm font-medium text-gray-400 hover:text-[#00D4FF] hover:border-[#00D4FF]/50 transition-all">
                   {social}
                 </a>
               ))}
             </div>
           </div>
-          
-          {/* Right: Form */}
-          <div className="gradient-border-card p-1">
-            <div className="bg-[#0A0A0A] p-8 md:p-10 rounded-[0.9rem] h-full w-full relative overflow-hidden">
-              <div className="absolute -top-32 -right-32 w-64 h-64 bg-[#00D4FF]/10 blur-[80px] rounded-full"></div>
-              
-              <h3 className="text-2xl font-bold mb-8 text-white relative z-10">Kirim Pesan</h3>
-              
-              <form className="space-y-6 relative z-10" onSubmit={(e) => e.preventDefault()}>
+
+          {/* RIGHT: Form */}
+          <div className="fade-up delay-200">
+            <div className="glass-card p-8 md:p-10 rounded-[2.5rem] border border-white/10 shadow-2xl">
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
                 <div>
-                  <label className="block text-gray-400 text-sm font-medium mb-2">Nama Lengkap</label>
-                  <input type="text" className="w-full bg-[#1A1A2E] border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#00D4FF] transition-colors" placeholder="John Doe" />
+                  <label className="block text-gray-400 text-sm font-medium mb-2 ml-1">Nama Lengkap</label>
+                  <input type="text" className="w-full bg-black/40 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#00D4FF] focus:ring-1 focus:ring-[#00D4FF] transition-all" placeholder="Masukkan nama Anda" />
                 </div>
                 <div>
-                  <label className="block text-gray-400 text-sm font-medium mb-2">Email</label>
-                  <input type="email" className="w-full bg-[#1A1A2E] border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#8B5CF6] transition-colors" placeholder="john@example.com" />
+                  <label className="block text-gray-400 text-sm font-medium mb-2 ml-1">Email</label>
+                  <input type="email" className="w-full bg-black/40 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all" placeholder="email@contoh.com" />
                 </div>
                 <div>
-                  <label className="block text-gray-400 text-sm font-medium mb-2">Subjek</label>
-                  <input type="text" className="w-full bg-[#1A1A2E] border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#00D4FF] transition-colors" placeholder="Project Web Design" />
+                  <label className="block text-gray-400 text-sm font-medium mb-2 ml-1">Jenis Layanan</label>
+                  <div className="relative">
+                    <select className="w-full bg-black/40 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#00D4FF] focus:ring-1 focus:ring-[#00D4FF] transition-all appearance-none cursor-pointer">
+                      <option className="bg-[#050510] text-white">UI/UX Design</option>
+                      <option className="bg-[#050510] text-white">Web Dev</option>
+                      <option className="bg-[#050510] text-white">Full Package</option>
+                      <option className="bg-[#050510] text-white">Lainnya</option>
+                    </select>
+                    <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">▼</div>
+                  </div>
                 </div>
                 <div>
-                  <label className="block text-gray-400 text-sm font-medium mb-2">Pesan</label>
-                  <textarea className="w-full bg-[#1A1A2E] border border-white/10 rounded-xl px-5 py-4 text-white focus:outline-none focus:border-[#8B5CF6] transition-colors h-32 resize-none" placeholder="Ceritakan tentang project Anda..."></textarea>
+                  <label className="block text-gray-400 text-sm font-medium mb-2 ml-1">Pesan</label>
+                  <textarea className="w-full bg-black/40 border border-white/10 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-[#8B5CF6] focus:ring-1 focus:ring-[#8B5CF6] transition-all resize-none" rows={4} placeholder="Ceritakan detail project Anda..."></textarea>
                 </div>
-                <button className="w-full bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white font-bold text-lg py-4 rounded-xl hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] transition-all transform hover:-translate-y-1">
+                <button className="w-full bg-gradient-to-r from-[#00D4FF] to-[#8B5CF6] text-white font-bold text-lg py-4 rounded-2xl hover:shadow-[0_0_30px_rgba(139,92,246,0.4)] transition-all transform hover:-translate-y-1 mt-2">
                   Kirim Pesan 🚀
                 </button>
               </form>
             </div>
           </div>
+          
         </div>
       </div>
 
       {/* 10. FOOTER */}
-      <footer className="bg-[#080808] border-t border-white/5 py-12 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-          <div className="text-2xl font-bold text-[#00D4FF] tracking-tighter mb-4">
-            &lt; Arif Pratama /&gt;
-          </div>
-          <p className="text-gray-400 font-medium mb-8">UI/UX Designer & Frontend Developer</p>
+      <footer className="bg-[#020208] border-t border-white/5 py-16 px-6 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto flex flex-col items-center text-center relative z-10">
           
-          <div className="flex gap-6 mb-8">
-            {['Twitter', 'Dribbble', 'LinkedIn', 'Instagram'].map(social => (
-              <a key={social} href="#" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
-                {social}
+          <div className="text-3xl font-bold text-[#00D4FF] tracking-tighter mb-4">
+            &lt;/Arif&gt;
+          </div>
+          <p className="text-white font-medium mb-2 text-lg">UI/UX Designer & Frontend Developer</p>
+          <p className="text-gray-500 mb-10">Sukabumi, Jawa Barat</p>
+          
+          <div className="flex gap-6 mb-12">
+            {['In', 'Be', 'Dr', 'Ig'].map(icon => (
+              <a key={icon} href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00D4FF] hover:border-[#00D4FF] hover:shadow-[0_0_15px_rgba(0,212,255,0.3)] transition-all font-bold">
+                {icon}
               </a>
             ))}
           </div>
           
-          <div className="w-full h-px bg-white/5 mb-8 max-w-md mx-auto"></div>
+          <div className="w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-10"></div>
           
-          <div className="flex flex-col md:flex-row justify-between items-center w-full text-sm font-medium text-gray-500 gap-4">
-            <p>© 2026 Arif Pratama. All rights reserved.</p>
-            <p>
-              Website dibuat oleh <span className="text-[#00D4FF]">DTech</span> 
-              <span className="mx-2">|</span> 
-              <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                dtech-website-pied.vercel.app
-              </a>
-            </p>
-          </div>
+          <p className="text-gray-500 font-medium text-sm mb-3">© 2026 Arif Pratama. All rights reserved.</p>
+          <p className="text-gray-600 text-sm font-medium">
+            Website ini dibuat oleh <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#00D4FF] hover:text-white transition-colors">DTech</a> · dtech-website-pied.vercel.app
+          </p>
         </div>
       </footer>
     </div>
