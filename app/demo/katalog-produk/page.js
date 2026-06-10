@@ -173,11 +173,11 @@ export default function KatalogProdukDemo() {
         {/* Right Half - Image */}
         <div className="lg:w-1/2 relative h-[60vh] lg:h-auto">
           <img 
-            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80&fit=crop&auto=format" 
+            src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=900&fit=crop&auto=format&q=80" 
             alt="Editorial Fashion Lifestyle" 
             className="absolute inset-0 w-full h-full object-cover object-top"
             crossOrigin="anonymous"
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', width: '100%', height: '100%' }}
           />
           <div className="absolute inset-0 bg-black/10"></div>
           
@@ -212,11 +212,11 @@ export default function KatalogProdukDemo() {
             {/* Left Large Card (40% roughly, 2 of 5 columns) */}
             <div className="md:col-span-2 relative h-[400px] md:h-[600px] rounded-xl overflow-hidden image-zoom-hover group cursor-pointer">
               <img 
-                src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&q=80&fit=crop&auto=format" 
+                src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&h=400&fit=crop&auto=format&q=80" 
                 alt="Fashion & Pakaian" 
                 className="absolute inset-0 w-full h-full object-cover"
                 crossOrigin="anonymous"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-8 left-8">
@@ -230,11 +230,11 @@ export default function KatalogProdukDemo() {
               {/* Top Right */}
               <div className="relative flex-1 rounded-xl overflow-hidden image-zoom-hover group cursor-pointer min-h-[250px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=400&fit=crop&auto=format&q=80" 
                   alt="Tas & Aksesoris" 
                   className="absolute inset-0 w-full h-full object-cover"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-8 left-8">
@@ -246,11 +246,11 @@ export default function KatalogProdukDemo() {
               {/* Bottom Right */}
               <div className="relative flex-1 rounded-xl overflow-hidden image-zoom-hover group cursor-pointer min-h-[250px]">
                 <img 
-                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=400&fit=crop&auto=format&q=80" 
                   alt="Jam & Perhiasan" 
                   className="absolute inset-0 w-full h-full object-cover object-center"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                 <div className="absolute bottom-8 left-8">
@@ -265,11 +265,11 @@ export default function KatalogProdukDemo() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
             <div className="relative h-[300px] rounded-xl overflow-hidden image-zoom-hover group cursor-pointer">
               <img 
-                src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=600&q=80&fit=crop&auto=format" 
+                src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=400&fit=crop&auto=format&q=80" 
                 alt="Kecantikan" 
                 className="absolute inset-0 w-full h-full object-cover"
                 crossOrigin="anonymous"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-8 left-8">
@@ -280,11 +280,11 @@ export default function KatalogProdukDemo() {
             
             <div className="relative h-[300px] rounded-xl overflow-hidden image-zoom-hover group cursor-pointer">
               <img 
-                src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&q=80&fit=crop&auto=format" 
+                src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&h=400&fit=crop&auto=format&q=80" 
                 alt="Sepatu" 
                 className="absolute inset-0 w-full h-full object-cover object-bottom"
                 crossOrigin="anonymous"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-8 left-8">
@@ -295,11 +295,11 @@ export default function KatalogProdukDemo() {
 
             <div className="relative h-[300px] rounded-xl overflow-hidden image-zoom-hover group cursor-pointer">
               <img 
-                src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=600&q=80&fit=crop&auto=format" 
+                src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=600&h=400&fit=crop&auto=format&q=80" 
                 alt="Parfum & Wewangian" 
                 className="absolute inset-0 w-full h-full object-cover"
                 crossOrigin="anonymous"
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
               <div className="absolute bottom-8 left-8">
@@ -329,11 +329,11 @@ export default function KatalogProdukDemo() {
             <div className="product-card group cursor-pointer bg-white">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&h=600&fit=crop&auto=format&q=80" 
                   alt="Fashion" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -355,11 +355,11 @@ export default function KatalogProdukDemo() {
             <div className="product-card group cursor-pointer bg-white">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&h=600&fit=crop&auto=format&q=80" 
                   alt="Bag" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 <div className="absolute top-4 left-4 bg-[#1A1A1A] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1">SALE 30%</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
@@ -385,11 +385,11 @@ export default function KatalogProdukDemo() {
             <div className="product-card group cursor-pointer bg-white">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop&auto=format&q=80" 
                   alt="Watch" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 object-center"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
@@ -411,11 +411,11 @@ export default function KatalogProdukDemo() {
             <div className="product-card group cursor-pointer bg-white">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=600&h=600&fit=crop&auto=format&q=80" 
                   alt="Shoes" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                 />
                 <div className="absolute top-4 left-4 bg-[#1A1A1A] text-white text-[10px] font-bold tracking-wider uppercase px-3 py-1">SALE 30%</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
@@ -443,11 +443,11 @@ export default function KatalogProdukDemo() {
       {/* 7. LIFESTYLE BANNER - FULL WIDTH */}
       <div className="relative w-full h-[500px] flex items-center">
         <img 
-          src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1600&q=80&fit=crop&auto=format" 
+          src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1600&h=600&fit=crop&auto=format&q=80" 
           alt="Lifestyle Banner" 
           className="absolute inset-0 w-full h-full object-cover"
           crossOrigin="anonymous"
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'cover', width: '100%', height: '100%' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#1A1A1A]/90 via-[#1A1A1A]/50 to-transparent"></div>
         
@@ -482,11 +482,12 @@ export default function KatalogProdukDemo() {
             <div className="product-card group cursor-pointer bg-white min-w-[280px] md:min-w-0 snap-center">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&h=600&fit=crop&auto=format&q=80" 
                   alt="Skincare" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                  onError={(e) => { e.target.src = "https://placehold.co/600x600/f5f0eb/8B7355?text=Produk"; }}
                 />
                 <div className="absolute top-4 left-4 bg-white text-[#1A1A1A] text-[10px] font-bold tracking-wider uppercase px-3 py-1 shadow-sm">NEW</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
@@ -504,11 +505,12 @@ export default function KatalogProdukDemo() {
             <div className="product-card group cursor-pointer bg-white min-w-[280px] md:min-w-0 snap-center">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=600&fit=crop&auto=format&q=80" 
                   alt="Accessories" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                  onError={(e) => { e.target.src = "https://placehold.co/600x600/f5f0eb/8B7355?text=Produk"; }}
                 />
                 <div className="absolute top-4 left-4 bg-white text-[#1A1A1A] text-[10px] font-bold tracking-wider uppercase px-3 py-1 shadow-sm">NEW</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
@@ -526,11 +528,12 @@ export default function KatalogProdukDemo() {
             <div className="product-card group cursor-pointer bg-white min-w-[280px] md:min-w-0 snap-center">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1623609163859-ca93c959b98a?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1623609163859-ca93c959b98a?w=600&h=600&fit=crop&auto=format&q=80" 
                   alt="Clothing" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                  onError={(e) => { e.target.src = "https://placehold.co/600x600/f5f0eb/8B7355?text=Produk"; }}
                 />
                 <div className="absolute top-4 left-4 bg-white text-[#1A1A1A] text-[10px] font-bold tracking-wider uppercase px-3 py-1 shadow-sm">NEW</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
@@ -548,11 +551,12 @@ export default function KatalogProdukDemo() {
             <div className="product-card group cursor-pointer bg-white min-w-[280px] md:min-w-0 snap-center">
               <div className="relative aspect-square overflow-hidden bg-gray-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=600&q=80&fit=crop&auto=format" 
+                  src="https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=600&h=600&fit=crop&auto=format&q=80" 
                   alt="Perfume" 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   crossOrigin="anonymous"
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                  onError={(e) => { e.target.src = "https://placehold.co/600x600/f5f0eb/8B7355?text=Produk"; }}
                 />
                 <div className="absolute top-4 left-4 bg-white text-[#1A1A1A] text-[10px] font-bold tracking-wider uppercase px-3 py-1 shadow-sm">NEW</div>
                 <button className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-[#C8963E] hover:shadow-md transition-all shadow-sm">
