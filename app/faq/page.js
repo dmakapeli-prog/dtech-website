@@ -133,7 +133,7 @@ export default function FAQPage() {
             Kami mengerti setiap proyek itu unik. Jangan ragu untuk berdiskusi santai dengan tim kami secara gratis.
           </p>
           <a
-            href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20punya%20pertanyaan%20kustom%20terkait%20jasa%20Anda."
+            href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20punya%20pertanyaan%20kustom%20terkait%20jasa%20Anda."
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 bg-white text-primary font-bold px-8 py-4 rounded-full hover:shadow-xl transform hover:scale-105 transition-all duration-300 relative z-10"

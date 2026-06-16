@@ -202,7 +202,7 @@ export default function HargaPage() {
               </ul>
 
               <a
-                href={`https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20dengan%20${encodeURIComponent(paket.name)}%20(${encodeURIComponent(paket.subtitle)}).`}
+                href={`https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20dengan%20${encodeURIComponent(paket.name)}%20(${encodeURIComponent(paket.subtitle)}).`}
                 target="_blank"
                 rel="noreferrer"
                 className={`w-full inline-flex items-center justify-center gap-2 font-bold px-6 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 ${

@@ -144,7 +144,7 @@ export default function ProfilPortofolioDemo() {
           <span>&larr;</span> Kembali ke Template
         </a>
         <a 
-          href="https://wa.me/6281996522114?text=Halo DTech, saya tertarik template Profil & Portofolio"
+          href="https://wa.me/6281996522114?text=Halo MakDev, saya tertarik template Profil & Portofolio"
           target="_blank"
           rel="noopener noreferrer" 
           className="text-[#00D4FF] hover:text-white transition-colors flex items-center gap-2"
@@ -898,7 +898,7 @@ export default function ProfilPortofolioDemo() {
           
           <p className="text-gray-500 font-medium text-sm mb-3">© 2026 Arif Pratama. All rights reserved.</p>
           <p className="text-gray-600 text-sm font-medium">
-            Website ini dibuat oleh <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#00D4FF] hover:text-white transition-colors">DTech</a> · dtech-website-pied.vercel.app
+            Website ini dibuat oleh <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#00D4FF] hover:text-white transition-colors">MakDev</a> · makdev-website-pied.vercel.app
           </p>
         </div>
       </footer>

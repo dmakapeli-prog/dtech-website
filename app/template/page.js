@@ -308,7 +308,7 @@ export default function TemplatePage() {
                       ))}
                     </div>
                     <a
-                      href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20dengan%20paket%20eksklusif%20web%20development."
+                      href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20dengan%20paket%20eksklusif%20web%20development."
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 border-2 border-[#0066FF] text-[#0066FF] font-bold px-7 py-3 rounded-xl hover:bg-[#0066FF] hover:text-white transform hover:scale-105 transition-all duration-300"
@@ -406,7 +406,7 @@ export default function TemplatePage() {
                         Lihat Demo
                       </Link>
                       <a
-                        href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20ingin%20pesan%20undangan%20Minimalist%20Elegance."
+                        href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20ingin%20pesan%20undangan%20Minimalist%20Elegance."
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 bg-gradient-to-r from-[#7C3AED] to-purple-700 text-white font-bold px-6 py-3 rounded-xl hover:shadow-xl hover:shadow-[#7C3AED]/25 transform hover:scale-105 transition-all duration-300 text-sm"
@@ -452,7 +452,7 @@ export default function TemplatePage() {
                         Lihat Demo
                       </Link>
                       <a
-                        href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20ingin%20pesan%20undangan%20Royal%20Blossom."
+                        href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20ingin%20pesan%20undangan%20Royal%20Blossom."
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 bg-gradient-to-r from-[#7C3AED] to-purple-700 text-white font-bold px-6 py-3 rounded-xl hover:shadow-xl hover:shadow-[#7C3AED]/25 transform hover:scale-105 transition-all duration-300 text-sm"
@@ -506,7 +506,7 @@ export default function TemplatePage() {
                       ))}
                     </div>
                     <a
-                      href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20dengan%20paket%20eksklusif%20undangan%20digital."
+                      href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20dengan%20paket%20eksklusif%20undangan%20digital."
                       target="_blank"
                       rel="noreferrer"
                       className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-[#0A0F1E] font-bold px-7 py-3 rounded-xl hover:shadow-xl hover:shadow-amber-500/25 transform hover:scale-105 transition-all duration-300"

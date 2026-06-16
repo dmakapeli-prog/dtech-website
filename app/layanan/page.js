@@ -92,7 +92,7 @@ function LayananContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">
-              Layanan <span className="text-gradient">DTech</span>
+              Layanan <span className="text-gradient">MakDev</span>
             </h1>
             <p className="text-lg text-gray-400 leading-relaxed">
               Kami menyediakan solusi digital berkualitas tinggi untuk

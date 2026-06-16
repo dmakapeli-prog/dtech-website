@@ -17,17 +17,17 @@ export default function Footer() {
             <div className="relative w-fit">
               <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-lg blur opacity-30"></div>
               <div className="relative bg-background px-4 py-2 rounded-lg border border-white/10">
-                <span className="text-3xl font-extrabold text-gradient">DTech</span>
+                <span className="text-3xl font-extrabold text-gradient">MakDev</span>
               </div>
             </div>
             <p className="text-gray-500 text-sm leading-relaxed max-w-sm">
               Agensi digital modern untuk kebutuhan website dan undangan digital.
-              Wujudkan ide digital lebih nyata bersama DTech.
+              Wujudkan ide digital lebih nyata bersama MakDev.
             </p>
             <div className="flex gap-4">
               {/* Instagram */}
               <a
-                href="https://instagram.com/dtech.id"
+                href="https://instagram.com/makdev.id"
                 target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 transition-all duration-500"
@@ -38,7 +38,7 @@ export default function Footer() {
               </a>
               {/* TikTok */}
               <a
-                href="https://tiktok.com/@dtech.id"
+                href="https://tiktok.com/@makdev.id"
                 target="_blank"
                 rel="noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-500 hover:text-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 transition-all duration-500"
@@ -94,9 +94,9 @@ export default function Footer() {
             <h4 className="font-bold text-white mb-6">Hubungi Kami</h4>
             <ul className="space-y-4">
               <li>
-                <a href="mailto:dtech.indonesia@gmail.com" className="flex items-start space-x-3 text-gray-500 hover:text-accent text-sm transition-colors">
+                <a href="mailto:makdev.indonesia@gmail.com" className="flex items-start space-x-3 text-gray-500 hover:text-accent text-sm transition-colors">
                   <span className="material-symbols-outlined text-[20px]">mail</span>
-                  <span>dtech.indonesia@gmail.com</span>
+                  <span>makdev.indonesia@gmail.com</span>
                 </a>
               </li>
               <li>
@@ -111,7 +111,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-sm">© 2026 DTech. All rights reserved.</p>
+          <p className="text-gray-600 text-sm">© 2026 MakDev. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy" className="text-gray-600 hover:text-accent text-sm transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="text-gray-600 hover:text-accent text-sm transition-colors">Terms of Service</Link>

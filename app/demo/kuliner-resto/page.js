@@ -69,14 +69,14 @@ export default function KulinerRestoDemo() {
   return (
     <div className="min-h-screen bg-[#FFF8F0] text-[#1A0A00]" style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif" }}>
 
-      {/* ══════ TOP BAR (DTech) ══════ */}
+      {/* ══════ TOP BAR (MakDev) ══════ */}
       <div className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-3 sm:px-4 py-2 bg-[#1A0A00]/90 backdrop-blur-xl border-b border-white/5">
         <Link href="/template" className="flex items-center gap-1.5 text-white/80 hover:text-white text-xs sm:text-sm font-medium transition-all group">
           <span className="group-hover:-translate-x-0.5 transition-transform">←</span>
           <span className="hidden sm:inline">Kembali ke Template</span>
           <span className="sm:hidden">Kembali</span>
         </Link>
-        <a href="https://wa.me/6281996522114?text=Halo%20DTech,%20saya%20tertarik%20dengan%20template%20Kuliner%20%26%20Resto" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 bg-[#E8820C] hover:bg-[#D4740A] text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all hover:scale-105 shadow-lg shadow-[#E8820C]/30">
+        <a href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20dengan%20template%20Kuliner%20%26%20Resto" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 bg-[#E8820C] hover:bg-[#D4740A] text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all hover:scale-105 shadow-lg shadow-[#E8820C]/30">
           Pesan Template Ini <span className="hidden sm:inline">→</span>
         </a>
       </div>
@@ -443,11 +443,11 @@ export default function KulinerRestoDemo() {
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
-            <p className="text-white/20 text-sm">© 2026 DTech. Seluruh hak cipta dilindungi.</p>
+            <p className="text-white/20 text-sm">© 2026 MakDev. Seluruh hak cipta dilindungi.</p>
             <p className="text-white/30 text-xs">
               Template Demo by{" "}
-              <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noreferrer" className="text-[#E8820C]/80 hover:text-[#E8820C] transition-colors font-semibold">
-                DTech
+              <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noreferrer" className="text-[#E8820C]/80 hover:text-[#E8820C] transition-colors font-semibold">
+                MakDev
               </a>
             </p>
           </div>

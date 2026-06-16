@@ -8,8 +8,8 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "Demo Template - DTech",
-  description: "Preview demo template website dari DTech.",
+  title: "Demo Template - MakDev",
+  description: "Preview demo template website dari MakDev.",
 };
 
 export default function DemoLayout({ children }) {

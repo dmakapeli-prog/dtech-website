@@ -76,7 +76,7 @@ export default function KatalogProdukDemo() {
           <span>&larr;</span> Kembali ke Template
         </a>
         <a 
-          href="https://wa.me/6281996522114?text=Halo DTech, saya tertarik template Katalog Produk"
+          href="https://wa.me/6281996522114?text=Halo MakDev, saya tertarik template Katalog Produk"
           target="_blank"
           rel="noopener noreferrer" 
           className="text-[#C8963E] hover:text-white transition-colors flex items-center gap-2"
@@ -745,7 +745,7 @@ export default function KatalogProdukDemo() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-gray-500">
             <p>© 2026 LUXE Premium Collection. All rights reserved.</p>
             <p>
-              Website dibuat oleh <a href="https://dtech-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#C8963E] hover:text-white transition-colors">DTech</a>
+              Website dibuat oleh <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#C8963E] hover:text-white transition-colors">MakDev</a>
             </p>
           </div>
         </div>

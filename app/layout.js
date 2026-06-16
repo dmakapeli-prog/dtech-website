@@ -10,9 +10,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "DTech - Solusi Digital Profesional",
+  title: "MakDev - Solusi Digital Profesional",
   description:
-    "Agensi digital modern untuk kebutuhan website dan undangan digital. Wujudkan ide digital lebih nyata bersama DTech.",
+    "Agensi digital modern untuk kebutuhan website dan undangan digital. Wujudkan ide digital lebih nyata bersama MakDev.",
   icons: {
     icon: "/icon.png",
   },
