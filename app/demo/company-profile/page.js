@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function CompanyProfileDemo() {
-  const waOrderLink = "https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20template%20Company%20Profile";
+  const waOrderLink = "https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20tertarik%20template%20Company%20Profile";
   const waConsultLink = "https://wa.me/6281996522114";
 
   useEffect(() => {
@@ -339,8 +339,8 @@ export default function CompanyProfileDemo() {
           <p>Copyright 2026 PT. GlobalTech. All rights reserved.</p>
           <p>
             Website dibuat oleh{" "}
-            <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDtechLink}>
-              MakDev
+            <a href="https://dicode-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDicodeLink}>
+              DiCode
             </a>
           </p>
         </div>

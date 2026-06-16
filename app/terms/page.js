@@ -12,7 +12,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-xl font-bold text-white mb-3">1. Persetujuan Layanan</h2>
               <p>
-                Dengan mengakses website MakDev dan menggunakan jasa kami, Anda setuju untuk terikat 
+                Dengan mengakses website DiCode dan menggunakan jasa kami, Anda setuju untuk terikat 
                 oleh Syarat dan Ketentuan Layanan ini, serta semua hukum dan peraturan yang berlaku. 
                 Jika Anda tidak setuju dengan salah satu ketentuan ini, Anda dilarang menggunakan atau mengakses situs ini atau layanan kami.
               </p>
@@ -21,7 +21,7 @@ export default function TermsPage() {
             <section>
               <h2 className="text-xl font-bold text-white mb-3">2. Layanan Pembuatan Website dan Undangan</h2>
               <ul className="list-disc pl-5 space-y-1">
-                <li>MakDev menyediakan layanan pembuatan website untuk UMKM/Perusahaan dan Undangan Digital.</li>
+                <li>DiCode menyediakan layanan pembuatan website untuk UMKM/Perusahaan dan Undangan Digital.</li>
                 <li>Klien bertanggung jawab untuk menyediakan materi (teks, gambar, logo) yang sah dan tidak melanggar hak cipta pihak ketiga.</li>
                 <li>Estimasi waktu pengerjaan dimulai setelah klien menyerahkan seluruh materi yang dibutuhkan dan membayar Down Payment (DP).</li>
               </ul>
@@ -48,9 +48,9 @@ export default function TermsPage() {
             <section>
               <h2 className="text-xl font-bold text-white mb-3">5. Batasan Tanggung Jawab</h2>
               <p>
-                Dalam keadaan apa pun MakDev tidak bertanggung jawab atas kerugian (termasuk, tanpa batasan, 
+                Dalam keadaan apa pun DiCode tidak bertanggung jawab atas kerugian (termasuk, tanpa batasan, 
                 kerugian atas hilangnya data atau keuntungan, atau karena gangguan bisnis) yang timbul dari 
-                penggunaan atau ketidakmampuan untuk menggunakan layanan dari MakDev.
+                penggunaan atau ketidakmampuan untuk menggunakan layanan dari DiCode.
               </p>
             </section>
           </div>

@@ -34,7 +34,7 @@ export default function EdukasiDemoLight() {
         <div className={styles.topBarRight}>
           <Link href="/template" className={styles.topBarLink}>&larr; Kembali ke Template</Link>
           <span className={styles.topBarDivider}>|</span>
-          <a href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20template%20Instansi%20Publik%20&%20Edukasi" target="_blank" rel="noreferrer" className={styles.topBarLink}>
+          <a href="https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20tertarik%20template%20Instansi%20Publik%20&%20Edukasi" target="_blank" rel="noreferrer" className={styles.topBarLink}>
             Pesan Template Ini &rarr;
           </a>
         </div>
@@ -303,7 +303,7 @@ export default function EdukasiDemoLight() {
           </div>
           <div className={styles.footerRow2}>
             <p>&copy; 2026 SMAN 1 Sukabumi. All rights reserved.</p>
-            <p>Website dibuat oleh <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDtechLink}>MakDev</a></p>
+            <p>Website dibuat oleh <a href="https://dicode-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerDicodeLink}>DiCode</a></p>
           </div>
         </div>
       </footer>

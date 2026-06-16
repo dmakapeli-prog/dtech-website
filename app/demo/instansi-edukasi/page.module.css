@@ -739,12 +739,12 @@
   justify-content: space-between;
   font-size: 0.9rem;
 }
-.footerDtechLink {
+.footerDicodeLink {
   color: #F59E0B;
   font-weight: 700;
   text-decoration: none;
 }
-.footerDtechLink:hover { text-decoration: underline; }
+.footerDicodeLink:hover { text-decoration: underline; }
 
 /* RESPONSIVE */
 @media (max-width: 1200px) {

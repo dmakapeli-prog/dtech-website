@@ -14,7 +14,7 @@ export default function PropertiDemo() {
           &larr; Kembali ke Template
         </a>
         <a 
-          href="https://wa.me/6281996522114?text=Halo MakDev, saya tertarik template Properti & Pariwisata"
+          href="https://wa.me/6281996522114?text=Halo DiCode, saya tertarik template Properti & Pariwisata"
           target="_blank"
           rel="noopener noreferrer" 
           className="hover:underline flex items-center gap-1"
@@ -501,10 +501,10 @@ export default function PropertiDemo() {
         <div className="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm font-medium">
           <p className="text-gray-500">© 2026 LuxuryStay. All rights reserved.</p>
           <p className="text-gray-500">
-            <span className="text-[#D97706]">Website dibuat oleh MakDev</span>
+            <span className="text-[#D97706]">Website dibuat oleh DiCode</span>
             <span className="mx-2 text-white/20">|</span>
-            <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              makdev-website-pied.vercel.app
+            <a href="https://dicode-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              dicode-website-pied.vercel.app
             </a>
           </p>
         </div>

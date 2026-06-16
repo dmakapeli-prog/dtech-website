@@ -12,7 +12,7 @@ export default function PrivacyPage() {
             <section>
               <h2 className="text-xl font-bold text-white mb-3">1. Pendahuluan</h2>
               <p>
-                MakDev ("kami", "milik kami", atau "kita") menghormati privasi Anda dan berkomitmen
+                DiCode ("kami", "milik kami", atau "kita") menghormati privasi Anda dan berkomitmen
                 untuk melindungi data pribadi Anda. Kebijakan privasi ini akan memberi tahu Anda
                 bagaimana kami menjaga data pribadi Anda ketika Anda mengunjungi website kami.
               </p>
@@ -54,7 +54,7 @@ export default function PrivacyPage() {
                 Jika Anda memiliki pertanyaan tentang kebijakan privasi ini atau praktik privasi kami, silakan hubungi kami di:
                 <br />
                 <br />
-                Email: makdev.indonesia@gmail.com
+                Email: dicode.indonesia@gmail.com
                 <br />
                 WhatsApp: +62 819-9652-2114
               </p>

@@ -154,7 +154,7 @@ export default function MinimalistEleganceDemo() {
             &larr; Kembali ke Template
           </a>
           <a 
-            href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20template%20Minimalist%20Elegance"
+            href="https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20tertarik%20template%20Minimalist%20Elegance"
             target="_blank"
             rel="noopener noreferrer" 
             className="hover:opacity-80 transition-opacity"
@@ -543,8 +543,8 @@ export default function MinimalistEleganceDemo() {
 
           {/* 12. FOOTER & MUSIC PLAYER */}
           <div className="bg-[#2D2D2D] text-[#F5F0E8] py-8 text-center text-xs">
-            <p className="mb-2 opacity-80">Dibuat dengan ❤️ oleh MakDev</p>
-            <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#C9A961] font-semibold tracking-wide hover:text-white transition-colors">
+            <p className="mb-2 opacity-80">Dibuat dengan ❤️ oleh DiCode</p>
+            <a href="https://dicode-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#C9A961] font-semibold tracking-wide hover:text-white transition-colors">
               Pesan Undangan Digital Anda
             </a>
           </div>

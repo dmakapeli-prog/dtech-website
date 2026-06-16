@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function JasaLayananDemo() {
-  const waOrderLink = "https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20template%20Jasa%20&%20Layanan";
+  const waOrderLink = "https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20tertarik%20template%20Jasa%20&%20Layanan";
   const waConsultLink = "https://wa.me/6281996522114";
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function JasaLayananDemo() {
       {/* 2. NAVBAR */}
       <nav className={styles.navbar}>
         <div className={styles.logo}>
-          MakDev
+          DiCode
         </div>
         <div className={styles.navMenu}>
           <a href="#beranda">Beranda</a>
@@ -264,13 +264,13 @@ export default function JasaLayananDemo() {
       {/* 9. FOOTER */}
       <footer className={styles.footer}>
         <div className={styles.footerLogo}>
-          MakDev
+          DiCode
         </div>
         <p style={{marginBottom: '10px'}}>Copyright 2026</p>
         <p>
           Website dibuat oleh{" "}
-          <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerLink}>
-            MakDev
+          <a href="https://dicode-website-pied.vercel.app" target="_blank" rel="noreferrer" className={styles.footerLink}>
+            DiCode
           </a>
         </p>
       </footer>

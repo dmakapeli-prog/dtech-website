@@ -48,7 +48,7 @@ export default function Navbar() {
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-lg blur opacity-40 group-hover:opacity-70 transition duration-300"></div>
             <div className="relative bg-background px-3 py-1.5 rounded-lg border border-white/10">
               <span className="text-2xl font-extrabold text-gradient">
-                MakDev
+                DiCode
               </span>
             </div>
           </div>
@@ -77,7 +77,7 @@ export default function Navbar() {
         {/* CTA Button */}
         <div className="hidden md:flex">
           <a
-            href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20ingin%20berkonsultasi."
+            href="https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20ingin%20berkonsultasi."
             target="_blank"
             rel="noreferrer"
             className="relative group inline-flex items-center justify-center"
@@ -131,7 +131,7 @@ export default function Navbar() {
           })}
           <div className="pt-4 mt-2 border-t border-white/10">
             <a
-              href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20ingin%20berkonsultasi."
+              href="https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20ingin%20berkonsultasi."
               target="_blank"
               rel="noreferrer"
               className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-primary to-accent text-white font-bold px-4 py-3 rounded-xl hover:shadow-lg transition-all"

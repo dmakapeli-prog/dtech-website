@@ -721,12 +721,12 @@
   justify-content: space-between;
   font-size: 0.9rem;
 }
-.footerDtech {
+.footerDicode {
   color: #F97316;
   font-weight: 700;
   text-decoration: none;
 }
-.footerDtech:hover { text-decoration: underline; }
+.footerDicode:hover { text-decoration: underline; }
 
 /* 11. FLOATING WA */
 .floatingWA {

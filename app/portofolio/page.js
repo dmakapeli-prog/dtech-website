@@ -75,9 +75,9 @@ export default function PortofolioPage() {
           <div className="glass-card rounded-3xl p-10 md:p-12 max-w-2xl mx-auto relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-primary"></div>
             <h3 className="text-2xl font-bold text-white mb-4">Ingin proyek Anda berikutnya?</h3>
-            <p className="text-gray-400 mb-8">Diskusikan kebutuhan digital Anda bersama tim MakDev.</p>
+            <p className="text-gray-400 mb-8">Diskusikan kebutuhan digital Anda bersama tim DiCode.</p>
             <a
-              href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20untuk%20berdiskusi%20tentang%20proyek."
+              href="https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20tertarik%20untuk%20berdiskusi%20tentang%20proyek."
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-white font-bold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-primary/25 transform hover:scale-105 transition-all duration-300"

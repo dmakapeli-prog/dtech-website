@@ -30,7 +30,7 @@ export default function EcommerceDemo() {
           <span>Kembali ke Template</span>
         </a>
         <a 
-          href="https://wa.me/6281996522114?text=Halo MakDev, saya tertarik template E-Commerce" 
+          href="https://wa.me/6281996522114?text=Halo DiCode, saya tertarik template E-Commerce" 
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1 hover:text-gray-200 transition-colors font-medium"
@@ -499,7 +499,7 @@ export default function EcommerceDemo() {
           <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
             <p>© 2026 TokoKita. Hak Cipta Dilindungi.</p>
             <p>
-              Situs web dibuat oleh <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#F97316] font-bold hover:underline">MakDev</a>
+              Situs web dibuat oleh <a href="https://dicode-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#F97316] font-bold hover:underline">DiCode</a>
             </p>
           </div>
         </div>

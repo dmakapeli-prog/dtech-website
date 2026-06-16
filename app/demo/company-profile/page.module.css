@@ -863,12 +863,12 @@
   padding-top: 30px;
   font-size: 0.9rem;
 }
-.footerDtechLink {
+.footerDicodeLink {
   color: #0066FF;
   text-decoration: none;
   font-weight: 600;
 }
-.footerDtechLink:hover {
+.footerDicodeLink:hover {
   text-decoration: underline;
 }
 

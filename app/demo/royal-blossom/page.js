@@ -277,7 +277,7 @@ export default function RoyalBlossomDemo() {
             &larr; Kembali
           </a>
           <a 
-            href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20template%20Royal%20Blossom"
+            href="https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20tertarik%20template%20Royal%20Blossom"
             target="_blank"
             rel="noopener noreferrer" 
             className="hover:opacity-80 transition-opacity"
@@ -757,7 +757,7 @@ export default function RoyalBlossomDemo() {
         {/* FOOTER */}
         <div className="py-6 bg-[#FDF6F0] text-center relative z-20 border-t border-[#D4AF37]/30">
           <p className="text-xs text-[#2D2D2D] font-medium tracking-wide">
-            Dibuat dengan ❤️ oleh <a href="https://makdev-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#6B1F2A] font-bold hover:underline">MakDev</a>
+            Dibuat dengan ❤️ oleh <a href="https://dicode-website-pied.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#6B1F2A] font-bold hover:underline">DiCode</a>
           </p>
         </div>
 

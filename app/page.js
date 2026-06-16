@@ -46,7 +46,7 @@ export default function Home() {
                   <span className="material-symbols-outlined">explore</span>
                 </Link>
                 <a
-                  href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20tertarik%20untuk%20konsultasi%20gratis."
+                  href="https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20tertarik%20untuk%20konsultasi%20gratis."
                   target="_blank"
                   rel="noreferrer"
                   className="bg-white/5 text-gray-200 border border-white/10 font-bold px-8 py-4 rounded-full hover:bg-white/10 hover:border-white/20 hover:shadow-lg transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
@@ -83,7 +83,7 @@ export default function Home() {
                     {/* Hero Mockup Image */}
                     <Image 
                       src="/assets/hero-mockup.png" 
-                      alt="MakDev Hero Mockup" 
+                      alt="DiCode Hero Mockup" 
                       width={800} 
                       height={600} 
                       className="rounded-2xl border border-white/10 shadow-2xl w-full h-auto"
@@ -108,7 +108,7 @@ export default function Home() {
               Layanan Kami
             </h2>
             <h3 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Solusi Digital MakDev
+              Solusi Digital DiCode
             </h3>
             <p className="text-lg text-gray-400">
               Pendekatan komprehensif untuk kebutuhan digital Anda, dirancang
@@ -281,7 +281,7 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
               <a
-                href="https://wa.me/6281996522114?text=Halo%20MakDev,%20saya%20ingin%20berdiskusi%20tentang%20proyek%20digital%20saya."
+                href="https://wa.me/6281996522114?text=Halo%20DiCode,%20saya%20ingin%20berdiskusi%20tentang%20proyek%20digital%20saya."
                 target="_blank"
                 rel="noreferrer"
                 className="bg-gradient-to-r from-primary to-accent text-white font-bold px-8 py-4 rounded-full hover:shadow-xl hover:shadow-primary/25 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"

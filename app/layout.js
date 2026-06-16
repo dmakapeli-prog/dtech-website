@@ -10,9 +10,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata = {
-  title: "MakDev - Solusi Digital Profesional",
+  title: "DiCode - Solusi Digital Profesional",
   description:
-    "Agensi digital modern untuk kebutuhan website dan undangan digital. Wujudkan ide digital lebih nyata bersama MakDev.",
+    "Agensi digital modern untuk kebutuhan website dan undangan digital. Wujudkan ide digital lebih nyata bersama DiCode.",
   icons: {
     icon: "/icon.png",
   },
