@@ -286,7 +286,7 @@ export default function Home() {
 
 const HeroMockup = () => {
   return (
-    <div className="relative w-full max-w-5xl mx-auto flex items-center justify-center py-20 md:py-32" style={{ perspective: '1200px' }}>
+    <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center py-20 md:py-32" style={{ perspective: '1200px' }}>
       <style>{`
         @keyframes float-mockup {
           0%, 100% { transform: translateY(0px); }
@@ -298,7 +298,7 @@ const HeroMockup = () => {
         }
         @keyframes pulse-glow {
           0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 0.7; transform: scale(1.1); }
+          50% { opacity: 0.8; transform: scale(1.1); }
         }
         @keyframes ray-spin {
           0% { transform: rotate(0deg); }
@@ -328,9 +328,9 @@ const HeroMockup = () => {
 
       {/* Spotlight and Rays behind everything */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] z-0 pointer-events-none flex items-center justify-center">
-        <div className="absolute w-[60%] h-[60%] bg-[#00D9FF] blur-[100px] md:blur-[120px] rounded-full opacity-60 animate-pulse-glow"></div>
-        <div className="absolute w-[80%] h-[80%] bg-[#00D9FF] blur-[150px] rounded-full opacity-30"></div>
-        <div className="absolute w-[150%] h-[150%] opacity-20 animate-ray-spin rounded-full" style={{
+        <div className="absolute w-[60%] h-[60%] bg-[#00D9FF] blur-[100px] md:blur-[140px] rounded-full opacity-70 animate-pulse-glow"></div>
+        <div className="absolute w-[80%] h-[80%] bg-[#00D9FF] blur-[180px] rounded-full opacity-40"></div>
+        <div className="absolute w-[150%] h-[150%] opacity-25 animate-ray-spin rounded-full" style={{
           background: 'conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0,217,255,0.8) 15deg, transparent 30deg, transparent 60deg, rgba(0,217,255,0.8) 75deg, transparent 90deg, transparent 120deg, rgba(0,217,255,0.8) 135deg, transparent 150deg, transparent 180deg, rgba(0,217,255,0.8) 195deg, transparent 210deg, transparent 240deg, rgba(0,217,255,0.8) 255deg, transparent 270deg, transparent 300deg, rgba(0,217,255,0.8) 315deg, transparent 330deg, transparent 360deg)'
         }}></div>
       </div>
@@ -339,8 +339,8 @@ const HeroMockup = () => {
       <div className="relative w-full flex items-center justify-center z-10 animate-float-mockup">
 
         {/* FLOATING BADGES (Independent of devices) */}
-        {/* Top Left: Web Company */}
-        <div className="absolute -top-10 left-[5%] md:left-[10%] z-50 animate-float-badge">
+        {/* Top Center-Left: Web Company */}
+        <div className="absolute -top-10 left-[15%] md:left-[25%] z-50 animate-float-badge">
           <div className="bg-white/10 backdrop-blur-md border border-[#00D9FF]/50 px-4 py-2 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(0,217,255,0.3)]">
             <span className="material-symbols-outlined text-[#00D9FF] text-sm md:text-base">public</span>
             <span className="text-white font-bold text-xs md:text-sm">Web Company</span>
@@ -363,9 +363,50 @@ const HeroMockup = () => {
           </div>
         </div>
 
+        {/* TABLET KIRI (UNDANGAN DIGITAL) */}
+        <div 
+          className="absolute left-[0%] md:left-[2%] bottom-[5%] md:bottom-[-2%] w-[38%] md:w-[28%] max-w-[240px] z-40 drop-shadow-[0_25px_45px_rgba(0,0,0,0.8)] group"
+          style={{ transform: 'rotate(-10deg) rotateY(15deg) translateZ(40px)' }}
+        >
+          {/* Tablet Frame */}
+          <div className="w-full aspect-[3/4] bg-[#111] rounded-[1.5rem] md:rounded-[2.5rem] border-[3px] md:border-[8px] border-[#222] relative flex flex-col p-1 md:p-2 overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.6)]">
+            {/* Camera */}
+            <div className="absolute top-1 md:top-2 left-1/2 -translate-x-1/2 w-1 md:w-2 h-1 md:h-2 bg-black rounded-full z-50"></div>
+            
+            {/* Screen Content - Undangan Pernikahan */}
+            <div className="flex-1 bg-[#0f0c05] rounded-[1.2rem] md:rounded-[2rem] relative overflow-hidden flex flex-col border border-white/5">
+              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/10 via-[#0f0c05] to-[#0f0c05]"></div>
+              
+              {/* Ornamen bunga emas sudut */}
+              <div className="absolute top-0 left-0 p-2 md:p-4 text-yellow-500/40 opacity-50 transform -scale-x-100">
+                 <span className="material-symbols-outlined text-3xl md:text-5xl">local_florist</span>
+              </div>
+              <div className="absolute bottom-0 right-0 p-2 md:p-4 text-yellow-500/40 opacity-50 transform rotate-180">
+                 <span className="material-symbols-outlined text-3xl md:text-5xl">local_florist</span>
+              </div>
+
+              <div className="flex-1 flex flex-col items-center justify-center p-4 text-center relative z-10">
+                <h3 className="text-[10px] md:text-[14px] lg:text-[16px] font-serif text-yellow-100/90 mb-2">The Wedding of</h3>
+                <h2 className="text-[18px] md:text-[28px] lg:text-[36px] font-serif text-yellow-500 mb-3 md:mb-5 leading-tight italic">Sarah & Daniel</h2>
+                
+                <div className="w-12 md:w-20 h-px bg-yellow-500/50 mb-3 md:mb-5"></div>
+                
+                <p className="text-[7px] md:text-[10px] lg:text-[12px] text-yellow-500 font-sans tracking-[0.2em] md:tracking-[0.3em]">14 DESEMBER 2024</p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Badge under Tablet */}
+          <div className="absolute -bottom-5 md:-bottom-8 left-1/2 -translate-x-1/2 w-full md:w-[120%] flex justify-center z-50">
+            <div className="bg-[#111]/80 backdrop-blur-md border border-gray-300/50 px-3 md:px-5 py-1.5 md:py-2 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] whitespace-nowrap">
+               <span className="text-gray-200 font-medium text-[8px] md:text-[12px] lg:text-sm">Undangan Digital</span>
+            </div>
+          </div>
+        </div>
+
         {/* LAPTOP (CENTER) */}
         <div 
-          className="relative w-[90%] md:w-[70%] max-w-[800px] z-30 drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)]"
+          className="relative w-[85%] md:w-[65%] max-w-[800px] z-30 drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)]"
           style={{ transform: 'rotateY(-5deg) rotateX(5deg) translateZ(0px)' }}
         >
           {/* Laptop Screen Frame */}
@@ -380,7 +421,7 @@ const HeroMockup = () => {
               
               {/* Navbar */}
               <div className="w-full h-8 md:h-14 border-b border-white/10 flex items-center px-4 md:px-6 relative z-10 bg-white/5 backdrop-blur-sm justify-between">
-                <span className="text-xs md:text-base font-extrabold text-white tracking-wider">DiCode</span>
+                <span className="text-xs md:text-base font-extrabold text-[#00D9FF] tracking-wider">DiCode</span>
                 <div className="hidden md:flex gap-6">
                   <div className="w-10 h-1.5 bg-white/20 rounded-full"></div>
                   <div className="w-10 h-1.5 bg-white/20 rounded-full"></div>
@@ -390,14 +431,14 @@ const HeroMockup = () => {
 
               {/* Hero Content on Screen */}
               <div className="flex-1 flex flex-col items-center justify-center p-4 md:p-6 text-center relative z-10">
-                <h2 className="text-[14px] md:text-[32px] lg:text-[36px] font-black text-white leading-tight mb-2 md:mb-4">
+                <h2 className="text-[16px] md:text-[32px] lg:text-[40px] font-black text-white leading-[1.1] mb-2 md:mb-5 tracking-tight">
                   WUJUDKAN IDE DIGITAL <br/>
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] to-blue-500">LEBIH NYATA</span>
                 </h2>
-                <p className="text-[7px] md:text-[12px] lg:text-[14px] text-gray-400 max-w-[80%] md:max-w-[70%] mb-4 md:mb-8 leading-relaxed">
+                <p className="text-[8px] md:text-[12px] lg:text-[14px] text-gray-400 max-w-[80%] md:max-w-[70%] mb-4 md:mb-8 leading-relaxed">
                   Kami membantu UMKM, Instansi, dan Perusahaan bertransformasi secara digital melalui pembuatan website responsif dan sistem kustom.
                 </p>
-                <div className="px-4 py-1.5 md:px-8 md:py-3 bg-gradient-to-r from-[#00D9FF] to-blue-600 rounded-full text-white text-[8px] md:text-[14px] font-bold shadow-[0_0_20px_rgba(0,217,255,0.4)]">
+                <div className="px-5 py-2 md:px-8 md:py-3.5 bg-gradient-to-r from-[#00D9FF] to-blue-600 rounded-full text-white text-[9px] md:text-[14px] font-bold shadow-[0_0_20px_rgba(0,217,255,0.4)]">
                   Eksplorasi Layanan
                 </div>
 
@@ -427,52 +468,9 @@ const HeroMockup = () => {
           </div>
         </div>
 
-        {/* HP KIRI (UNDANGAN DIGITAL) */}
-        <div 
-          className="absolute left-[0%] md:left-[5%] bottom-[5%] md:bottom-[-5%] w-[32%] md:w-[25%] max-w-[180px] z-40 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] group"
-          style={{ transform: 'rotate(-12deg) rotateY(15deg) translateZ(50px)' }}
-        >
-          {/* Phone Frame */}
-          <div className="w-full aspect-[9/19] bg-[#111] rounded-[1.5rem] md:rounded-[2rem] border-[3px] md:border-[6px] border-[#222] relative flex flex-col p-1 md:p-1.5 overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-            {/* Notch */}
-            <div className="absolute top-1 md:top-1.5 left-1/2 -translate-x-1/2 w-[40%] h-3 md:h-4 bg-[#111] rounded-b-xl z-50"></div>
-            
-            {/* Screen Content - Undangan Pernikahan */}
-            <div className="flex-1 bg-[#0f0c05] rounded-[1.2rem] md:rounded-[1.5rem] relative overflow-hidden flex flex-col border border-white/5">
-              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/20 via-[#0f0c05] to-[#0f0c05]"></div>
-              
-              <div className="flex-1 flex flex-col items-center justify-center p-2 md:p-4 text-center relative z-10">
-                <div className="w-10 h-10 md:w-16 md:h-16 border border-yellow-500/30 rounded-full flex items-center justify-center mb-2 md:mb-4 relative">
-                   <div className="absolute w-8 h-8 md:w-12 md:h-12 border border-yellow-500/50 rounded-full rotate-45"></div>
-                   <span className="material-symbols-outlined text-yellow-500 text-lg md:text-2xl">local_florist</span>
-                </div>
-                
-                <h3 className="text-[7px] md:text-[12px] lg:text-[14px] font-serif text-yellow-500 mb-1">The Wedding of</h3>
-                <h2 className="text-[11px] md:text-[18px] lg:text-[22px] font-serif text-white mb-2 md:mb-4 leading-tight">Sarah & Daniel</h2>
-                
-                <div className="w-8 md:w-12 h-px bg-yellow-500/50 mb-2 md:mb-4"></div>
-                
-                <p className="text-[5px] md:text-[8px] lg:text-[10px] text-gray-300 font-sans tracking-widest">14 DESEMBER 2024</p>
-                
-                <div className="mt-3 md:mt-6 px-3 py-1 md:px-4 md:py-1.5 bg-yellow-500/20 border border-yellow-500/50 rounded-full text-yellow-500 text-[6px] md:text-[10px]">
-                  Buka Undangan
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          {/* Badge under HP KIRI */}
-          <div className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-full md:w-[110%] flex justify-center z-50">
-            <div className="bg-white/10 backdrop-blur-md border border-[#00D9FF]/50 px-2 md:px-3 py-1 md:py-1.5 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,217,255,0.3)] whitespace-nowrap">
-               <span className="text-white font-bold text-[7px] md:text-[10px] lg:text-xs">Undangan Digital</span>
-            </div>
-          </div>
-        </div>
-
-
         {/* HP KANAN (WEBSITE BISNIS) */}
         <div 
-          className="absolute right-[0%] md:right-[5%] bottom-[10%] md:bottom-[0%] w-[32%] md:w-[25%] max-w-[180px] z-40 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] group"
+          className="absolute right-[0%] md:right-[2%] bottom-[10%] md:bottom-[5%] w-[25%] md:w-[18%] max-w-[140px] z-40 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] group"
           style={{ transform: 'rotate(12deg) rotateY(-15deg) translateZ(60px)' }}
         >
           {/* Phone Frame */}
@@ -482,7 +480,7 @@ const HeroMockup = () => {
             
             {/* Screen Content - Website Bisnis */}
             <div className="flex-1 bg-[#0a0f1d] rounded-[1.2rem] md:rounded-[1.5rem] relative overflow-hidden flex flex-col border border-white/5">
-              <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-blue-500/20 blur-2xl rounded-full"></div>
+              <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-[#00D9FF]/20 blur-2xl rounded-full"></div>
               
               {/* Header */}
               <div className="pt-4 pb-1 md:pt-6 md:pb-2 px-3 md:px-4 border-b border-white/10 flex justify-between items-center bg-white/5">
@@ -493,19 +491,19 @@ const HeroMockup = () => {
               {/* Body */}
               <div className="flex-1 p-2 md:p-3 space-y-2 md:space-y-3">
                 {/* Hero */}
-                <div className="w-full h-16 md:h-24 bg-gradient-to-br from-[#00D9FF]/20 to-blue-600/20 rounded-lg md:rounded-xl border border-white/10 flex flex-col justify-center items-center p-2 text-center">
+                <div className="w-full h-16 md:h-20 bg-gradient-to-br from-[#00D9FF]/20 to-blue-600/20 rounded-lg border border-white/10 flex flex-col justify-center items-center p-2 text-center">
                    <div className="w-3/4 h-1.5 md:h-2 bg-white/80 rounded-full mb-1"></div>
-                   <div className="w-1/2 h-1.5 md:h-2 bg-white/60 rounded-full mb-2 md:mb-3"></div>
-                   <div className="w-1/3 h-2 md:h-4 bg-[#00D9FF] rounded-full"></div>
+                   <div className="w-1/2 h-1.5 md:h-2 bg-white/60 rounded-full mb-2"></div>
+                   <div className="w-1/3 h-2 md:h-3 bg-[#00D9FF] rounded-full"></div>
                 </div>
                 {/* Cards */}
                 <div className="flex gap-1.5 md:gap-2">
-                  <div className="flex-1 h-12 md:h-16 bg-white/5 rounded-md md:rounded-lg border border-white/10 p-1.5 md:p-2">
-                     <div className="w-4 h-4 md:w-6 md:h-6 rounded-full bg-blue-500/20 mb-1.5 md:mb-2"></div>
+                  <div className="flex-1 h-12 md:h-14 bg-white/5 rounded-md border border-white/10 p-1.5">
+                     <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-[#00D9FF]/20 mb-1.5"></div>
                      <div className="w-full h-1 bg-white/20 rounded-full"></div>
                   </div>
-                  <div className="flex-1 h-12 md:h-16 bg-white/5 rounded-md md:rounded-lg border border-white/10 p-1.5 md:p-2">
-                     <div className="w-4 h-4 md:w-6 md:h-6 rounded-full bg-purple-500/20 mb-1.5 md:mb-2"></div>
+                  <div className="flex-1 h-12 md:h-14 bg-white/5 rounded-md border border-white/10 p-1.5">
+                     <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-blue-500/20 mb-1.5"></div>
                      <div className="w-full h-1 bg-white/20 rounded-full"></div>
                   </div>
                 </div>
@@ -514,11 +512,10 @@ const HeroMockup = () => {
           </div>
           
           {/* Badge under HP KANAN */}
-          <div className="absolute -bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 w-[120%] flex justify-center z-50">
-            <div className="bg-gradient-to-r from-amber-500/20 to-yellow-600/20 backdrop-blur-md border border-amber-500/50 px-2 md:px-3 py-1 md:py-1.5 rounded-full flex flex-col items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.3)] whitespace-nowrap">
-               <span className="text-amber-300 font-semibold text-[5px] md:text-[7px]">Undangan Digital</span>
-               <span className="text-white font-bold text-[6px] md:text-[9px] lg:text-[11px]">Sarah & Daniel</span>
-               <span className="text-amber-200 text-[4px] md:text-[6px] lg:text-[8px]">14 Desember 2024</span>
+          <div className="absolute -bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 w-[140%] md:w-[150%] flex justify-center z-50">
+            <div className="bg-gradient-to-r from-amber-500/20 to-yellow-600/20 backdrop-blur-md border border-amber-500/50 px-2 md:px-3 py-1.5 rounded-full flex flex-col items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.3)] whitespace-nowrap">
+               <span className="text-white font-bold text-[6px] md:text-[9px] lg:text-[10px]">Sarah & Daniel</span>
+               <span className="text-amber-200 text-[4px] md:text-[6px] lg:text-[7px]">14 Desember 2024</span>
             </div>
           </div>
         </div>
@@ -526,7 +523,7 @@ const HeroMockup = () => {
       </div>
       
       {/* Floor glow / reflection for entire composition */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-8 md:h-12 bg-[#00D9FF]/10 blur-[30px] md:blur-[40px] rounded-[100%] z-0 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-8 md:h-16 bg-[#00D9FF]/10 blur-[30px] md:blur-[50px] rounded-[100%] z-0 pointer-events-none"></div>
     </div>
   );
 };
