@@ -76,21 +76,8 @@ export default function Home() {
                   Sistem Bisnis
                 </div>
 
-                {/* Hero Mockup Placeholder */}
-                <div className="relative w-full transition-all duration-700 ease-out transform group-hover:-translate-y-4 group-hover:scale-[1.02]">
-                  <div className="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden">
-                    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-primary"></div>
-                    {/* Hero Mockup Image */}
-                    <Image 
-                      src="/assets/hero-mockup.png" 
-                      alt="DiCode Hero Mockup" 
-                      width={800} 
-                      height={600} 
-                      className="rounded-2xl border border-white/10 shadow-2xl w-full h-auto"
-                      priority
-                    />
-                  </div>
-                </div>
+                {/* Hero Mockup */}
+                <HeroMockup />
 
                 {/* Shadow */}
                 <div className="w-[85%] h-8 bg-primary/10 blur-[25px] rounded-[100%] mx-auto mt-2 pointer-events-none transform -translate-y-4 -z-10 transition-all duration-700 group-hover:bg-accent/10 group-hover:w-[70%] group-hover:blur-[30px]"></div>
@@ -296,3 +283,110 @@ export default function Home() {
     </>
   );
 }
+
+const HeroMockup = () => {
+  return (
+    <div className="relative w-full max-w-4xl mx-auto flex items-center justify-center p-4 py-12">
+      <style>{`
+        @keyframes float-mockup {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-15px); }
+        }
+        .animate-float-mockup {
+          animation: float-mockup 6s ease-in-out infinite;
+        }
+      `}</style>
+
+      {/* Glow Effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-cyan-500/20 blur-[80px] md:blur-[120px] rounded-full z-0 pointer-events-none"></div>
+      
+      {/* Container with perspective */}
+      <div className="relative w-full flex items-center justify-center z-10" style={{ perspective: "1500px" }}>
+        
+        {/* Left Mobile Mockup */}
+        <div className="absolute left-0 md:left-[5%] top-1/2 -translate-y-1/2 w-[22%] max-w-[110px] aspect-[9/19] bg-[#111] rounded-xl sm:rounded-2xl border-[3px] sm:border-[4px] border-gray-800 shadow-2xl z-20 overflow-hidden transform -rotate-12 translate-y-4 sm:translate-y-8 hover:-translate-y-2 transition-transform duration-500 hidden sm:flex flex-col animate-float-mockup" style={{ animationDelay: '1s' }}>
+          <div className="w-1/2 h-3 sm:h-4 bg-gray-800 absolute top-0 left-1/4 rounded-b-lg sm:rounded-b-xl z-30"></div>
+          <div className="flex-1 bg-[#0a0a1a] p-2 flex flex-col pt-5 sm:pt-6">
+            <div className="w-full flex justify-between items-center mb-3 sm:mb-4">
+              <span className="text-[6px] sm:text-[8px] font-bold text-cyan-400">DiCode</span>
+              <div className="flex gap-1">
+                <div className="w-1 sm:w-2 h-0.5 bg-gray-600 rounded"></div>
+                <div className="w-1 sm:w-2 h-0.5 bg-gray-600 rounded"></div>
+              </div>
+            </div>
+            <div className="w-full h-8 sm:h-12 bg-gradient-to-r from-blue-600/20 to-cyan-400/20 rounded-md mb-2 flex items-center justify-center">
+              <span className="text-[5px] sm:text-[6px] text-white">Layanan Kami</span>
+            </div>
+            <div className="flex-1 flex flex-col gap-1 sm:gap-2">
+              <div className="w-full h-6 sm:h-8 bg-white/5 rounded-md"></div>
+              <div className="w-full h-6 sm:h-8 bg-white/5 rounded-md"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Laptop Mockup */}
+        <div className="relative w-[95%] sm:w-[80%] max-w-[650px] z-10 transform hover:scale-105 transition-transform duration-700 animate-float-mockup">
+          {/* Laptop Screen */}
+          <div className="w-full aspect-[16/10] bg-[#111] rounded-t-xl sm:rounded-t-2xl border-[6px] sm:border-[8px] border-gray-800 shadow-2xl overflow-hidden relative flex flex-col">
+            {/* Webcam */}
+            <div className="absolute top-1 left-1/2 -translate-x-1/2 w-1 sm:w-1.5 h-1 sm:h-1.5 bg-black rounded-full z-30"></div>
+            {/* Inner Content (Website) */}
+            <div className="flex-1 bg-[#0a0a1a] flex flex-col overflow-hidden relative">
+              {/* Inner Glow */}
+              <div className="absolute top-0 right-0 w-32 sm:w-64 h-32 sm:h-64 bg-cyan-500/10 blur-3xl rounded-full"></div>
+              
+              {/* Navbar */}
+              <div className="w-full h-8 sm:h-12 border-b border-white/10 flex items-center justify-between px-3 sm:px-6 relative z-10">
+                <span className="text-[10px] sm:text-sm font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">DiCode</span>
+                <div className="flex gap-2 sm:gap-4">
+                  <div className="w-4 sm:w-8 h-1 sm:h-1.5 bg-white/10 hover:bg-cyan-400/50 transition-colors rounded-full cursor-pointer"></div>
+                  <div className="w-4 sm:w-8 h-1 sm:h-1.5 bg-white/10 hover:bg-cyan-400/50 transition-colors rounded-full cursor-pointer"></div>
+                  <div className="w-4 sm:w-8 h-1 sm:h-1.5 bg-white/10 hover:bg-cyan-400/50 transition-colors rounded-full cursor-pointer"></div>
+                </div>
+              </div>
+              
+              {/* Hero inside laptop */}
+              <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 text-center relative z-10">
+                <div className="px-2 py-1 sm:px-3 sm:py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[6px] sm:text-[8px] text-cyan-400 mb-3 sm:mb-4">
+                  Transformasi Digital Bisnis Anda
+                </div>
+                <h2 className="text-xs sm:text-xl md:text-2xl font-extrabold text-white leading-tight mb-2 sm:mb-4">
+                  WUJUDKAN IDE DIGITAL <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">LEBIH NYATA</span>
+                </h2>
+                <p className="text-[7px] sm:text-[10px] md:text-xs text-gray-400 max-w-[85%] sm:max-w-[70%] mb-4 sm:mb-8 leading-relaxed">
+                  Solusi modern untuk kebutuhan website bisnis dan undangan digital premium. Desain responsif, cepat, dan profesional bersama DiCode.
+                </p>
+                <div className="px-4 py-2 sm:px-6 sm:py-3 bg-cyan-500 hover:bg-cyan-400 transition-colors rounded-full text-[7px] sm:text-[10px] font-bold text-white shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] cursor-pointer">
+                  Mulai Proyek
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Laptop Base */}
+          <div className="w-[110%] -ml-[5%] h-3 sm:h-5 md:h-6 bg-gradient-to-b from-gray-400 to-gray-600 rounded-b-lg sm:rounded-b-xl relative z-20 shadow-2xl flex justify-center">
+            <div className="w-1/4 h-1 sm:h-1.5 md:h-2 bg-gray-500 rounded-b-md"></div>
+          </div>
+        </div>
+
+        {/* Right Mobile Mockup */}
+        <div className="absolute right-0 md:right-[5%] top-1/2 -translate-y-1/2 w-[22%] max-w-[110px] aspect-[9/19] bg-[#111] rounded-xl sm:rounded-2xl border-[3px] sm:border-[4px] border-gray-800 shadow-2xl z-20 overflow-hidden transform rotate-12 translate-y-8 sm:translate-y-12 hover:-translate-y-0 transition-transform duration-500 hidden sm:flex flex-col animate-float-mockup" style={{ animationDelay: '0.5s' }}>
+          <div className="w-1/2 h-3 sm:h-4 bg-gray-800 absolute top-0 left-1/4 rounded-b-lg sm:rounded-b-xl z-30"></div>
+          <div className="flex-1 bg-[#0a0a1a] p-2 flex flex-col pt-5 sm:pt-6 relative overflow-hidden">
+            <div className="absolute -bottom-10 -right-10 w-24 h-24 bg-blue-500/20 blur-xl rounded-full"></div>
+            <div className="w-full flex justify-between items-center mb-3 sm:mb-4 relative z-10">
+              <span className="text-[6px] sm:text-[8px] font-bold text-cyan-400">DiCode</span>
+            </div>
+            <div className="w-full h-10 sm:h-16 bg-white/5 border border-white/10 rounded-md mb-2 relative z-10"></div>
+            <div className="w-full h-16 sm:h-20 bg-gradient-to-br from-cyan-400/10 to-blue-600/10 rounded-md border border-cyan-500/20 flex flex-col items-center justify-center p-2 text-center relative z-10">
+              <div className="w-6 h-6 rounded-full bg-cyan-500/20 mb-2"></div>
+              <span className="text-[5px] sm:text-[6px] text-cyan-200">Undangan Digital</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
+
