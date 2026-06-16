@@ -286,23 +286,24 @@ export default function Home() {
 
 const HeroMockup = () => {
   return (
-    <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center py-20 md:py-32" style={{ perspective: '1200px' }}>
+    <div className="relative w-full max-w-6xl mx-auto flex items-center justify-center py-20 md:py-32 overflow-visible" style={{ perspective: '1500px' }}>
       <style>{`
         @keyframes float-mockup {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
+          0%, 100% { transform: translateY(0px) translateZ(0px); }
+          50% { transform: translateY(-15px) translateZ(10px); }
         }
         @keyframes float-badge {
           0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
+          50% { transform: translateY(-8px); }
         }
         @keyframes pulse-glow {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(1.1); }
+          0%, 100% { opacity: 0.5; transform: scale(1); }
+          50% { opacity: 0.9; transform: scale(1.1); }
         }
-        @keyframes ray-spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        @keyframes float-particle {
+          0% { transform: translateY(0) scale(1); opacity: 0; }
+          50% { opacity: 0.8; transform: translateY(-20px) scale(1.5); }
+          100% { transform: translateY(-40px) scale(0.5); opacity: 0; }
         }
 
         .animate-float-mockup {
@@ -310,220 +311,243 @@ const HeroMockup = () => {
           transform-style: preserve-3d;
         }
         .animate-float-badge {
-          animation: float-badge 5s ease-in-out infinite;
+          animation: float-badge 4s ease-in-out infinite;
         }
         .animate-float-badge-delayed {
-          animation: float-badge 7s ease-in-out infinite 1s;
-        }
-        .animate-float-badge-delayed-2 {
-          animation: float-badge 6s ease-in-out infinite 2s;
+          animation: float-badge 5s ease-in-out infinite 1s;
         }
         .animate-pulse-glow {
-          animation: pulse-glow 4s ease-in-out infinite;
+          animation: pulse-glow 3s ease-in-out infinite;
         }
-        .animate-ray-spin {
-          animation: ray-spin 20s linear infinite;
+
+        .hex-bg {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       `}</style>
 
-      {/* Spotlight and Rays behind everything */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] z-0 pointer-events-none flex items-center justify-center">
-        <div className="absolute w-[60%] h-[60%] bg-[#00D9FF] blur-[100px] md:blur-[140px] rounded-full opacity-70 animate-pulse-glow"></div>
-        <div className="absolute w-[80%] h-[80%] bg-[#00D9FF] blur-[180px] rounded-full opacity-40"></div>
-        <div className="absolute w-[150%] h-[150%] opacity-25 animate-ray-spin rounded-full" style={{
-          background: 'conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0,217,255,0.8) 15deg, transparent 30deg, transparent 60deg, rgba(0,217,255,0.8) 75deg, transparent 90deg, transparent 120deg, rgba(0,217,255,0.8) 135deg, transparent 150deg, transparent 180deg, rgba(0,217,255,0.8) 195deg, transparent 210deg, transparent 240deg, rgba(0,217,255,0.8) 255deg, transparent 270deg, transparent 300deg, rgba(0,217,255,0.8) 315deg, transparent 330deg, transparent 360deg)'
+      {/* Main Spotlight & Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full z-0 pointer-events-none flex items-center justify-center">
+        <div className="absolute w-[70%] h-[70%] bg-[#00D9FF] blur-[150px] rounded-full opacity-60 animate-pulse-glow"></div>
+        <div className="absolute w-[90%] h-[90%] bg-blue-600 blur-[200px] rounded-full opacity-30"></div>
+        
+        {/* Rays */}
+        <div className="absolute w-[120%] h-[120%] opacity-20" style={{
+          background: 'conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(0,217,255,0.5) 20deg, transparent 40deg, transparent 60deg, rgba(0,217,255,0.5) 80deg, transparent 100deg, transparent 150deg, rgba(0,217,255,0.5) 170deg, transparent 190deg, transparent 240deg, rgba(0,217,255,0.5) 260deg, transparent 280deg, transparent 330deg, rgba(0,217,255,0.5) 350deg, transparent 360deg)'
         }}></div>
+
+        {/* Particles */}
+        <div className="absolute w-full h-full">
+           {[...Array(15)].map((_, i) => (
+              <div key={i} className="absolute rounded-full bg-[#00D9FF] blur-[1px]" style={{
+                 width: Math.random() * 6 + 2 + 'px',
+                 height: Math.random() * 6 + 2 + 'px',
+                 top: Math.random() * 100 + '%',
+                 left: Math.random() * 100 + '%',
+                 opacity: 0,
+                 animation: `float-particle ${Math.random() * 3 + 3}s ease-in-out infinite ${Math.random() * 5}s`,
+                 boxShadow: '0 0 10px 2px rgba(0,217,255,0.8)'
+              }}></div>
+           ))}
+        </div>
       </div>
 
-      {/* Main Group with 3D Perspective */}
-      <div className="relative w-full flex items-center justify-center z-10 animate-float-mockup">
+      {/* Main 3D Composition Group */}
+      <div className="relative w-full max-w-[1000px] flex items-center justify-center z-10 animate-float-mockup" style={{ transformStyle: 'preserve-3d' }}>
 
-        {/* FLOATING BADGES (Independent of devices) */}
-        {/* Top Center-Left: Web Company */}
-        <div className="absolute -top-10 left-[15%] md:left-[25%] z-50 animate-float-badge">
-          <div className="bg-white/10 backdrop-blur-md border border-[#00D9FF]/50 px-4 py-2 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(0,217,255,0.3)]">
-            <span className="material-symbols-outlined text-[#00D9FF] text-sm md:text-base">public</span>
-            <span className="text-white font-bold text-xs md:text-sm">Web Company</span>
+        {/* OUTER BADGES (Outer UI elements matching the screenshot) */}
+        <div className="absolute -top-16 left-[0%] md:-left-[10%] z-50">
+          <div className="bg-[#050B18]/80 backdrop-blur-md border border-gray-700/50 px-5 py-2.5 rounded-full flex items-center gap-3 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+            <span className="material-symbols-outlined text-blue-500 text-xl">public</span>
+            <span className="text-blue-500 font-bold text-sm">Web Company</span>
+          </div>
+        </div>
+        <div className="absolute top-[20%] right-[0%] md:-right-[10%] z-50">
+          <div className="bg-[#050B18]/80 backdrop-blur-md border border-gray-700/50 px-5 py-2.5 rounded-full flex items-center gap-3 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+            <span className="material-symbols-outlined text-[#00D9FF] text-xl">favorite</span>
+            <span className="text-[#00D9FF] font-bold text-sm">Undangan Digital</span>
+          </div>
+        </div>
+        <div className="absolute -bottom-16 left-[5%] md:-left-[5%] z-50">
+          <div className="bg-[#00D9FF] px-6 py-3 rounded-full flex items-center gap-3 shadow-[0_0_30px_rgba(0,217,255,0.4)]">
+            <span className="material-symbols-outlined text-white text-xl">grid_view</span>
+            <span className="text-white font-bold text-sm">Sistem Bisnis</span>
           </div>
         </div>
 
-        {/* Top Right: Undangan Digital */}
-        <div className="absolute top-[10%] right-[0%] md:-right-[5%] z-50 animate-float-badge-delayed">
-          <div className="bg-white/10 backdrop-blur-md border border-[#00D9FF]/30 px-4 py-2 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(0,217,255,0.2)]">
-            <span className="material-symbols-outlined text-[#00D9FF] text-sm md:text-base">favorite</span>
-            <span className="text-white font-bold text-xs md:text-sm">Undangan Digital</span>
-          </div>
-        </div>
-
-        {/* Bottom Center: Sistem Bisnis */}
-        <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 z-50 animate-float-badge-delayed-2">
-          <div className="bg-white/10 backdrop-blur-md border border-[#00D9FF]/40 px-5 py-2.5 rounded-full flex items-center gap-2 shadow-[0_0_20px_rgba(0,217,255,0.2)]">
-            <span className="material-symbols-outlined text-[#00D9FF] text-sm md:text-base">analytics</span>
-            <span className="text-white font-bold text-xs md:text-sm">Sistem Bisnis</span>
-          </div>
-        </div>
-
-        {/* TABLET KIRI (UNDANGAN DIGITAL) */}
+        {/* TABLET KIRI */}
         <div 
-          className="absolute left-[0%] md:left-[2%] bottom-[5%] md:bottom-[-2%] w-[38%] md:w-[28%] max-w-[240px] z-40 drop-shadow-[0_25px_45px_rgba(0,0,0,0.8)] group"
-          style={{ transform: 'rotate(-10deg) rotateY(15deg) translateZ(40px)' }}
+          className="absolute left-[0%] md:left-[5%] top-[10%] w-[35%] md:w-[26%] max-w-[260px] z-20 drop-shadow-[0_30px_50px_rgba(0,0,0,0.9)] group"
+          style={{ transform: 'rotateY(25deg) rotateX(10deg) rotateZ(-5deg) translateZ(40px)', transformStyle: 'preserve-3d' }}
         >
           {/* Tablet Frame */}
-          <div className="w-full aspect-[3/4] bg-[#111] rounded-[1.5rem] md:rounded-[2.5rem] border-[3px] md:border-[8px] border-[#222] relative flex flex-col p-1 md:p-2 overflow-hidden shadow-[0_0_25px_rgba(0,0,0,0.6)]">
-            {/* Camera */}
-            <div className="absolute top-1 md:top-2 left-1/2 -translate-x-1/2 w-1 md:w-2 h-1 md:h-2 bg-black rounded-full z-50"></div>
-            
-            {/* Screen Content - Undangan Pernikahan */}
-            <div className="flex-1 bg-[#0f0c05] rounded-[1.2rem] md:rounded-[2rem] relative overflow-hidden flex flex-col border border-white/5">
-              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-yellow-600/10 via-[#0f0c05] to-[#0f0c05]"></div>
+          <div className="w-full aspect-[3/4] bg-[#151518] rounded-[1.5rem] md:rounded-[2rem] border-[4px] md:border-[8px] border-[#2a2a30] relative flex flex-col p-1.5 md:p-2 overflow-hidden shadow-[inset_0_0_10px_rgba(0,0,0,1)]">
+            {/* Screen */}
+            <div className="flex-1 bg-[#0a0805] rounded-[1rem] md:rounded-[1.5rem] relative overflow-hidden flex flex-col border border-yellow-900/30">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-800/20 via-[#0a0805] to-[#0a0805]"></div>
               
-              {/* Ornamen bunga emas sudut */}
-              <div className="absolute top-0 left-0 p-2 md:p-4 text-yellow-500/40 opacity-50 transform -scale-x-100">
-                 <span className="material-symbols-outlined text-3xl md:text-5xl">local_florist</span>
-              </div>
-              <div className="absolute bottom-0 right-0 p-2 md:p-4 text-yellow-500/40 opacity-50 transform rotate-180">
-                 <span className="material-symbols-outlined text-3xl md:text-5xl">local_florist</span>
-              </div>
-
+              {/* Floral Ornaments using borders and basic shapes */}
+              <div className="absolute -top-4 -left-4 w-16 md:w-24 h-16 md:h-24 border border-yellow-500/30 rounded-full opacity-50"></div>
+              <div className="absolute -top-8 -left-8 w-24 md:w-32 h-24 md:h-32 border border-yellow-500/20 rounded-full opacity-50"></div>
+              <div className="absolute -bottom-4 -right-4 w-16 md:w-24 h-16 md:h-24 border border-yellow-500/30 rounded-full opacity-50"></div>
+              
               <div className="flex-1 flex flex-col items-center justify-center p-4 text-center relative z-10">
-                <h3 className="text-[10px] md:text-[14px] lg:text-[16px] font-serif text-yellow-100/90 mb-2">The Wedding of</h3>
-                <h2 className="text-[18px] md:text-[28px] lg:text-[36px] font-serif text-yellow-500 mb-3 md:mb-5 leading-tight italic">Sarah & Daniel</h2>
-                
-                <div className="w-12 md:w-20 h-px bg-yellow-500/50 mb-3 md:mb-5"></div>
-                
-                <p className="text-[7px] md:text-[10px] lg:text-[12px] text-yellow-500 font-sans tracking-[0.2em] md:tracking-[0.3em]">14 DESEMBER 2024</p>
+                <span className="text-yellow-500 text-xs md:text-sm italic mb-1 font-serif">The Wedding of</span>
+                <h2 className="text-xl md:text-3xl font-serif text-yellow-400 mb-2 italic drop-shadow-[0_2px_5px_rgba(0,0,0,1)]">Sarah<br/>&<br/>Daniel</h2>
+                <div className="w-16 md:w-24 h-px bg-yellow-500/40 my-2"></div>
+                <span className="text-[6px] md:text-[8px] text-yellow-300 tracking-[0.2em] mb-4">14 DESEMBER 2024</span>
+                <div className="px-3 py-1 text-[5px] md:text-[8px] text-yellow-900 bg-yellow-500 rounded font-bold uppercase">Save The Date</div>
               </div>
             </div>
           </div>
           
-          {/* Badge under Tablet */}
-          <div className="absolute -bottom-5 md:-bottom-8 left-1/2 -translate-x-1/2 w-full md:w-[120%] flex justify-center z-50">
-            <div className="bg-[#111]/80 backdrop-blur-md border border-gray-300/50 px-3 md:px-5 py-1.5 md:py-2 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(255,255,255,0.1)] whitespace-nowrap">
-               <span className="text-gray-200 font-medium text-[8px] md:text-[12px] lg:text-sm">Undangan Digital</span>
-            </div>
+          {/* Hexagon Badge Tablet */}
+          <div className="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 z-50 w-16 h-16 md:w-20 md:h-20 animate-float-badge flex items-center justify-center">
+             <svg viewBox="0 0 100 100" className="absolute w-full h-full drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]">
+               <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" fill="rgba(0,217,255,0.15)" stroke="#00D9FF" strokeWidth="3" />
+             </svg>
+             <span className="relative text-[#00D9FF] font-bold text-[6px] md:text-[8px] text-center leading-tight">Undangan<br/>Digital</span>
           </div>
         </div>
 
-        {/* LAPTOP (CENTER) */}
+        {/* LAPTOP TENGAH */}
         <div 
-          className="relative w-[85%] md:w-[65%] max-w-[800px] z-30 drop-shadow-[0_30px_50px_rgba(0,0,0,0.8)]"
-          style={{ transform: 'rotateY(-5deg) rotateX(5deg) translateZ(0px)' }}
+          className="relative w-[75%] md:w-[55%] max-w-[650px] z-30 drop-shadow-[0_40px_60px_rgba(0,0,0,0.9)] flex flex-col items-center justify-end"
+          style={{ transform: 'rotateY(-5deg) rotateX(2deg) translateZ(20px)', transformStyle: 'preserve-3d' }}
         >
-          {/* Laptop Screen Frame */}
-          <div className="w-full aspect-[16/10] bg-[#1a1c23] rounded-t-2xl md:rounded-t-3xl border-[4px] md:border-[8px] border-[#2d313a] relative flex flex-col p-1 md:p-1.5 overflow-hidden shadow-[0_0_30px_rgba(0,217,255,0.2)]">
-            {/* Webcam */}
+          {/* Screen Frame */}
+          <div className="w-full aspect-[16/10] bg-[#1a1c23] rounded-t-2xl md:rounded-t-3xl border-[4px] md:border-[8px] border-[#22242a] relative flex flex-col p-1 md:p-1.5 overflow-hidden shadow-[0_0_30px_rgba(0,217,255,0.15)] z-20 origin-bottom" style={{ transform: 'rotateX(5deg)' }}>
             <div className="absolute top-1 md:top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-black rounded-full z-40"></div>
             
-            {/* Screen Content */}
-            <div className="flex-1 bg-[#0a0f1d] rounded-t-xl md:rounded-t-2xl relative overflow-hidden flex flex-col border border-white/5">
-              {/* Screen Glow Effect */}
-              <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#00D9FF]/20 blur-[80px] rounded-full"></div>
+            {/* Screen Viewport */}
+            <div className="flex-1 bg-[#050b14] rounded-t-xl md:rounded-t-2xl relative overflow-hidden flex flex-col">
               
-              {/* Navbar */}
-              <div className="w-full h-8 md:h-14 border-b border-white/10 flex items-center px-4 md:px-6 relative z-10 bg-white/5 backdrop-blur-sm justify-between">
-                <span className="text-xs md:text-base font-extrabold text-[#00D9FF] tracking-wider">DiCode</span>
-                <div className="hidden md:flex gap-6">
-                  <div className="w-10 h-1.5 bg-white/20 rounded-full"></div>
-                  <div className="w-10 h-1.5 bg-white/20 rounded-full"></div>
-                  <div className="w-10 h-1.5 bg-[#00D9FF]/50 rounded-full"></div>
+              {/* Navbar inside screen */}
+              <div className="w-full h-6 md:h-10 px-4 md:px-6 flex items-center justify-between border-b border-white/10 z-10">
+                <div className="flex items-center gap-1">
+                   <div className="w-3 h-3 bg-[#00D9FF] rounded-sm"></div>
+                   <span className="text-[8px] md:text-[12px] font-bold text-white">DTech</span>
+                </div>
+                <div className="flex gap-4 md:gap-6">
+                  <div className="w-8 h-1 bg-white/30 rounded"></div>
+                  <div className="w-8 h-1 bg-white/30 rounded"></div>
+                  <div className="w-8 h-1 bg-white/30 rounded"></div>
+                </div>
+                <div className="w-12 h-3 md:h-5 bg-blue-600 rounded flex items-center justify-center">
+                   <div className="w-6 h-1 bg-white/50 rounded"></div>
                 </div>
               </div>
 
-              {/* Hero Content on Screen */}
-              <div className="flex-1 flex flex-col items-center justify-center p-4 md:p-6 text-center relative z-10">
-                <h2 className="text-[16px] md:text-[32px] lg:text-[40px] font-black text-white leading-[1.1] mb-2 md:mb-5 tracking-tight">
-                  WUJUDKAN IDE DIGITAL <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00D9FF] to-blue-500">LEBIH NYATA</span>
-                </h2>
-                <p className="text-[8px] md:text-[12px] lg:text-[14px] text-gray-400 max-w-[80%] md:max-w-[70%] mb-4 md:mb-8 leading-relaxed">
-                  Kami membantu UMKM, Instansi, dan Perusahaan bertransformasi secara digital melalui pembuatan website responsif dan sistem kustom.
-                </p>
-                <div className="px-5 py-2 md:px-8 md:py-3.5 bg-gradient-to-r from-[#00D9FF] to-blue-600 rounded-full text-white text-[9px] md:text-[14px] font-bold shadow-[0_0_20px_rgba(0,217,255,0.4)]">
-                  Eksplorasi Layanan
+              {/* Body inside screen */}
+              <div className="flex-1 flex p-4 md:p-6 relative z-10">
+                {/* Left side text */}
+                <div className="w-1/2 flex flex-col justify-center">
+                   <h2 className="text-[12px] md:text-[22px] font-bold text-white leading-[1.2] mb-2 md:mb-4">
+                     WUJUDKAN IDE <br/>
+                     <span className="text-[#00D9FF]">DIGITAL</span> <br/>
+                     LEBIH NYATA
+                   </h2>
+                   <p className="text-[6px] md:text-[9px] text-gray-400 mb-4 md:mb-6">
+                     Solusi profesional untuk bisnis Anda. Transformasi digital menjadi kenyataan.
+                   </p>
+                   <div className="flex gap-2">
+                      <div className="px-3 py-1.5 md:px-4 md:py-2 bg-[#00D9FF] rounded text-[5px] md:text-[8px] font-bold text-[#050b14]">HUBUNGI KAMI</div>
+                      <div className="px-3 py-1.5 md:px-4 md:py-2 border border-white/20 rounded text-[5px] md:text-[8px] font-bold text-white">PELAJARI LAYANAN</div>
+                   </div>
                 </div>
-
-                {/* Decorative UI elements on screen */}
-                <div className="absolute bottom-4 left-4 w-20 md:w-24 h-12 md:h-16 bg-white/5 border border-white/10 rounded-lg p-2 hidden sm:flex flex-col gap-2">
-                  <div className="w-full h-1.5 md:h-2 bg-white/10 rounded-sm"></div>
-                  <div className="w-3/4 h-1.5 md:h-2 bg-white/10 rounded-sm"></div>
-                  <div className="w-1/2 h-1.5 md:h-2 bg-[#00D9FF]/30 rounded-sm mt-auto"></div>
-                </div>
-                <div className="absolute top-16 right-4 w-24 md:w-32 h-16 md:h-24 bg-white/5 border border-white/10 rounded-lg p-2 md:p-3 hidden sm:flex flex-col gap-1 md:gap-2">
-                  <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#00D9FF]/20 flex items-center justify-center mb-1 md:mb-2">
-                    <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-[#00D9FF]"></div>
-                  </div>
-                  <div className="w-full h-1.5 md:h-2 bg-white/10 rounded-sm"></div>
-                  <div className="w-4/5 h-1.5 md:h-2 bg-white/10 rounded-sm"></div>
+                
+                {/* Right side floating UI cards mockups */}
+                <div className="w-1/2 relative flex items-center justify-center">
+                   <div className="absolute w-[80%] h-[70%] bg-blue-900/30 blur-[40px] rounded-full"></div>
+                   
+                   {/* Main card */}
+                   <div className="w-[60%] aspect-video bg-[#0d1526] border border-white/10 rounded-lg shadow-2xl relative z-20 p-2 flex flex-col transform translate-y-[-10px]">
+                      <div className="w-full h-1/2 bg-blue-500/20 rounded mb-2"></div>
+                      <div className="w-full h-1 bg-white/20 rounded mb-1"></div>
+                      <div className="w-2/3 h-1 bg-white/20 rounded"></div>
+                   </div>
+                   
+                   {/* Smaller card 1 */}
+                   <div className="w-[30%] aspect-[3/4] bg-[#0d1526] border border-white/10 rounded shadow-lg absolute -left-4 bottom-4 z-30 p-1 flex flex-col">
+                      <div className="w-4 h-4 rounded-full bg-blue-400/30 mb-2"></div>
+                      <div className="w-full h-1 bg-white/20 rounded mb-1"></div>
+                      <div className="w-full h-1 bg-white/20 rounded"></div>
+                   </div>
+                   
+                   {/* Smaller card 2 */}
+                   <div className="w-[25%] aspect-[9/16] bg-[#0d1526] border border-[#00D9FF]/30 rounded shadow-lg absolute -right-2 top-0 z-30 p-1 flex flex-col">
+                      <div className="w-full h-[40%] bg-[#00D9FF]/20 rounded-sm mb-1"></div>
+                      <div className="w-full h-0.5 bg-[#00D9FF]/50 rounded mb-1"></div>
+                      <div className="w-full h-4 bg-blue-600/50 rounded-sm mt-auto"></div>
+                   </div>
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Laptop Base Body */}
-          <div className="w-[114%] -ml-[7%] h-4 md:h-10 bg-gradient-to-b from-[#5a5f6a] via-[#2d313a] to-[#15171b] rounded-b-lg md:rounded-b-2xl relative z-20 shadow-[0_20px_30px_rgba(0,0,0,0.8)] border-t border-gray-400/30 flex justify-center perspective-[500px]">
-             {/* Keyboard indent illusion */}
-             <div className="absolute top-0 w-[70%] h-2 md:h-4 bg-[#1a1c23] rounded-b-md shadow-[inset_0_2px_5px_rgba(0,0,0,0.5)]"></div>
-             {/* Touchpad Indent */}
-             <div className="absolute bottom-0.5 md:bottom-2 w-1/4 h-1 md:h-2.5 bg-[#202329] rounded-sm shadow-[inset_0_1px_3px_rgba(0,0,0,0.8)]"></div>
+          {/* Laptop Base (Keyboard) - Realistic 3D Projection */}
+          <div className="w-[114%] aspect-[16/6] bg-[#3a3e47] rounded-b-2xl relative z-10 origin-top flex flex-col items-center border-t border-gray-600/50 shadow-[0_20px_40px_rgba(0,0,0,1)]" style={{ transform: 'rotateX(70deg) translateY(-1px)' }}>
+             {/* Keyboard Indent */}
+             <div className="w-[85%] h-[55%] mt-[2%] bg-[#1c1e23] rounded-md shadow-[inset_0_2px_10px_rgba(0,0,0,0.8)] border-b border-gray-500/20 p-1 md:p-2 grid grid-cols-12 gap-[1px] md:gap-[2px]">
+                {/* Fake keys */}
+                {[...Array(60)].map((_, i) => (
+                  <div key={i} className="bg-[#2a2c33] rounded-[1px] md:rounded-sm"></div>
+                ))}
+             </div>
+             {/* Trackpad Indent */}
+             <div className="w-[25%] h-[25%] mt-[2%] bg-[#2a2d35] rounded-sm shadow-[inset_0_1px_5px_rgba(0,0,0,0.5)]"></div>
+             {/* Front Lip */}
+             <div className="absolute -bottom-1 w-full h-1 md:h-2 bg-[#111] rounded-b-3xl"></div>
+          </div>
+
+          {/* Hexagon Badge Laptop */}
+          <div className="absolute top-[20%] -left-8 md:-left-12 z-50 w-12 h-12 md:w-16 md:h-16 animate-float-badge-delayed flex items-center justify-center">
+             <svg viewBox="0 0 100 100" className="absolute w-full h-full drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]">
+               <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" fill="rgba(0,217,255,0.15)" stroke="#00D9FF" strokeWidth="3" />
+             </svg>
+             <span className="relative text-[#00D9FF] font-bold text-[5px] md:text-[6px] text-center leading-tight">Web<br/>Company</span>
           </div>
         </div>
 
-        {/* HP KANAN (WEBSITE BISNIS) */}
+        {/* HP KANAN */}
         <div 
-          className="absolute right-[0%] md:right-[2%] bottom-[10%] md:bottom-[5%] w-[25%] md:w-[18%] max-w-[140px] z-40 drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] group"
-          style={{ transform: 'rotate(12deg) rotateY(-15deg) translateZ(60px)' }}
+          className="absolute right-[0%] md:right-[5%] top-[25%] w-[25%] md:w-[18%] max-w-[160px] z-20 drop-shadow-[0_25px_45px_rgba(0,0,0,0.9)] group"
+          style={{ transform: 'rotateY(-25deg) rotateX(10deg) rotateZ(5deg) translateZ(60px)', transformStyle: 'preserve-3d' }}
         >
           {/* Phone Frame */}
-          <div className="w-full aspect-[9/19] bg-[#111] rounded-[1.5rem] md:rounded-[2rem] border-[3px] md:border-[6px] border-[#222] relative flex flex-col p-1 md:p-1.5 overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)]">
-            {/* Notch */}
+          <div className="w-full aspect-[9/19] bg-[#111] rounded-[1.5rem] md:rounded-[2rem] border-[3px] md:border-[6px] border-[#222] relative flex flex-col p-1 md:p-1.5 overflow-hidden shadow-[inset_0_0_10px_rgba(0,0,0,1)]">
             <div className="absolute top-1 md:top-1.5 left-1/2 -translate-x-1/2 w-[40%] h-3 md:h-4 bg-[#111] rounded-b-xl z-50"></div>
             
-            {/* Screen Content - Website Bisnis */}
-            <div className="flex-1 bg-[#0a0f1d] rounded-[1.2rem] md:rounded-[1.5rem] relative overflow-hidden flex flex-col border border-white/5">
-              <div className="absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-[#00D9FF]/20 blur-2xl rounded-full"></div>
+            {/* Screen Content - Wedding Invitation (Matches image) */}
+            <div className="flex-1 bg-[#0f0c05] rounded-[1.2rem] md:rounded-[1.5rem] relative overflow-hidden flex flex-col border border-yellow-900/30">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-yellow-800/20 via-[#0f0c05] to-[#0f0c05]"></div>
               
-              {/* Header */}
-              <div className="pt-4 pb-1 md:pt-6 md:pb-2 px-3 md:px-4 border-b border-white/10 flex justify-between items-center bg-white/5">
-                <span className="text-[7px] md:text-[10px] font-bold text-[#00D9FF]">DiCode</span>
-                <span className="material-symbols-outlined text-[10px] md:text-[14px] text-white">menu</span>
-              </div>
-              
-              {/* Body */}
-              <div className="flex-1 p-2 md:p-3 space-y-2 md:space-y-3">
-                {/* Hero */}
-                <div className="w-full h-16 md:h-20 bg-gradient-to-br from-[#00D9FF]/20 to-blue-600/20 rounded-lg border border-white/10 flex flex-col justify-center items-center p-2 text-center">
-                   <div className="w-3/4 h-1.5 md:h-2 bg-white/80 rounded-full mb-1"></div>
-                   <div className="w-1/2 h-1.5 md:h-2 bg-white/60 rounded-full mb-2"></div>
-                   <div className="w-1/3 h-2 md:h-3 bg-[#00D9FF] rounded-full"></div>
-                </div>
-                {/* Cards */}
-                <div className="flex gap-1.5 md:gap-2">
-                  <div className="flex-1 h-12 md:h-14 bg-white/5 rounded-md border border-white/10 p-1.5">
-                     <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-[#00D9FF]/20 mb-1.5"></div>
-                     <div className="w-full h-1 bg-white/20 rounded-full"></div>
-                  </div>
-                  <div className="flex-1 h-12 md:h-14 bg-white/5 rounded-md border border-white/10 p-1.5">
-                     <div className="w-4 h-4 md:w-5 md:h-5 rounded-full bg-blue-500/20 mb-1.5"></div>
-                     <div className="w-full h-1 bg-white/20 rounded-full"></div>
-                  </div>
-                </div>
+              <div className="flex-1 flex flex-col items-center justify-center p-3 text-center relative z-10">
+                <span className="text-yellow-500 text-[6px] md:text-[10px] italic mb-1 font-serif">The Wedding of</span>
+                <h2 className="text-[12px] md:text-[20px] font-serif text-yellow-400 mb-2 italic drop-shadow-[0_1px_3px_rgba(0,0,0,1)]">Sarah<br/>&<br/>Daniel</h2>
+                <div className="w-8 md:w-12 h-px bg-yellow-500/40 my-1"></div>
+                <span className="text-[5px] md:text-[6px] text-yellow-500 mb-2">Undangan Digital</span>
+                <span className="text-[4px] md:text-[5px] text-yellow-300 tracking-[0.2em] mb-4">14 . 12 . 2024</span>
+                <div className="px-3 py-1.5 text-[4px] md:text-[6px] text-[#0f0c05] bg-yellow-500 rounded-full font-bold uppercase w-3/4">Save The Date</div>
               </div>
             </div>
           </div>
           
-          {/* Badge under HP KANAN */}
-          <div className="absolute -bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 w-[140%] md:w-[150%] flex justify-center z-50">
-            <div className="bg-gradient-to-r from-amber-500/20 to-yellow-600/20 backdrop-blur-md border border-amber-500/50 px-2 md:px-3 py-1.5 rounded-full flex flex-col items-center justify-center shadow-[0_0_15px_rgba(245,158,11,0.3)] whitespace-nowrap">
-               <span className="text-white font-bold text-[6px] md:text-[9px] lg:text-[10px]">Sarah & Daniel</span>
-               <span className="text-amber-200 text-[4px] md:text-[6px] lg:text-[7px]">14 Desember 2024</span>
-            </div>
+          {/* Hexagon Badge Phone */}
+          <div className="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 z-50 w-12 h-12 md:w-16 md:h-16 animate-float-badge-delayed-2 flex items-center justify-center">
+             <svg viewBox="0 0 100 100" className="absolute w-full h-full drop-shadow-[0_0_15px_rgba(0,217,255,0.8)]">
+               <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" fill="rgba(0,217,255,0.15)" stroke="#00D9FF" strokeWidth="3" />
+             </svg>
+             <span className="relative text-[#00D9FF] font-bold text-[5px] md:text-[6px] text-center leading-tight">Undangan<br/>Digital</span>
           </div>
         </div>
 
       </div>
       
-      {/* Floor glow / reflection for entire composition */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-8 md:h-16 bg-[#00D9FF]/10 blur-[30px] md:blur-[50px] rounded-[100%] z-0 pointer-events-none"></div>
+      {/* Floor Floor reflection */}
+      <div className="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[90%] h-24 bg-[#00D9FF]/10 blur-[50px] md:blur-[80px] rounded-[100%] z-0 pointer-events-none transform scale-y-50"></div>
     </div>
   );
 };
