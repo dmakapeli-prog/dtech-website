@@ -16,12 +16,18 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             {/* Left Content */}
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm w-fit">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                </span>
-                Agensi Digital Terpercaya
+              <div className="flex flex-col items-start gap-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white text-xs w-fit">
+                  <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse"></span>
+                  Tersedia & Siap Membantu
+                </div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm w-fit">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                  </span>
+                  Mitra Digital Terpercaya untuk Bisnis Anda
+                </div>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
@@ -53,6 +59,26 @@ export default function Home() {
                 >
                   Konsultasi Gratis
                 </a>
+              </div>
+
+              {/* Statistics */}
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 pt-4">
+                <div className="flex flex-col items-center justify-center px-2 border-r border-white/10">
+                  <span className="text-2xl md:text-3xl font-bold text-[#00D9FF]">100%</span>
+                  <span className="text-sm text-[#9CA3AF] text-center mt-1">Kepuasan Klien</span>
+                </div>
+                <div className="flex flex-col items-center justify-center px-2 lg:border-r lg:border-white/10">
+                  <span className="text-2xl md:text-3xl font-bold text-[#00D9FF]">30 Hari</span>
+                  <span className="text-sm text-[#9CA3AF] text-center mt-1">Garansi Revisi</span>
+                </div>
+                <div className="flex flex-col items-center justify-center px-2 border-r border-white/10">
+                  <span className="text-2xl md:text-3xl font-bold text-[#00D9FF]">24/7</span>
+                  <span className="text-sm text-[#9CA3AF] text-center mt-1">Dukungan & Konsultasi</span>
+                </div>
+                <div className="flex flex-col items-center justify-center px-2">
+                  <span className="text-2xl md:text-3xl font-bold text-[#00D9FF]">10+</span>
+                  <span className="text-sm text-[#9CA3AF] text-center mt-1">Template Siap Pakai</span>
+                </div>
               </div>
             </div>
 
