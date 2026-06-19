@@ -237,13 +237,13 @@ export default function BlogPostDetail({ params }) {
     .split('\n')
     .map(line => {
       if (line.startsWith('## ')) {
-        return \`<h2 class="text-2xl font-bold mt-10 mb-4 text-white">\${line.replace('## ', '')}</h2>\`;
+        return `<h2 class="text-2xl font-bold mt-10 mb-4 text-white">${line.replace('## ', '')}</h2>`;
       } else if (line.trim() === '') {
         return '<br/>';
       } else if (line.startsWith('- ')) {
-        return \`<li class="ml-4 mb-2 text-gray-300">\${line.replace('- ', '').replace(/\\*\\*(.*?)\\*\\*/g, '<strong class="text-white">$1</strong>')}</li>\`;
+        return `<li class="ml-4 mb-2 text-gray-300">${line.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')}</li>`;
       } else {
-        return \`<p class="text-gray-300 leading-relaxed mb-4">\${line.replace(/\\*\\*(.*?)\\*\\*/g, '<strong class="text-white">$1</strong>')}</p>\`;
+        return `<p class="text-gray-300 leading-relaxed mb-4">${line.replace(/\*\*(.*?)\*\*/g, '<strong class="text-white">$1</strong>')}</p>`;
       }
     })
     .join('');
@@ -260,7 +260,7 @@ export default function BlogPostDetail({ params }) {
 
         {/* Article Header */}
         <div className="mb-8 text-center md:text-left">
-          <span className={\`inline-block px-3 py-1 rounded-full text-xs font-medium border mb-4 \${badgeClass}\`}>
+          <span className={`inline-block px-3 py-1 rounded-full text-xs font-medium border mb-4 ${badgeClass}`}>
             {article.badge}
           </span>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
@@ -285,7 +285,7 @@ export default function BlogPostDetail({ params }) {
         </div>
 
         {/* Hero Image / Placeholder */}
-        <div className={\`w-full h-[300px] md:h-[400px] rounded-3xl mb-12 flex items-center justify-center shadow-2xl bg-gradient-to-br \${gradient} relative overflow-hidden\`}>
+        <div className={`w-full h-[300px] md:h-[400px] rounded-3xl mb-12 flex items-center justify-center shadow-2xl bg-gradient-to-br ${gradient} relative overflow-hidden`}>
           <span className="text-8xl md:text-9xl filter drop-shadow-2xl animate-[pulse_3s_ease-in-out_infinite]">{emoji}</span>
           <div className="absolute inset-0 bg-black/10"></div>
           <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-background to-transparent"></div>
@@ -326,12 +326,12 @@ export default function BlogPostDetail({ params }) {
               {relatedArticles.map((relArticle) => {
                 const relStyle = getGradientAndEmoji(relArticle.category);
                 return (
-                  <Link href={\`/blog/\${relArticle.slug}\`} key={relArticle.id} className="group flex flex-col sm:flex-row gap-4 bg-gray-900/50 p-4 rounded-2xl border border-white/5 hover:border-cyan-500/30 transition-all">
-                    <div className={\`w-full sm:w-32 h-32 rounded-xl flex-shrink-0 bg-gradient-to-br \${relStyle.gradient} flex items-center justify-center\`}>
+                  <Link href={`/blog/${relArticle.slug}`} key={relArticle.id} className="group flex flex-col sm:flex-row gap-4 bg-gray-900/50 p-4 rounded-2xl border border-white/5 hover:border-cyan-500/30 transition-all">
+                    <div className={`w-full sm:w-32 h-32 rounded-xl flex-shrink-0 bg-gradient-to-br ${relStyle.gradient} flex items-center justify-center`}>
                       <span className="text-4xl group-hover:scale-110 transition-transform">{relStyle.emoji}</span>
                     </div>
                     <div className="flex flex-col justify-center">
-                      <span className={\`text-[10px] font-bold uppercase tracking-wider mb-2 \${relStyle.badgeClass.replace('bg-', 'text-').split(' ')[1]}\`}>
+                      <span className={`text-[10px] font-bold uppercase tracking-wider mb-2 ${relStyle.badgeClass.replace('bg-', 'text-').split(' ')[1]}`}>
                         {relArticle.category}
                       </span>
                       <h4 className="text-white font-bold text-md mb-2 line-clamp-2 group-hover:text-cyan-400 transition-colors">
