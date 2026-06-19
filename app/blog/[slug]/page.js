@@ -3,14 +3,21 @@ import { articles } from "../data";
 import { notFound } from "next/navigation";
 
 // Generate metadata dynamically
-export function generateMetadata({ params }) {
-  const article = articles.find(a => a.slug === params.slug);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const article = articles.find(a => a.slug === slug);
   if (!article) return { title: "Not Found" };
   
   return {
     title: `${article.title} | Blog DiCode`,
     description: article.excerpt,
   };
+}
+
+export async function generateStaticParams() {
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
 }
 
 // Full content data
@@ -207,8 +214,9 @@ Menghindari ketujuh kesalahan di atas akan menempatkan website Anda di posisi ya
   return contentMap[slug] || "Konten artikel belum tersedia.";
 };
 
-export default function BlogPostDetail({ params }) {
-  const article = articles.find(a => a.slug === params.slug);
+export default async function BlogPostDetail({ params }) {
+  const { slug } = await params;
+  const article = articles.find(a => a.slug === slug);
   
   if (!article) {
     notFound();
