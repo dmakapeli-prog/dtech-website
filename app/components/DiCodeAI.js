@@ -2,6 +2,134 @@
 
 import { useState, useRef, useEffect } from "react";
 
+const getAutoReply = (message) => {
+  const msg = message.toLowerCase();
+  
+  if (msg.includes("harga") || msg.includes("biaya") || 
+      msg.includes("tarif") || msg.includes("berapa")) {
+    return "Harga layanan DiCode mulai dari:\n\n" +
+      "🌐 Website Bisnis: mulai Rp 300.000\n" +
+      "💌 Undangan Digital: mulai Rp 299.000\n\n" +
+      "Untuk info harga lengkap dan paket detail, " +
+      "kunjungi halaman Harga kami atau hubungi " +
+      "kami langsung! 😊";
+  }
+  
+  if (msg.includes("template") || msg.includes("desain") || 
+      msg.includes("contoh")) {
+    return "DiCode punya 10+ template siap pakai:\n\n" +
+      "🍽️ Kuliner & Resto\n" +
+      "🏢 Company Profile\n" +
+      "🛒 E-Commerce\n" +
+      "🏠 Properti\n" +
+      "📋 Jasa & Layanan\n" +
+      "🎓 Instansi & Edukasi\n" +
+      "💌 Undangan Minimalist Elegance\n" +
+      "👑 Undangan Royal Blossom\n\n" +
+      "Kunjungi halaman Template untuk lihat " +
+      "demo langsung! 🚀";
+  }
+  
+  if (msg.includes("pesan") || msg.includes("order") || 
+      msg.includes("beli") || msg.includes("cara")) {
+    return "Cara pesan di DiCode sangat mudah:\n\n" +
+      "1️⃣ Pilih template yang kamu suka\n" +
+      "2️⃣ Klik tombol 'Pesan Sekarang'\n" +
+      "3️⃣ Chat langsung dengan tim kami\n" +
+      "4️⃣ Diskusikan kebutuhan & detail\n" +
+      "5️⃣ DP 50% untuk mulai pengerjaan\n\n" +
+      "Atau langsung hubungi kami via WhatsApp! 📱";
+  }
+  
+  if (msg.includes("lama") || msg.includes("waktu") || 
+      msg.includes("selesai") || msg.includes("berapa hari")) {
+    return "Estimasi waktu pengerjaan DiCode:\n\n" +
+      "⚡ Landing Page: 3-5 hari kerja\n" +
+      "🌐 Web Multi-halaman: 1-2 minggu\n" +
+      "🎨 Custom Website: 2-4 minggu\n" +
+      "💌 Undangan Digital: 1-2 hari kerja\n\n" +
+      "Garansi revisi 30 hari setelah selesai! ✅";
+  }
+  
+  if (msg.includes("revisi") || msg.includes("garansi") || 
+      msg.includes("ubah")) {
+    return "DiCode memberikan garansi revisi 30 hari " +
+      "setelah website selesai! 🎉\n\n" +
+      "Selama masa garansi, kamu bisa minta " +
+      "perubahan teks, gambar, warna, dan konten " +
+      "tanpa biaya tambahan.\n\n" +
+      "Setelah 30 hari, tersedia layanan " +
+      "pasca-garansi dengan harga terjangkau. 💪";
+  }
+  
+  if (msg.includes("undangan") || msg.includes("pernikahan") || 
+      msg.includes("nikah") || msg.includes("wedding")) {
+    return "DiCode punya layanan Undangan Digital " +
+      "premium! 💌\n\n" +
+      "✨ Tersedia 2 template:\n" +
+      "• Minimalist Elegance (Paket Basic)\n" +
+      "• Royal Blossom (Paket Premium)\n\n" +
+      "Fitur: countdown timer, RSVP form, " +
+      "galeri foto, music player & amplop digital.\n\n" +
+      "Harga mulai Rp 299.000. Mau lihat demo? 😊";
+  }
+  
+  if (msg.includes("kontak") || msg.includes("hubungi") || 
+      msg.includes("whatsapp") || msg.includes("wa")) {
+    return "Hubungi tim DiCode:\n\n" +
+      "📱 WhatsApp: +62 819-9652-2114\n" +
+      "📧 Email: dicode.indonesia@gmail.com\n" +
+      "📍 Lokasi: Sukabumi, Jawa Barat\n\n" +
+      "Kami siap membantu 24/7! Klik tombol " +
+      "di bawah untuk chat langsung 👇";
+  }
+  
+  if (msg.includes("bayar") || msg.includes("payment") || 
+      msg.includes("transfer") || msg.includes("dp")) {
+    return "Sistem pembayaran DiCode:\n\n" +
+      "💳 DP 50% di awal pengerjaan\n" +
+      "💳 Pelunasan 50% setelah selesai\n\n" +
+      "Metode pembayaran:\n" +
+      "• Transfer Bank (BCA, Mandiri, BRI)\n" +
+      "• QRIS\n" +
+      "• Dompet Digital (GoPay, OVO, Dana)\n\n" +
+      "Mudah dan aman! 🔒";
+  }
+
+  if (msg.includes("portofolio") || msg.includes("hasil") || 
+      msg.includes("karya") || msg.includes("project")) {
+    return "Lihat hasil karya DiCode di halaman " +
+      "Portofolio kami! 🎨\n\n" +
+      "DiCode telah mengerjakan berbagai project " +
+      "mulai dari website kuliner, company profile, " +
+      "e-commerce, hingga undangan digital premium.\n\n" +
+      "Kunjungi halaman Portofolio untuk " +
+      "melihat demo langsung! 🚀";
+  }
+  
+  if (msg.includes("halo") || msg.includes("hai") || 
+      msg.includes("hello") || msg.includes("hi") ||
+      msg.includes("selamat")) {
+    return "Halo! 👋 Selamat datang di DiCode!\n\n" +
+      "Saya DiCode AI, asisten virtual yang siap " +
+      "membantu Anda. Anda bisa tanya tentang:\n\n" +
+      "💰 Harga & paket layanan\n" +
+      "🎨 Template yang tersedia\n" +
+      "📋 Cara pemesanan\n" +
+      "⏱️ Estimasi waktu pengerjaan\n" +
+      "💌 Undangan digital\n\n" +
+      "Ada yang bisa saya bantu? 😊";
+  }
+  
+  // Default reply
+  return "Terima kasih sudah menghubungi DiCode! 😊\n\n" +
+    "Untuk pertanyaan lebih detail, tim kami " +
+    "siap membantu via WhatsApp:\n\n" +
+    "📱 +62 819-9652-2114\n\n" +
+    "Atau klik tombol di bawah untuk chat " +
+    "langsung dengan tim kami! 👇";
+};
+
 export default function DiCodeAI() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -25,48 +153,35 @@ export default function DiCodeAI() {
     }
   }, [messages, isOpen]);
 
-  async function sendMessage(e) {
+  const sendMessage = async (e) => {
     if (e) e.preventDefault();
     if (!input.trim() || isLoading) return;
-
-    const userMessage = { role: "user", content: input };
-    const newMessages = [...messages, userMessage];
-    setMessages(newMessages);
+    
+    const userMsg = { 
+      role: "user", 
+      content: input,
+      time: new Date().toLocaleTimeString('id-ID', 
+        {hour: '2-digit', minute: '2-digit'})
+    };
+    
+    setMessages(prev => [...prev, userMsg]);
     setInput("");
     setIsLoading(true);
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: newMessages.map((m) => ({
-            role: m.role,
-            content: m.content,
-          })),
-        }),
-      });
-
-      const data = await response.json();
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: data.content,
-        },
-      ]);
-    } catch (error) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: "Maaf, terjadi gangguan. Silakan hubungi kami langsung via WhatsApp.",
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+    
+    // Simulate typing delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    const reply = getAutoReply(userMsg.content);
+    
+    setMessages(prev => [...prev, {
+      role: "assistant",
+      content: reply,
+      time: new Date().toLocaleTimeString('id-ID', 
+        {hour: '2-digit', minute: '2-digit'})
+    }]);
+    
+    setIsLoading(false);
+  };
 
   const formatTime = () => {
     const now = new Date();
@@ -163,6 +278,16 @@ export default function DiCodeAI() {
 
           {/* Input Area */}
           <div className="p-3 bg-gray-900 border-t border-white/10">
+            <div className="mb-3">
+              <a
+                href="https://wa.me/6281996522114"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-[#25D366] hover:bg-[#1ebd5a] text-white rounded-full py-2.5 flex items-center justify-center text-sm font-medium transition-colors"
+              >
+                💬 Chat Langsung via WhatsApp
+              </a>
+            </div>
             <form onSubmit={sendMessage} className="flex items-center gap-2">
               <input
                 type="text"
